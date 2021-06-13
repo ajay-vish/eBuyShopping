@@ -13,12 +13,12 @@ const productRoutes = require("./routes/product")
 const orderRoutes = require("./routes/order")
 
 const stripeRoutes = require("./routes/stripepayment")
-
+const config = require("./config/database");
 
 
 
 //db connection
-mongoose.connect(process.env.DATABASE,
+mongoose.connect(config.database,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
