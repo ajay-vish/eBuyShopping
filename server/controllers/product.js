@@ -164,7 +164,10 @@ exports.getAllProducts= (req,res)=>{
              })
          }
 
-         res.json(products)
+         res.json({
+             success: true,
+             data : products
+            })
      })
 }
 
