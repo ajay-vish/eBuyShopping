@@ -56,17 +56,22 @@ exports.userPurchaseList = (req, res) => {
 
 exports.pushOrderInPurchaseList = (req, res, next) => {
     let purchases = []
-    req.body.order.products.forEach(product => {
-        purchases.push({
-            _id: product._id,
-            name: product.name,
-            description: product.description,
-            category: product.category,
-            quantity: product.quantity,
-            amount: req.body.order.amount,
-            transaction_id: req.body.order.transaction_id
-        })
-    })
+
+    // saving just order id in db instead of saving whole order object 
+    purchases.push({order_id:req.body.order_id})
+   
+    // req.body.order.products.forEach(product => {
+    //     purchases.push({
+    //         _id: product._id,
+    //         name: product.name,
+    //         description: product.description,
+    //         category: product.category,
+    //         quantity: product.quantity,
+    //         amount: req.body.order.amount,
+    //         payment_id: req.body.order.payment_id
+    //     })
+    // })
+    
 
     //store purchases in DB
     User.findOneAndUpdate(

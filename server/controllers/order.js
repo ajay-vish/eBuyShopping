@@ -14,8 +14,10 @@ exports.getOrderById =(req,res,next,id)=>{
     })
 }
 
-exports.createOrder =(req,res)=>{
+
+exports.createOrder =  (req,res,next)=>{
     req.body.order.user = req.profile
+
     const order = new Order(req.body.order)
     order.save((err,order)=>{
         if(err){
@@ -23,8 +25,19 @@ exports.createOrder =(req,res)=>{
                 error:"Failed to save your order in db"
             })
         }
-        res.json(order);
+        console.log("Order placed");
+
+        //passing order id(Object Id ) of above order in req 
+        req.body.order_id = order._id
+        res.json({
+            success: true,
+            error: false
+        });
+
+        //continue to next middleware
+        next()
     })
+
 }
 
 exports.getAllOrders =(req,res)=>{
