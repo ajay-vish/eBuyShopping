@@ -1,0 +1,40 @@
+<main class="container" *ngIf="product; else elseBlock">
+ 
+    <!-- Left Column / Headphones Image -->
+    <div class="left-column">
+      <img class="image" data-image="red" class="active" src="data:image/jpg;base64,{{product.photo.contentType}}" alt="Product Image">
+    </div>
+   
+   
+    <!-- Right Column -->
+    <div class="right-column">
+   
+      <!-- Product Description -->
+      <div class="product-description">
+        <span>{{product.category.name}}</span>
+        <h1>{{product.name}}</h1>
+        <p style="color: black !important;">{{product.description}}</p>
+      </div>
+   
+      <!-- Product Configuration -->
+      <div class="product-configuration">
+        <div class="cable-config">
+          <span>Lorem, ipsum.</span>
+          <div class="cable-choose">
+            <button>dolor</button>
+            <button>ipsum</button>
+            <button>amet</button>
+          </div>
+   
+          <a>Lorem ipsum dolor sit amet.</a>
+        </div>
+      </div>
+   
+      <!-- Product Pricing -->
+      <div class="product-price">
+        <span>{{product.price}}$</span>
+        <a (click)="addToCart()" class="cart-btn">Add to cart</a>
+      </div>
+    </div>
+  </main>
+  <ng-template #elseBlock>Loading</ng-template>

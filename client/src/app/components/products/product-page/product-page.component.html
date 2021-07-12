@@ -4,17 +4,12 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, omnis! Lorem ipsum dolor sit amet.</p>
         <h6>*50% off on all products</h6>
     </div>
-    <div class="card" style="padding: 2rem;">
-        <div class="row">
-            
-        </div>
-        <div class="row">
-            <div class="col-md-2"><app-product-template></app-product-template></div>
-            <div class="col-md-2"><app-product-template></app-product-template></div>
-            <div class="col-md-2"><app-product-template></app-product-template></div>
-            <div class="col-md-2"><app-product-template></app-product-template></div>
-            <div class="col-md-2"><app-product-template></app-product-template></div>
-            <div class="col-md-2"><app-product-template></app-product-template></div>
+    <div class="card" style="padding: 2rem; margin-bottom: 1rem;" *ngFor="let category of products;">
+        <h3>{{category[0].category.name}}</h3>
+        <div class="product-container">
+            <div *ngFor="let product of category;" style="margin-right: 1rem;">
+                <app-product-template [product]="product"></app-product-template>
+            </div>
         </div>
     </div>
     

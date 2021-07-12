@@ -11,6 +11,7 @@ import { ProductTemplateComponent } from './components/products/product-template
 import { CartTemplateComponent } from './components/products/cart-template/cart-template.component';
 import { NavbarComponent } from './components/user/navbar/navbar.component';
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
+import { DisplayProductComponent } from './components/products/display-product/display-product.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductPageComponent } from './components/products/product-page/product
     ProductTemplateComponent,
     CartTemplateComponent,
     NavbarComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    DisplayProductComponent
   ],
   imports: [
     BrowserModule,

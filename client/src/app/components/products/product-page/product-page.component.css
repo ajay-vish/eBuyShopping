@@ -1,0 +1,5 @@
+.product-container{
+    overflow-x: auto;
+    display: flex;
+    flex-direction: row;
+}
