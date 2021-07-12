@@ -76,7 +76,11 @@ exports.createProduct= (req,res)=>{
 }
 
 exports.getProduct= (req,res)=>{
-    req.product.photo = undefined;
+    var buffer = req.product.photo.data;
+    var string = buffer.toString('base64');
+    req.product["photo"] = {
+        contentType: string
+    };
     return res.json(req.product)
 }
 
@@ -150,20 +154,23 @@ exports.updateProduct = (req,res) =>{
 
 //product listing
 exports.getAllProducts= (req,res)=>{
-    let limit =req.query.limit ? parseInt(req.query.limit) :8
     let sortBy = req.query.sortBy ? req.query.sortBy :"_id"
     Product.find()
-    .select("-photo")
     .populate("category")
     .sort([[sortBy,"asc"]])
-    .limit(limit)
      .exec((err,products)=>{
          if(err){
              return res.status(400).json({
                  error:"No products found"
              })
          }
-
+         for(i = 0; i < products.length; i++){         
+            var buffer = products[i].photo.data;
+            var string = buffer.toString('base64');
+            products[i]["photo"] = {
+                contentType: string
+            };
+         }
          res.json({
              success: true,
              data : products
