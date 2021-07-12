@@ -4,9 +4,6 @@ const { v4: uuidv4 } = require('uuid');
 //TODO: take env variable here
 const YOUR_DOMAIN = "http://localhost:3000/"
 
-
-
-
 exports.createPaymentIntent = async (req,res) =>{
   const { products, amount } = req.body;
   console.log(products, amount);

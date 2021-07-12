@@ -1,10 +1,10 @@
 const express = require("express")
 const router = express.Router();
 
-const { makepayment } = require("../controllers/stripepayment")
+const { createPaymentIntent } = require("../controllers/stripepayment")
 
 
-router.post("/stripepayment", makepayment)
+// router.post("/stripepayment", makepayment)
 
 //route to create a new payment intent (not complete payment just payment intent )
 // returns client_secret used to complete payment
