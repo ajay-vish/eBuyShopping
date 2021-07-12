@@ -15,6 +15,7 @@ const CartSchema = new mongoose.Schema({
 
 
 //this is the Order schema 
+// new addition
 const orderSchema = new mongoose.Schema({
     products: [CartSchema],
     payment_id:{},
