@@ -23,7 +23,6 @@ router.delete("/product/:productId/:userId",isSignedIn,isAuthenticated,isAdmin,d
 //update route
 router.put("/product/:productId/:userId",isSignedIn,isAuthenticated,isAdmin,updateProduct);
 
-
 //listing route
 router.get("/products",getAllProducts)
 
