@@ -36,6 +36,6 @@ const orderSchema = new mongoose.Schema({
 })
 
 const Order = mongoose.model("Order",orderSchema);
-const ProductCart = mongoose.model("ProductCart",ProductCartSchema);
+const ProductCart = mongoose.model("ProductCart",CartSchema);
 
 module.exports ={Order,ProductCart};
