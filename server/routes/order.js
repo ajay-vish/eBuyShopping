@@ -16,9 +16,9 @@ router.param("orderId",getOrderById)
 router.post("/order/create/:userId"
             ,isSignedIn
             ,isAuthenticated
-            ,pushOrderInPurchaseList
             ,updateStock
             ,createOrder
+            ,pushOrderInPurchaseList
             );
 //read
 router.get("/order/all/:userId",isSignedIn,isAuthenticated,isAdmin,getAllOrders)

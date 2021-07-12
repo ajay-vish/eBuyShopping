@@ -20,6 +20,7 @@ const productSchema = new mongoose.Schema({
         trim:true
     },
     category:{
+        // referencing the Category schema 
         type: mongoose.Schema.ObjectId,
         ref :"Category",
         required:true
