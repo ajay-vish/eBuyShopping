@@ -11,6 +11,11 @@ import { ProductTemplateComponent } from './components/products/product-template
 import { CartTemplateComponent } from './components/products/cart-template/cart-template.component';
 import { NavbarComponent } from './components/user/navbar/navbar.component';
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
+import { AdminComponent } from './admin/admin.component';
+import { CreateProductComponent } from './create-product/create-product.component';
+import { CreateCategoryComponent } from './create-category/create-category.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +26,12 @@ import { ProductPageComponent } from './components/products/product-page/product
     ProductTemplateComponent,
     CartTemplateComponent,
     NavbarComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    AdminComponent,
+    CreateProductComponent,
+    CreateCategoryComponent,
+    EditProductComponent,
+    EditCategoryComponent
   ],
   imports: [
     BrowserModule,
