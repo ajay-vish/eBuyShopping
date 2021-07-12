@@ -12,7 +12,6 @@ const CartSchema = new mongoose.Schema({
     price:Number
 });
 
-
 //this is the Order schema 
 // new addition
 const orderSchema = new mongoose.Schema({
@@ -35,6 +34,6 @@ const orderSchema = new mongoose.Schema({
 })
 
 const Order = mongoose.model("Order",orderSchema);
-const ProductCart = mongoose.model("ProductCart",CartSchema);
+
 
 module.exports ={Order,CartSchema};
