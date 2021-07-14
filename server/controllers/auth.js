@@ -8,7 +8,7 @@ exports.signup =(req,res)=>{
     const errors = validationResult(req)
     
     if(!errors.isEmpty()){
-
+        
         return res.status(422).json({
             error: errors.array()[0].msg
         })
@@ -30,7 +30,7 @@ exports.signin = (req,res)=>{
     const {email,password} = req.body;
     const errors = validationResult(req)
     if(!errors.isEmpty()){
-
+        console.log(errors.array()[0].msg)
         return res.status(422).json({
             error: errors.array()[0].msg
         })

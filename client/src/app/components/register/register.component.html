@@ -7,17 +7,17 @@
     <br>
     <br>
     <div class="prodcut-form">
-        <form class="form-product" action="">
+        <form  (ngSubmit)="register()" class="form-product" action="">
             <span>Enter name</span>
-            <input type="text">
+            <input [(ngModel)]="registerPost.name" name="name" type="text">
             <br><br>
            
             <span>Enter email</span>
-            <input type="email">
+            <input  [(ngModel)]="registerPost.email" name="email" type="email">
             <br><br>
             
             <span>Create Password</span>
-                <input type="password" name="password">
+                <input  [(ngModel)]="registerPost.password" type="password" name="password">
             <br><br>
 
            

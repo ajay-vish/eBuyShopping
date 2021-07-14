@@ -21,5 +21,4 @@ export class AdminService {
   //   return this.http.post(endpoint "add-reward", reward);
   // }
 
-
 }
