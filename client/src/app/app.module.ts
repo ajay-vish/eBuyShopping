@@ -18,6 +18,7 @@ import { EditProductComponent } from './components/admin/edit-product/edit-produ
 import { EditCategoryComponent } from './components/admin/edit-category/edit-category.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { DisplayProductComponent } from './components/products/display-product/display-product.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RegisterComponent } from './components/register/register.component';
     CartTemplateComponent,
     NavbarComponent,
     ProductPageComponent,
+    DisplayProductComponent,
     AdminComponent,
     CreateProductComponent,
     CreateCategoryComponent,

@@ -10,10 +10,14 @@ import { EditProductComponent } from './components/admin/edit-product/edit-produ
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/user/cart/cart.component';
+import { ProductPageComponent } from './components/products/product-page/product-page.component';
+import { DisplayProductComponent } from './components/products/display-product/display-product.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'product', component: ProductPageComponent },
+  { path: 'product/:id', component: DisplayProductComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'create-product', component: CreateProductComponent },
   { path: 'create-category', component: CreateCategoryComponent },
@@ -22,10 +26,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cart', component: CartComponent }
-
-
-
-
 ];
 
 @NgModule({
