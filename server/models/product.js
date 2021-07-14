@@ -37,7 +37,6 @@ const productSchema = new mongoose.Schema({
         contentType: String
     }
 
-
 },{
     timestamps:true
 });

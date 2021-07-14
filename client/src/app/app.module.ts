@@ -9,14 +9,16 @@ import { DashboardComponent } from './components/user/dashboard/dashboard.compon
 import { CartComponent } from './components/user/cart/cart.component';
 import { ProductTemplateComponent } from './components/products/product-template/product-template.component';
 import { CartTemplateComponent } from './components/products/cart-template/cart-template.component';
-import { NavbarComponent } from './components/user/navbar/navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
+import { AdminComponent } from './components/admin/admin/admin.component';
+import { CreateProductComponent } from './components/admin/create-product/create-product.component';
+import { CreateCategoryComponent } from './components/admin/create-category/create-category.component';
+import { EditProductComponent } from './components/admin/edit-product/edit-product.component';
+import { EditCategoryComponent } from './components/admin/edit-category/edit-category.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { DisplayProductComponent } from './components/products/display-product/display-product.component';
-import { AdminComponent } from './admin/admin.component';
-import { CreateProductComponent } from './create-product/create-product.component';
-import { CreateCategoryComponent } from './create-category/create-category.component';
-import { EditProductComponent } from './edit-product/edit-product.component';
-import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
     CreateProductComponent,
     CreateCategoryComponent,
     EditProductComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

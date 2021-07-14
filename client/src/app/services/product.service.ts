@@ -13,6 +13,8 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
+  
+
   getProducts(): Observable<any> {
     return this.http.get(endpoint + 'products')
     .pipe(

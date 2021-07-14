@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DisplayProductComponent } from './components/products/display-product/display-product.component';
-import { ProductPageComponent } from './components/products/product-page/product-page.component';
-import { AdminComponent } from './admin/admin.component';
+import { AdminComponent } from './components/admin/admin/admin.component';
 import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 import { HomeComponent } from './components/user/home/home.component';
-import { CreateCategoryComponent } from './create-category/create-category.component';
-import { CreateProductComponent } from './create-product/create-product.component';
-import { EditCategoryComponent } from './edit-category/edit-category.component';
-import { EditProductComponent } from './edit-product/edit-product.component';
+import { CreateCategoryComponent } from './components/admin/create-category/create-category.component';
+import { CreateProductComponent } from './components/admin/create-product/create-product.component';
+import { EditCategoryComponent } from './components/admin/edit-category/edit-category.component';
+import { EditProductComponent } from './components/admin/edit-product/edit-product.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { CartComponent } from './components/user/cart/cart.component';
+import { ProductPageComponent } from './components/products/product-page/product-page.component';
+import { DisplayProductComponent } from './components/products/display-product/display-product.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,9 +22,10 @@ const routes: Routes = [
   { path: 'create-product', component: CreateProductComponent },
   { path: 'create-category', component: CreateCategoryComponent },
   { path: 'edit-product/:id', component: EditProductComponent },
-  { path: 'edit-category/:id', component: EditCategoryComponent }
-
-
+  { path: 'edit-category/:id', component: EditCategoryComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'cart', component: CartComponent }
 ];
 
 @NgModule({
