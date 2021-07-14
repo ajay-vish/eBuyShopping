@@ -56,10 +56,48 @@ export class DisplayProductComponent implements OnInit {
       this.isLoading = false;
     })
   }
-  addToCart(){
-    let cart = localStorage.getItem("cart") ? localStorage.getItem("cart") : "{products:[]}";
-    // let cartData = JSON.parse(cart);
-    this.cart.products.push(this.product._id);
-    localStorage.setItem("cart",JSON.stringify(this.cart));
+  // addToCart(){
+  //   let cart = localStorage.getItem("cart") ? localStorage.getItem("cart") : "{products:[]}";
+  //   // let cartData = JSON.parse(cart);
+  //   this.cart.products.push(this.product._id);
+  //   localStorage.setItem("cart",JSON.stringify(this.cart));
+    
+  // }
+
+   addItemToCart (item: { _id: any; }){
+    let cart = []
+    if (typeof window !== undefined) {
+        if (localStorage.getItem("cart")) {
+            cart = JSON.parse(localStorage.getItem("cart") || "")    
+        }
+        // console.log("Already in cart ",checkAlreadyInCart(cart,item))
+        if(this.checkAlreadyInCart(cart, item)){
+            let index = cart.findIndex((obj: { _id: any; }) => obj._id===item._id)
+ 
+            cart[index].count = cart[index].count +1;
+ 
+        
+        }
+        else{
+        cart.push({
+            ...item,
+            count: 1
+        })
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        // next();
+    }
+  
   }
+
+  checkAlreadyInCart (cart: any[], item: { _id: any; }){
+ 
+    if((cart.filter((product: { _id: any; }) => {
+        return product._id === item._id
+    })).length>0){
+        return true
+    }
+    return false
+}
+
 }

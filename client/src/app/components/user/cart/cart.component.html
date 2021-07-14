@@ -11,20 +11,20 @@
             <span class="title">Cart Products</span>
         </div>
         
-        <div class="row" style="margin-bottom: 10px;">
+        <div *ngFor="let p of products" class="row" style="margin-bottom: 10px;">
                 <div style="border: 1px solid #D2D2D7; border-radius:10px; padding: 10px;" class="row">
                     <div class="col-md-3">
-                        <img class="cart-product-img" src = "https://www.reliancedigital.in/medias/Apple-MUUT2HN-A-Tablet-491551016-i-1-1200Wx1200H?context=bWFzdGVyfGltYWdlc3w0MTcwMXxpbWFnZS9qcGVnfGltYWdlcy9oNjMvaGI1LzkxMjU0ODA4OTAzOTguanBnfGQ1OTNhOGRlOTcxNmNlZDZhNjNlZTZlMGEwOGUxOTBlYmViYTIwNGIxYTRmNDc1ZTA4MmNmZjZmNzM0ODU0ODg">                  
+                        <img class="cart-product-img" src = "data:image/jpg;base64,{{p.photo.contentType}}">                  
                     </div>
                     <div class="col-md-6">
                         <div class="product-name">
-                            <span>Ipad Pro GenX Apple M1</span>
+                            <span> {{p.name}} </span>
                         </div>
 
                         <div class="product-desc">
                         <span>
-
-                            With M1, iPad Pro is the fastest device of its kind. It’s designed to take full advantage of next‑level performance and custom technologies 
+                            {{p.description}}
+                            <!-- With M1, iPad Pro is the fastest device of its kind. It’s designed to take full advantage of next‑level performance and custom technologies  -->
                         </span>
                     
                     </div>
@@ -32,11 +32,21 @@
                     <div class="col-md-3">
  
                         <div class="product-edit">
+                            <button (click)="decreaseQty(p._id)" style="width: 100%; margin-bottom: 5px;" class="button-price">
+                                -
+                                
+                             </button>
                             <button style="width: 100%; margin-bottom: 5px;" class="button-price">
-                               Qty: 1
+                               Qty: {{p.count}}
+
                             </button>
+                            <button (click)="increaseQty(p._id)" style="width: 100%; margin-bottom: 5px;" class="button-price">
+                                +
+                                
+                             </button>
+                             
                         
-                            <button style="
+                            <button (click)="removeItem(p._id)" style="
                             padding: 10px 0px;
                             width:100%;
                             border:1px solid rgb(236, 19, 19);
@@ -51,49 +61,8 @@
                 
             </div>
         </div>
-          
            
-          <div class="row" style="margin-bottom: 10px;">
-                <div style="border: 1px solid #D2D2D7; border-radius:10px; padding: 10px;" class="row">
-                    <div class="col-md-3">
-                        <img class="cart-product-img" src = "
-                        https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-pro-12-select-wifi-spacegray-202104_FMT_WHH?wid=1945&hei=2000&fmt=jpeg&qlt=95&.v=1617126635000                    ">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="product-name">
-                            <span>Ipad Pro GenX Apple M1</span>
-                        </div>
-
-                        <div class="product-desc">
-                        <span>
-
-                            With M1, iPad Pro is the fastest device of its kind. It’s designed to take full advantage of next‑level performance and custom technologies 
-                        </span>
-                    
-                    </div>
-                    </div>
-                    <div class="col-md-3">
- 
-                        <div class="product-edit">
-                            <button style="width: 100%; margin-bottom: 5px;" class="button-price">
-                               Qty: 1
-                            </button>
-                        
-                            <button style="
-                            padding: 10px 0px;
-                            width:100%;
-                            border:1px solid rgb(236, 19, 19);
-                            color: rgb(236, 19, 19);
-                            background-color: transparent;
-                            " class="button-theme">Remove from Cart</button>
-                    
-                        </div>
-                    </div>
-                       
-                   
-                
-            </div>
-        </div>
+          
 
     </section>
 
@@ -116,7 +85,7 @@
                 border-radius: 10px;
                 padding: 10px;">
                 <div style="font-size: 25px; font-weight: 700;">
-                    <span>$10,500</span>
+                    <span>${{cart_total}}</span>
                     
                 </div>
                 <div><span>Cart Subtotal</span></div>
