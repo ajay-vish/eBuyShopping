@@ -21,8 +21,7 @@ export class AuthService {
     return this.http.post(endpoint + 'signin',user)
     .pipe(
       map((res: any)=>{
-        localStorage.setItem("authToken",JSON.stringify(res.token));
-        localStorage.setItem("userData",JSON.stringify(res.user));
+        localStorage.setItem("jwt",JSON.stringify({token: res.token,user: res.user}));
         this.user = res.user;
         return res;
       }),
@@ -41,12 +40,19 @@ export class AuthService {
   }
 
   isAuthenticated(){
-    this.authToken = localStorage.getItem("authToken");
+    this.authToken = localStorage.getItem("jwt");
     if(this.authToken)
-    this.isExpired = this.jwt.isTokenExpired(this.authToken);
+    this.isExpired = this.jwt.isTokenExpired(this.authToken.token);
     return this.isExpired;
   }
 
+  getSignedInUser(){
+    this.authToken = localStorage.getItem("jwt");
+    if(this.authToken)
+    this.user = this.authToken.user;
+    return this.user;
+  }
+  
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
