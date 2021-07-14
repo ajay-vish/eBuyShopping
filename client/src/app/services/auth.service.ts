@@ -40,14 +40,21 @@ export class AuthService {
   }
 
   isAuthenticated(){
-    this.authToken = localStorage.getItem("jwt");
+    this.authToken =  JSON.parse(localStorage.getItem("jwt") || "");
     if(this.authToken)
     this.isExpired = this.jwt.isTokenExpired(this.authToken.token);
     return this.isExpired;
   }
 
+  isSignedIn(){
+    this.authToken =  JSON.parse(localStorage.getItem("jwt") || "");
+    if(this.authToken)
+      return true;
+    return false;
+  }
+
   getSignedInUser(){
-    this.authToken = localStorage.getItem("jwt");
+    this.authToken = JSON.parse(localStorage.getItem("jwt") || "");
     if(this.authToken)
     this.user = this.authToken.user;
     return this.user;

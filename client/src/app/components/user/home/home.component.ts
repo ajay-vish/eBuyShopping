@@ -23,9 +23,9 @@ export class HomeComponent implements OnInit {
     this.auth.signIn({email:"admin@gmail.com", password: "admin"}).subscribe((resp) => {
       console.log(resp);
     })
-    this.productService.buyProduct(userData._id, JSON.stringify({ order: this.orderData })).subscribe((resp) => {
-      console.log(resp)
-    })
+    // this.productService.buyProduct(userData._id, JSON.stringify({ order: this.orderData })).subscribe((resp) => {
+    //   console.log(resp)
+    // })
   }
 
 }

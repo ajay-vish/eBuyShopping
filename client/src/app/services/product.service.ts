@@ -10,8 +10,10 @@ const endpoint = `http://localhost:8000/api/`;
 })
 
 export class ProductService {
-
+  
   constructor(private http: HttpClient) { }
+
+  
 
   getProducts(): Observable<any> {
     return this.http.get(endpoint + 'products')

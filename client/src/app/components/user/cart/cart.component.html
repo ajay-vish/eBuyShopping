@@ -1,1 +1,113 @@
-<p>cart works!</p>
+<app-navbar></app-navbar>
+<!-- navbar -->
+
+<div class="page">
+   
+    <div class="row">
+        <div class="col-md-9">
+
+    <section class="products">
+        <div style="padding: 10px 0;">
+            <span class="title">Cart Products</span>
+        </div>
+        
+        <div *ngFor="let p of products" class="row" style="margin-bottom: 10px;">
+                <div style="border: 1px solid #D2D2D7; border-radius:10px; padding: 10px;" class="row">
+                    <div class="col-md-3">
+                        <img class="cart-product-img" src = "data:image/jpg;base64,{{p.photo.contentType}}">                  
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product-name">
+                            <span> {{p.name}} </span>
+                        </div>
+
+                        <div class="product-desc">
+                        <span>
+                            {{p.description}}
+                            <!-- With M1, iPad Pro is the fastest device of its kind. It’s designed to take full advantage of next‑level performance and custom technologies  -->
+                        </span>
+                    
+                    </div>
+                    </div>
+                    <div class="col-md-3">
+ 
+                        <div class="product-edit">
+                            <button (click)="decreaseQty(p._id)" style="width: 100%; margin-bottom: 5px;" class="button-price">
+                                -
+                                
+                             </button>
+                            <button style="width: 100%; margin-bottom: 5px;" class="button-price">
+                               Qty: {{p.count}}
+
+                            </button>
+                            <button (click)="increaseQty(p._id)" style="width: 100%; margin-bottom: 5px;" class="button-price">
+                                +
+                                
+                             </button>
+                             
+                        
+                            <button (click)="removeItem(p._id)" style="
+                            padding: 10px 0px;
+                            width:100%;
+                            border:1px solid rgb(236, 19, 19);
+                            color: rgb(236, 19, 19);
+                            background-color: transparent;
+                            " class="button-theme">Remove from Cart</button>
+                    
+                        </div>
+                    </div>
+                       
+                   
+                
+            </div>
+        </div>
+           
+          
+
+    </section>
+
+        </div>
+        <div class="col-md-3">
+           
+
+            
+            <div style="padding: 10px 0;
+           
+            ">
+                <span class="title">Checkout </span>
+            </div>
+
+            <div class="row">
+                <div style=" text-align: center;
+                font-size: 15px;
+                margin-left: 10px;
+                border:1px solid #D2D2D7;
+                border-radius: 10px;
+                padding: 10px;">
+                <div style="font-size: 25px; font-weight: 700;">
+                    <span>${{cart_total}}</span>
+                    
+                </div>
+                <div><span>Cart Subtotal</span></div>
+                <br>
+                <span style="color: rgb(129, 129, 129);">Includes $30 AT&T instant discount
+                    One-time payment</span>
+                    <hr>
+                    
+                    <span>
+                        In Stock : 
+                        Free Shipping</span>
+                <div>
+                
+                    <button style="
+                    width: 100%;
+                    margin-top: 10px;
+                    " class="button-theme">
+                        Proceed to Checkout
+                    </button>
+                </div>
+                </div>
+        </div>
+    </div>
+    </div>
+</div>
