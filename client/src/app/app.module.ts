@@ -11,6 +11,7 @@ import { ProductTemplateComponent } from './components/products/product-template
 import { CartTemplateComponent } from './components/products/cart-template/cart-template.component';
 import { NavbarComponent } from './components/user/navbar/navbar.component';
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
+import { DisplayProductComponent } from './components/products/display-product/display-product.component';
 import { AdminComponent } from './admin/admin.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
@@ -27,6 +28,7 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
     CartTemplateComponent,
     NavbarComponent,
     ProductPageComponent,
+    DisplayProductComponent,
     AdminComponent,
     CreateProductComponent,
     CreateCategoryComponent,

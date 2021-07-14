@@ -17,7 +17,6 @@ export class ProductService {
     return this.http.get(endpoint + 'products')
     .pipe(
       map((res)=>{
-        console.log(res)
         return res;
       }),
       catchError(this.handleError)
@@ -28,7 +27,16 @@ export class ProductService {
     return this.http.get(endpoint + 'product/'+ id)
     .pipe(
       map((res)=>{
-        console.log(res)
+        return res;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  buyProduct(id: any, order: any) : Observable<any> {
+    return this.http.post(endpoint + 'order/create/'+ id, order)
+    .pipe(
+      map((res)=>{
         return res;
       }),
       catchError(this.handleError)
