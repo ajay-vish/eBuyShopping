@@ -19,15 +19,6 @@ export class DisplayProductComponent implements OnInit {
   isLoading: boolean= true;
   id: any;
   product: any;
-  user: any = {
-    name:"Ajay",
-    email:"a@gmail.com",
-    password:"admin"
-  }
-  login: any = {
-    email:"a@gmail.com",
-    password:"admin"
-  }
   cart: any = {
     products: []
   };
@@ -37,25 +28,15 @@ export class DisplayProductComponent implements OnInit {
       this.id = params.get('id');
       this.getProduct(this.id);
     });
-    this.signIn()
-    this.signUp()
   }
-  signIn(){
-    this.userService.signIn(this.login).subscribe((resp: any) => {
-      console.log(resp)
-    })
-  }
-  signUp(){
-    this.userService.signUp(this.user).subscribe((resp: any) => {
-      console.log(resp)
-    })
-  }
+
   getProduct(id :any){
     this.productService.getProduct(id).subscribe((resp: any) => {
       this.product = resp;
       this.isLoading = false;
     })
   }
+
   addToCart(){
     let cart = localStorage.getItem("cart") ? localStorage.getItem("cart") : "{products:[]}";
     // let cartData = JSON.parse(cart);
