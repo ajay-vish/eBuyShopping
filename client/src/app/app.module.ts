@@ -19,6 +19,8 @@ import { EditCategoryComponent } from './components/admin/edit-category/edit-cat
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DisplayProductComponent } from './components/products/display-product/display-product.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { DisplayProductComponent } from './components/products/display-product/d
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

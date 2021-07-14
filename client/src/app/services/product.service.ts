@@ -10,7 +10,7 @@ const endpoint = `http://localhost:8000/api/`;
 })
 
 export class ProductService {
-
+  
   constructor(private http: HttpClient) { }
 
   
@@ -27,6 +27,16 @@ export class ProductService {
 
   getProduct(id: any): Observable<any> {
     return this.http.get(endpoint + 'product/'+ id)
+    .pipe(
+      map((res)=>{
+        return res;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  buyProduct(id: any, order: any) : Observable<any> {
+    return this.http.post(endpoint + 'order/create/'+ id, order)
     .pipe(
       map((res)=>{
         return res;

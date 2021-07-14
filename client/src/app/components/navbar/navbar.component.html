@@ -1,24 +1,6 @@
-<!-- <nav style="background-color: #310E08; color: white !important; font-size: 15px;">
-	<ul class="nav justify-content-center">
-		<li class="nav-item">
-		  <a class="nav-link " href="#">Active</a>
-		</li>
-		<li class="nav-item">
-		  <a  href="#">Link</a>
-		</li>
-		<li class="nav-item">
-		  <a  href="#">Link</a>
-		</li>
-		<li class="nav-item">
-		  <a  href="#" >Disabled</a>
-		</li>
-	  </ul>
-</nav> -->
-
-
 <!-- navbar for logged in USER -->
 
-<div *ngIf="user" class="navbar-container" style="text-align: center; width: 100%; 
+<div *ngIf="status == 0" class="navbar-container" style="text-align: center; width: 100%; 
 background-color: #333333;
 color:rgb(163, 163, 163);
 ">
@@ -37,7 +19,7 @@ color:rgb(163, 163, 163);
 
 <!-- navbar for not logged in USER -->
 
-<div class="navbar-container" style="text-align: center; width: 100%; 
+<div *ngIf="status == -1" class="navbar-container" style="text-align: center; width: 100%; 
 background-color: #333333;
 color:rgb(163, 163, 163);
 ">
@@ -55,7 +37,7 @@ color:rgb(163, 163, 163);
 
 <!-- navbar for logged in ADMIN -->
 
-<div class="navbar-container" style="text-align: center; width: 100%; 
+<div  *ngIf="status == 1"  class="navbar-container" style="text-align: center; width: 100%; 
 background-color: #333333;
 color:rgb(163, 163, 163);
 ">

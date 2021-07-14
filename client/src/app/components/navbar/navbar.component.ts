@@ -12,10 +12,21 @@ export class NavbarComponent implements OnInit {
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.loadNavbar();
   }
 
+  status = -1;
+
   loadNavbar(){
-    
+    if(this.auth.isSignedIn()){
+      console.log(this.auth.getSignedInUser());
+      this.status = this.auth.getSignedInUser().role;
+      
+    }
+    else{
+      this.status = -1;
+    }
+    console.log(status);
   }
 
 }
