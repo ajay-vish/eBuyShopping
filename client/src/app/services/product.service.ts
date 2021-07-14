@@ -33,6 +33,16 @@ export class ProductService {
     );
   }
 
+  buyProduct(id: any, order: any) : Observable<any> {
+    return this.http.post(endpoint + 'order/create/'+ id, order)
+    .pipe(
+      map((res)=>{
+        return res;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
