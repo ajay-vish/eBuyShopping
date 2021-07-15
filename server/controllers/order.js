@@ -31,7 +31,6 @@ exports.createOrder =  (req,res,next)=>{
         req.body.order_id = order._id
         res.json({
             success: true,
-            error: false
         });
 
         //continue to next middleware
@@ -68,7 +67,7 @@ exports.updateStatus =(req,res)=>{
                     error:"Cannot update order status "
                 })
             }
-            res.json(order)
+            res.json({success:true,order})
         }
        
     )

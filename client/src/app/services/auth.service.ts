@@ -57,7 +57,7 @@ export class AuthService {
     this.authToken = JSON.parse(localStorage.getItem("jwt") || "");
     if(this.authToken)
     this.user = this.authToken.user;
-    return this.user;
+    return {user:this.user, token: this.authToken.token};
   }
   
   private handleError(error: HttpErrorResponse): any {
