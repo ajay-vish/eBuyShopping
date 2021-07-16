@@ -1,4 +1,4 @@
-<div class="card" style="width: 14rem; height: 27rem;" [routerLink]="['/product/'+product._id]">
+<!-- <div class="card" style="width: 14rem; height: 27rem;" [routerLink]="['/product/'+product._id]">
   <img src="data:image/jpg;base64,{{product.photo.contentType}}" class="card-img-top" style="height: 14rem;padding:1rem" alt="...">
   <div class="card-body">
     <div class="flex-column">
@@ -11,4 +11,19 @@
       </div>
     </div>
   </div>
+</div> -->
+<div class="product" [routerLink]="['/product/'+product._id]">
+    <img src="data:image/jpg;base64,{{product.photo.contentType}}">                  
+    <div class="product-name"> 
+        <span >{{product.name}}</span>
+    </div>
+    <div class="product-edit">
+        <button style="width: 100%; margin-bottom: 5px;" class="button-price">
+            ${{product.price}}
+        </button>
+    
+        <button style="width: 100%;" class="button-theme">
+            Buy Now
+        </button>
+    </div>
 </div>

@@ -1,16 +1,30 @@
-<div class="container">
-    <div class="jumbotron">
-        <h1>Welcome to summer sale!</h1>      
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, omnis! Lorem ipsum dolor sit amet.</p>
-        <h6>*50% off on all products</h6>
-    </div>
-    <div class="card" style="padding: 2rem; margin-bottom: 1rem;" *ngFor="let category of products;">
-        <h3>{{category[0].category.name}}</h3>
-        <div class="product-container">
-            <div *ngFor="let product of category;" style="margin-right: 1rem;">
+<div class="page">
+    <section class="products" *ngFor="let categories of products">
+        <div style="padding: 10px 0;">
+            <span class="title">{{categories[0].category.name}}</span>
+        </div>
+        <br>
+        <div class="scroll">
+            <div *ngFor="let product of categories">
+                <!-- <div class="product">
+                    <img src = "">                  
+                    <div class="product-name">
+                        <span>Ipad Pro GenX Apple M1</span>
+                    </div>
+                    <div class="product-edit">
+                        <button style="width: 100%; margin-bottom: 5px;" class="button-price">
+                            $6,699 
+                        </button>
+                    
+                        <button style="width: 100%;" class="button-theme">
+                            Edit Product
+                        </button>
+                    </div>
+                </div> -->
                 <app-product-template [product]="product"></app-product-template>
             </div>
         </div>
-    </div>
-    
+    <hr style="background-color: darkgrey;">
+
+    </section>
 </div>

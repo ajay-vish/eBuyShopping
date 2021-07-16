@@ -14,6 +14,7 @@ import { ProductPageComponent } from './components/products/product-page/product
 import { DisplayProductComponent } from './components/products/display-product/display-product.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'product', component: ProductPageComponent },
