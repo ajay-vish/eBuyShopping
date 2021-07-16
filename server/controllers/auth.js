@@ -1,5 +1,5 @@
 const User = require("../models/user");
-const {check, validationResult } = require('express-validator');
+const {validationResult } = require('express-validator');
 var jwt = require('jsonwebtoken'); 
 var expressJwt = require('express-jwt');
 
@@ -13,16 +13,41 @@ exports.signup =(req,res)=>{
             error: errors.array()[0].msg
         })
     }
-    const user = new User(req.body)
-    user.save((err,user)=>{
-        if(err){
-            return res.status(400).json({
-                err: "NOT able to save user in db"
-            })
-        }
 
-        res.json(user);
-    })
+    
+    //a simple if/else to check if email already exists in db
+            User.findOne({ email: req.body.email }, function(err, user) {
+                if(err) {
+                //handle error here
+                return res.status(400).json({
+                    error: err
+                })
+                }
+            
+                //if a user was found, that means the user's email matches the entered email
+                if (user) {
+                    return res.status(400).json({
+                        error: "Email already exists"
+                    })
+                } else {
+                    //code if no user with entered email was found
+              
+
+                    const user = new User(req.body)
+                    user.save((err,user)=>{
+                        if(err){
+                            return res.status(400).json({
+                                error: "NOT able to save user in db"
+                            })
+                        }
+
+                        res.json({ success:true, message:"Signup successfull"})
+                        // res.json(user);
+                    })
+
+
+                    }
+             }); 
 }
 
 
@@ -55,7 +80,7 @@ exports.signin = (req,res)=>{
 
         //send response to front-end
         const {_id,name,email,role} = user;
-        return res.json({token,user:{_id,name,email,role}});
+        return res.json({success:true,token,user:{_id,name,email,role}});
 
     })
 }

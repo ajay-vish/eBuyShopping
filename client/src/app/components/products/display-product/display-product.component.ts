@@ -31,6 +31,7 @@ export class DisplayProductComponent implements OnInit {
   }
 
   getProduct(id :any){
+  
     this.productService.getProduct(id).subscribe((resp: any) => {
       this.product = resp;
       this.isLoading = false;

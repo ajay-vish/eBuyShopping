@@ -12,6 +12,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/user/cart/cart.component';
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
 import { DisplayProductComponent } from './components/products/display-product/display-product.component';
+import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'edit-category/:id', component: EditCategoryComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'cart', component: CartComponent }
+  { path: 'cart', component: CartComponent },
+  { path: 'payment', component: PaymentFormComponent },
 ];
 
 @NgModule({
