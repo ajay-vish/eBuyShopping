@@ -8,44 +8,17 @@ const endpoint = `http://localhost:8000/api/`;
 @Injectable({
   providedIn: 'root'
 })
+export class PaymentService {
 
-export class ProductService {
-  
   constructor(private http: HttpClient) { }
 
-  
+   httpOptions = {headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': '' })};
 
-  getProducts(): Observable<any> {
-    return this.http.get(endpoint + 'products')
-    .pipe(
-      map((res)=>{
-        return res;
-      }),
-      catchError(this.handleError)
-    );
-  }
-
-  getProduct(id: any): Observable<any> {
-    return this.http.get(endpoint + 'product/'+ id)
-    .pipe(
-      map((res)=>{
-        return res;
-      }),
-      catchError(this.handleError)
-    );
-  }
-
-  getProductImage(id: any) : Observable<any> {
-  
-    return this.http.get('localhost:8000/api/product/photo/'+ id)
-    .pipe((res)=>{
-        return res;
-    
-    });
-  }
-
-  buyProduct(id: any, order: any) : Observable<any> {
-    return this.http.post(endpoint + 'order/create/'+ id, order)
+  createOrder(userId: any, orderData:any, token:any): Observable<any> {
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token)
+    return this.http.post(endpoint + 'order/create/'+ userId, {order:orderData}, this.httpOptions)
     .pipe(
       map((res)=>{
         return res;
@@ -65,6 +38,4 @@ export class ProductService {
     return throwError(
       'Something bad happened; please try again later.');
   }
-
-  
 }

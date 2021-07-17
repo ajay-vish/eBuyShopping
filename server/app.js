@@ -29,7 +29,14 @@ mongoose.connect(config.database,
 //this is middleware
 app.use(bodyparser.json());
 app.use(cookieparser());
-app.use(cors());
+app.use(cors({"Access-Control-Allow-Origin": "*"}));
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 
 //Routes
 app.use("/api", authRoutes);

@@ -26,7 +26,7 @@ exports.createCategory = (req, res) => {
             })
         }
 
-        res.json({ category });
+        res.json({ success:true, category });
     })
 }
 
@@ -42,7 +42,7 @@ exports.getAllCategory = (req, res) => {
             })
         }
 
-        res.json(items);
+        res.json({success:true,items});
     })
 };
 
@@ -55,7 +55,7 @@ exports.updateCategory = (req, res) => {
                 error: "Failed to update category"
             })
         }
-        res.json(updatedCategory);
+        res.json({success:true});
     })
 }
 
@@ -68,6 +68,7 @@ exports.removeCategory = (req, res) => {
             })
         }
         res.json({
+            success:true,
             message: "Successfully deleted"
         });
     })

@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
   loadNavbar(){
     if(this.auth.isSignedIn()){
       console.log(this.auth.getSignedInUser());
-      this.status = this.auth.getSignedInUser().role;
+      this.status = this.auth.getSignedInUser().user.role;
       
     }
     else{

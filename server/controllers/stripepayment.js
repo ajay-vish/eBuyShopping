@@ -5,14 +5,14 @@ const { v4: uuidv4 } = require('uuid');
 const YOUR_DOMAIN = "http://localhost:3000/"
 
 exports.createPaymentIntent = async (req,res) =>{
-  const { products, amount } = req.body;
-  console.log(products, amount);
+  const { amount } = req.body;
+  console.log(amount);
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({  
     amount: amount*100,
     currency: "inr"
   });
   res.send({
-    clientSecret: paymentIntent.client_secret
+    client_secret: paymentIntent.client_secret
   });
 }

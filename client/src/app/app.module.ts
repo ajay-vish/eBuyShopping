@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxStripeModule } from 'ngx-stripe';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +20,8 @@ import { EditCategoryComponent } from './components/admin/edit-category/edit-cat
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DisplayProductComponent } from './components/products/display-product/display-product.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 
 
 @NgModule({
@@ -39,13 +41,16 @@ import { FormsModule } from '@angular/forms';
     EditProductComponent,
     EditCategoryComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PaymentFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgxStripeModule.forRoot('pk_test_QRFXZbbH9njd7BTCT4rPWlVA00HxnTuLnq')
   ],
   providers: [],
   bootstrap: [AppComponent]
