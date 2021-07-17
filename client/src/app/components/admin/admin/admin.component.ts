@@ -21,15 +21,13 @@ export class AdminComponent implements OnInit {
      this.service.getAllProducts().subscribe((res:any)=>{
      
       this.products = res.data;
+      console.log(res.data);
       
-      this.products.forEach((product:any) => {
-        
-        
-        this.ps.getProductImage(product._id).subscribe((res:any)=>{
-         product.image = res;
-        
-        });
-      });
+      // this.products.forEach((product:any) => {        
+      //   this.ps.getProductImage(product._id).subscribe((res:any)=>{
+      //    product.image = res;
+      //   });
+      // });
      });
    
   }

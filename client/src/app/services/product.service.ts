@@ -40,7 +40,6 @@ export class ProductService {
     return this.http.get('localhost:8000/api/product/photo/'+ id)
     .pipe((res)=>{
         return res;
-    
     });
   }
 
