@@ -5,7 +5,6 @@ const fs = require("fs")
 
 exports.getProductById= (req,res,next,id)=>{
     Product.findById(id)
-    .select("-photo")
     .populate("category")
     .exec((err,prod)=>{
         if(err){
@@ -13,7 +12,9 @@ exports.getProductById= (req,res,next,id)=>{
                 error:"Product not found"
             })
         }
-
+        var buffer = prod.photo.data;
+        var string = "data:" + prod["photo"]["contentType"] + ";base64," + buffer.toString('base64');
+        prod["photo"]["contentType"] = string;
         req.product =prod;
         next();
 
@@ -153,13 +154,17 @@ exports.getAllProducts= (req,res)=>{
     let sortBy = req.query.sortBy ? req.query.sortBy :"_id"
     Product.find()
     .populate("category")
-    .select("-photo")
     .sort([[sortBy,"asc"]])
      .exec((err,products)=>{
          if(err){
              return res.status(400).json({
                  error:"No products found"
              })
+         }
+         for(i = 0; i < products.length; i++){         
+            var buffer = products[i].photo.data;
+            var string = "data:" + products[i]["photo"]["contentType"] + ";base64," + buffer.toString('base64');
+            products[i]["photo"]["contentType"] = string;
          }
          res.json({
              success: true,
