@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { StripeService, StripeCardComponent } from 'ngx-stripe';
-
 import {
   StripeCardElementOptions,
   StripeElementsOptions,
@@ -50,9 +49,7 @@ export class PaymentFormComponent implements OnInit {
 
   elementsOptions: StripeElementsOptions = {
     locale: 'en',
-  };
-
-  
+  };  
 
   constructor(
     private http: HttpClient,

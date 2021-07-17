@@ -13,27 +13,33 @@
     <br>
     <br>
     <div class="prodcut-form">
-        <form class="form-product" action="">
+        <form 
+        (ngSubmit)="updateProduct()"
+        class="form-product" action="">
             <span> Edit Product Name</span>
-            <input type="text">
+            <input [(ngModel)]="productPost.name" name="name" type="text">
             <br><br>
             <div><span>Product Description</span>
             </div>
-                <textarea style="width: 100%;" rows="4"  name="description"></textarea>
+                <textarea [(ngModel)]="productPost.description" style="width: 100%;" rows="4"  name="description"></textarea>
             <br><br>
             <span>Price in Dollars($)</span>
-            <input type="number">
+            <input [(ngModel)]="productPost.price" name="price" type="number">
             <br><br>
             
             <span>Thumbnail Image</span>
-                <input type="file" name="image">
+                <input type="file" name="photo">
             <br><br>
 
             <span>
-                Category
+                Previous Category: 
             </span>
-            <select name="category">
-                <option>Fashion</option>
+                     
+            <span style="font-weight: 800;">  {{productPost.category.name}}</span>
+            <select 
+            [ngModel]="productPost.category.name" (ngModelChange)="selectCat($event)" 
+             name="category">
+                <option *ngFor="let c of categories" value="{{c._id}}" > {{c.name}} </option>
             </select>
             <br><br>
 

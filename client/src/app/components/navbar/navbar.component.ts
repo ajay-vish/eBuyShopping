@@ -8,12 +8,18 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  location: any;
 
 
   constructor(
     private auth: AuthService,
-    private router: Router
-  ) { }
+    public router: Router
+    ){
+      router.events.subscribe((val) => {
+        this.loadNavbar();
+     });
+    
+   }
 
   ngOnInit(): void {
     this.loadNavbar();
@@ -32,9 +38,11 @@ export class NavbarComponent implements OnInit {
     }
     console.log(status);
   }
+
   logout(){
     localStorage.removeItem("jwt");
     this.router.navigate(['/login']);
     console.log("logout");
   }
+
 }

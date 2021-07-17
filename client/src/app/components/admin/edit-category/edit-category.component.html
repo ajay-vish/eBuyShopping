@@ -14,9 +14,11 @@
     </div>
     
     <div class="prodcut-form">
-        <form class="form-product" action="">
+        <form class="form-product"
+        (ngSubmit)="editCategory()" 
+        action="">
             <span> Edit Category Name</span>
-            <input type="text">
+            <input [(ngModel)]="categoryPost.name" name="name" type="text">
             <br><br>
             <button style="width: 100%;" type="submit" name="submit" class="button-theme">
                 Update Category

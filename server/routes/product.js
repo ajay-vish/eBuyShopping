@@ -9,7 +9,6 @@ const {getUserById} =require("../controllers/user")
 router.param("userId",getUserById)
 router.param("productId",getProductById)
 
-
 //routes
 //create
 router.post("/product/create/:userId",isSignedIn,isAuthenticated,isAdmin,createProduct)
