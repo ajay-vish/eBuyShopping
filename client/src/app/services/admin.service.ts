@@ -12,10 +12,13 @@ export class AdminService {
 
   constructor(private http:HttpClient) { }
 
-  getAllCategories(productId:any) {
-    const userId = 2;
-    return this.http.delete(endpoint + "/product/"+productId+"/"+userId);
+  getAllProducts() {
+    return this.http.get(endpoint + "products");
   }
+  getAllCategories() {
+    return this.http.get(endpoint + "categories");
+  }
+ 
 
   // createReward(reward: any) {
   //   return this.http.post(endpoint "add-reward", reward);

@@ -40,7 +40,6 @@ app.use("/api", orderRoutes);
 app.use("/api", stripeRoutes);
 
 
-
 //PORT
 const port = process.env.PORT || 8000;
 
