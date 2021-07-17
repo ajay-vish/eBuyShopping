@@ -35,6 +35,16 @@ export class ProductService {
     );
   }
 
+  getProductImage(id: any) : Observable<any> {
+    return this.http.get('localhost:8000/api/product/photo/'+ id)
+    .pipe(
+      map((res)=>{
+        return res;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   buyProduct(id: any, order: any) : Observable<any> {
     return this.http.post(endpoint + 'order/create/'+ id, order)
     .pipe(
