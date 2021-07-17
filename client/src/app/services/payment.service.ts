@@ -14,11 +14,11 @@ export class PaymentService {
 
    httpOptions = {headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    Authorization: '' })};
+    'Authorization': '' })};
 
   createOrder(userId: any, orderData:any, token:any): Observable<any> {
     this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token)
-    return this.http.post(endpoint + 'order/create/'+ userId, {order:orderData})
+    return this.http.post(endpoint + 'order/create/'+ userId, {order:orderData}, this.httpOptions)
     .pipe(
       map((res)=>{
         return res;

@@ -14,6 +14,8 @@ router.param("orderId",getOrderById)
 //routes
 //create
 router.post("/order/create/:userId"
+            ,isSignedIn
+            ,isAuthenticated
             ,updateStock
             ,createOrder
             ,pushOrderInPurchaseList

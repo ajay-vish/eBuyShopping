@@ -15,6 +15,7 @@ import { DisplayProductComponent } from './components/products/display-product/d
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'product', component: ProductPageComponent },
