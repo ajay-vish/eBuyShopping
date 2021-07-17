@@ -1,15 +1,11 @@
-<div class="product">
+<div class="product" [routerLink]="['/product/'+product._id]">
     <img src="{{product.photo.contentType}}">                  
-    <div class="product-name" [routerLink]="['/product/'+product._id]"> 
+    <div class="product-name"> 
         <span >{{product.name}}</span>
     </div>
     <div class="product-edit">
         <button style="width: 100%; margin-bottom: 5px;" class="button-price">
             ${{product.price}}
-        </button>
-    
-        <button style="width: 100%;" class="button-theme" (click)="buyNow()">
-            Buy Now
         </button>
     </div>
 </div>

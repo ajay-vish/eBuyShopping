@@ -5,7 +5,7 @@ const {isSignedIn,isAdmin,isAuthenticated} =require("../controllers/auth")
 const {getUserById,pushOrderInPurchaseList} =require("../controllers/user")
 const {updateStock} = require("../controllers/product")
 
-const {getOrderById,getOrderStatus,updateStatus, getAllOrders, createOrder}= require("../controllers/order")
+const {getOrderById,getOrderStatus,updateStatus, getAllOrders, createOrder, getMyOrders}= require("../controllers/order")
 
 //params
 router.param("userId",getUserById)
@@ -22,6 +22,7 @@ router.post("/order/create/:userId"
             );
 //read
 router.get("/order/all/:userId",isSignedIn,isAuthenticated,isAdmin,getAllOrders)
+router.get("/order/myorders/:userId",isSignedIn,isAuthenticated,getMyOrders)
 
 //status of order
 router.get("/order/status/:userId"

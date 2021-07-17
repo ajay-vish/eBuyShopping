@@ -1,0 +1,7 @@
+<div class="main-container">
+    <span *ngFor="let item of counts; let i = index">
+      <span class="circle-desc" [class.circle-desc-active]="item == orderStatus">{{ item }}</span>
+      <span class="circles" [class.active]="item == orderStatus"></span>
+      <span class="bar" *ngIf="(i != counts.length-1)"></span>
+    </span>
+ </div>

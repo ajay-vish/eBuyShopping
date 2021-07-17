@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { PaymentFormComponent } from '../../payment-form/payment-form.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialog: MatDialog
+    ) { }
 
 
   ngOnInit(): void {
@@ -16,14 +19,14 @@ export class CartComponent implements OnInit {
   cart_total = 0;
   
   products:any = [];  
-
+  isEmpty = true;
 
 
   loadCart() {
     if (localStorage.getItem("cart")) {
-         this.products = JSON.parse(localStorage.getItem("cart") || "")
+      this.products = JSON.parse(localStorage.getItem("cart") || "")
       this.getFinalAmount();
-
+      this.isEmpty = false;
     }
   }
 
@@ -74,5 +77,20 @@ export class CartComponent implements OnInit {
     this.getFinalAmount();
   }
 
+
+  onOpenDialogue() {
+    console.log("opening")
+    this.getFinalAmount();
+    const dialogRef = this.dialog.open(PaymentFormComponent, {
+      data: {
+        amount: this.cart_total
+      },
+      height: '350px',
+      width: '600px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadCart();
+    });
+  }
 
 }

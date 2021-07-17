@@ -43,7 +43,14 @@ export class AuthService {
     this.authToken =  JSON.parse(localStorage.getItem("jwt") || "");
     if(this.authToken)
     this.isExpired = this.jwt.isTokenExpired(this.authToken.token);
-    return this.isExpired;
+    return !this.isExpired;
+  }
+
+  isAdmin(){
+    this.authToken =  JSON.parse(localStorage.getItem("jwt") || "");
+    if(this.authToken)
+    return this.authToken.user.role == 1 ? true: false ;
+    return false;
   }
 
   isSignedIn(){
