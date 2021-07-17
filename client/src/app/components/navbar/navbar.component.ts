@@ -27,11 +27,6 @@ export class NavbarComponent implements OnInit {
 
   status = -1;
 
-  logout(){
-    localStorage.removeItem("jwt");
-    this.router.navigate(['/home']);
-  }
-
   loadNavbar(){
     if(this.auth.isSignedIn()){
       console.log(this.auth.getSignedInUser());
@@ -42,6 +37,12 @@ export class NavbarComponent implements OnInit {
       this.status = -1;
     }
     console.log(status);
+  }
+
+  logout(){
+    localStorage.removeItem("jwt");
+    this.router.navigate(['/login']);
+    console.log("logout");
   }
 
 }

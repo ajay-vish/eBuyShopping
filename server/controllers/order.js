@@ -53,6 +53,23 @@ exports.getAllOrders =(req,res)=>{
     })
 }
 
+exports.getMyOrders =(req,res)=>{
+    Order.find({ user: {
+        _id: req.params.userId
+    }
+     })
+    .populate("user","_id name ")
+    .exec((err,order)=>{
+        if(err){
+            return res.status(400).json({
+                error:"No orders found in DB"
+            })
+        }
+
+        res.json(order);
+    })
+}
+
 exports.getOrderStatus =(req,res)=>{
     res.json(Order.schema.path("status").enumValues);
 }

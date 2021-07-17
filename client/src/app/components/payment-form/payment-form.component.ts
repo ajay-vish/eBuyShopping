@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, ɵConsole } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ɵConsole } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { StripeService, StripeCardComponent } from 'ngx-stripe';
-
 import {
   StripeCardElementOptions,
   StripeElementsOptions,
@@ -40,11 +40,6 @@ export class PaymentFormComponent implements OnInit {
         },
        
       },
-      
-      // invalid: {
-      //   iconColor: '#ffc7ee',
-      //   color: '#ffc7ee'
-      // }
     }
   };
 
@@ -54,9 +49,7 @@ export class PaymentFormComponent implements OnInit {
 
   elementsOptions: StripeElementsOptions = {
     locale: 'en',
-  };
-
-  
+  };  
 
   constructor(
     private http: HttpClient,
@@ -64,25 +57,16 @@ export class PaymentFormComponent implements OnInit {
     private stripeService: StripeService,
     public authService:AuthService,
     public paymentService:PaymentService,
-    
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<PaymentFormComponent>,
   ) {}
 
   ngOnInit(): void {
     this.stripeTest = this.fb.group({
       address: ['', [Validators.required]],
-      amount: [1000, [Validators.required, Validators.pattern(/\d+/)]],
+      amount: [this.data.amount, [Validators.required, Validators.pattern(/\d+/)]],
     });
   }
-
-  // onChange({ type, event }:any) {
-  //   console.log(type);
-  //   console.log(event);
-    
-    
-  //   if (type === 'change') {
-  //     this.stripeCardValid = event.complete;
-  //   }
-  // }
   onChange(event: StripeCardElementChangeEvent) {
     const displayError = document.getElementById('card-errors')!;
     
@@ -150,8 +134,10 @@ export class PaymentFormComponent implements OnInit {
               this.paymentService.createOrder(user._id,orderData,token).subscribe((resp:any)=>{
                 console.log(resp);
                 if(resp.success){
-                  alert("Order placed successfully!!!")
+                  alert("Order placed successfully!!!");
+                  localStorage.removeItem("cart");
                   console.log("Order placed successfully!!!");
+                  this.dialogRef.close();
                 }
                 
               })

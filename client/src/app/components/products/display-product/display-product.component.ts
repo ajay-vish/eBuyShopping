@@ -37,13 +37,6 @@ export class DisplayProductComponent implements OnInit {
       this.isLoading = false;
     })
   }
-  // addToCart(){
-  //   let cart = localStorage.getItem("cart") ? localStorage.getItem("cart") : "{products:[]}";
-  //   // let cartData = JSON.parse(cart);
-  //   this.cart.products.push(this.product._id);
-  //   localStorage.setItem("cart",JSON.stringify(this.cart));
-    
-  // }
 
    addItemToCart (item: { _id: any; }){
     let cart = []
@@ -66,7 +59,6 @@ export class DisplayProductComponent implements OnInit {
         })
         }
         localStorage.setItem("cart", JSON.stringify(cart));
-        // next();
     }
   
   }
