@@ -45,14 +45,14 @@ export class ProductService {
     );
   }
 
-  buyProduct(id: any, order: any) : Observable<any> {
-    return this.http.post(endpoint + 'order/create/'+ id, order)
-    .pipe(
-      map((res)=>{
-        return res;
-      }),
-      catchError(this.handleError)
-    );
+  getMyOrders(id: any, token: any) : Observable<any> {
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
+    return this.http.get(endpoint + '/order/myorders/'+ id, this.httpOptions)
+    .pipe((res) => {
+      return res;
+    },
+    catchError(this.handleError)
+    )
   }
 
   private handleError(error: HttpErrorResponse): any {

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxStripeModule } from 'ngx-stripe';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +24,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { DisplayProductComponent } from './components/products/display-product/display-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
+import { CartProductTemplateComponent } from './components/products/cart-product-template/cart-product-template.component';
+import { OrderProgressComponent } from './components/products/order-progress/order-progress.component';
 
 
 @NgModule({
@@ -42,7 +46,9 @@ import { PaymentFormComponent } from './components/payment-form/payment-form.com
     EditCategoryComponent,
     LoginComponent,
     RegisterComponent,
-    PaymentFormComponent
+    PaymentFormComponent,
+    CartProductTemplateComponent,
+    OrderProgressComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +56,8 @@ import { PaymentFormComponent } from './components/payment-form/payment-form.com
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
     NgxStripeModule.forRoot('pk_test_QRFXZbbH9njd7BTCT4rPWlVA00HxnTuLnq')
   ],
   providers: [],

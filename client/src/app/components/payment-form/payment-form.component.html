@@ -1,8 +1,9 @@
-<p>payment-form works!</p>
-
-
 <div class="container">
     <div class="row">
+      <span class="title">Payment with Stripe</span>
+      <br>
+      <br>
+      <br>
       <div class="col-md-12" [formGroup]="stripeTest">
         <div class="form-group">
           <label>Billing address</label>
@@ -10,8 +11,10 @@
         </div>
         <div class="form-group">
           <label>Amount</label>
-          <input class="form-control" type="text" formControlName="amount">
-        </div>
+          <br>
+          <span class="description">$ {{data.amount}}</span>
+          <!-- <input class="form-control" type="number" formControlName="amount"> -->
+        </div> 
         <div class="form-group">
           <ngx-stripe-card
             [options]="cardOptions"

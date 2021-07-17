@@ -8,12 +8,12 @@ color:rgb(163, 163, 163);
 	padding: 15px 0px;
 	font-size: 15px;
 	">
-		<a href="#" style="margin: 0px 20px;">Home</a>
+		<a style="margin: 0px 20px;" [routerLink]="['/home']">Home</a>
 		<a style="margin: 0px 20px;">About</a>
 		<a style="margin: 0px 20px;">Contact Us</a>
-		<a style="margin: 0px 20px;">My Orders</a>
-		<a style="margin: 0px 20px;">Cart</a>
-		<a style="margin: 0px 20px;">Log out</a>
+		<a style="margin: 0px 20px;" [routerLink]="['/order']">My Orders</a>
+		<a style="margin: 0px 20px;" [routerLink]="['/cart']">Cart</a>
+		<a style="margin: 0px 20px;" (click)="logout()">Log out</a>
 	</div>
 </div>
 
@@ -27,11 +27,11 @@ color:rgb(163, 163, 163);
 	padding: 15px 0px;
 	font-size: 15px;
 	">
-		<a href="#" style="margin: 0px 20px;">Home</a>
+		<a style="margin: 0px 20px;" [routerLink]="['/home']">Home</a>
 		<a style="margin: 0px 20px;">About</a>
 		<a style="margin: 0px 20px;">Contact Us</a>
-		<a style="margin: 0px 20px;">Login</a>
-		<a style="margin: 0px 20px;">Register</a>
+		<a style="margin: 0px 20px;" [routerLink]="['/login']">Login</a>
+		<a style="margin: 0px 20px;" [routerLink]="['/register']">Register</a>
 	</div>
 </div>
 
@@ -45,9 +45,9 @@ color:rgb(163, 163, 163);
 	padding: 15px 0px;
 	font-size: 15px;
 	">
-		<a href="#" style="margin: 0px 20px;">Home</a>
+		<a style="margin: 0px 20px;" [routerLink]="['/home']">Home</a>
 		<a style="margin: 0px 20px;">About</a>
 		<a style="margin: 0px 20px;">Contact Us</a>
-		<a style="margin: 0px 20px;">Log out</a>
+		<a style="margin: 0px 20px;" (click)="logout()">Log out</a>
 	</div>
 </div>

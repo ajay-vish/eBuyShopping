@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-cart-template',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartTemplateComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(
+    private productService: ProductService,
+    private auth: AuthService
+    ) { }
+  orders: any;
+  counts = ["Recieved","In Progress","Ready for Billing",
+  "Billed","Order Closed"];
+  orderStatus = "In Progress"
   ngOnInit(): void {
+    const {user, token} = this.auth.getSignedInUser();
+    console.log(token);
+    this.productService.getMyOrders(user._id, token).subscribe((resp:any)=>{
+      this.orders = resp;
+      console.log(resp);
+    })
   }
 
 }

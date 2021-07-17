@@ -6,21 +6,6 @@
         <br>
         <div class="scroll">
             <div *ngFor="let product of categories">
-                <!-- <div class="product">
-                    <img src = "">                  
-                    <div class="product-name">
-                        <span>Ipad Pro GenX Apple M1</span>
-                    </div>
-                    <div class="product-edit">
-                        <button style="width: 100%; margin-bottom: 5px;" class="button-price">
-                            $6,699 
-                        </button>
-                    
-                        <button style="width: 100%;" class="button-theme">
-                            Edit Product
-                        </button>
-                    </div>
-                </div> -->
                 <app-product-template [product]="product"></app-product-template>
             </div>
         </div>
