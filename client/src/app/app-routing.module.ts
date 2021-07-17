@@ -12,23 +12,26 @@ import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/user/cart/cart.component';
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
 import { DisplayProductComponent } from './components/products/display-product/display-product.component';
-import { PaymentFormComponent } from './components/payment-form/payment-form.component';
+
+
+import { AuthGuardService as AuthGaurd } from './services/auth-gaurd.service';
+import { AdminAuthGaurdService as AdminAuthGaurd } from './services/admin-auth-gaurd.service';
+import { CartTemplateComponent } from './components/products/cart-template/cart-template.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent },
   { path: 'product', component: ProductPageComponent },
   { path: 'product/:id', component: DisplayProductComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'create-product', component: CreateProductComponent },
-  { path: 'create-category', component: CreateCategoryComponent },
-  { path: 'edit-product/:id', component: EditProductComponent },
-  { path: 'edit-category/:id', component: EditCategoryComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AdminAuthGaurd] },
+  { path: 'create-product', component: CreateProductComponent, canActivate: [AdminAuthGaurd] },
+  { path: 'create-category', component: CreateCategoryComponent, canActivate: [AdminAuthGaurd] },
+  { path: 'edit-product/:id', component: EditProductComponent, canActivate: [AdminAuthGaurd] },
+  { path: 'edit-category/:id', component: EditCategoryComponent, canActivate: [AdminAuthGaurd]},
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'payment', component: PaymentFormComponent },
+  { path: 'order', component: CartTemplateComponent, canActivate: [AuthGaurd]},
 ];
 
 @NgModule({
