@@ -14,20 +14,15 @@ export class ProductTemplateComponent implements OnInit {
   product: any = {};
   jwt: any;
   cart: any;
-  photo: any;
   constructor(
     private payment: PaymentService,
-    private auth: AuthService,
-    private prod: ProductService
+    private auth: AuthService
     ) { }
 
   ngOnInit(): void {
-    this.prod.getProductImage(this.product._id).subscribe((resp: any) => {
-      this.photo = resp;
-      console.log(this.photo)
-    })
+    
   }
-  
+
   buyNow(){
     this.jwt = this.auth.getSignedInUser();
     this.cart = JSON.parse(localStorage.getItem("cart") || "")

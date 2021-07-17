@@ -7,27 +7,32 @@
     <br>
     <br>
     <div class="prodcut-form">
-        <form class="form-product" action="">
+        <form class="form-product"
+        (ngSubmit)="createProduct()"
+        action="">
             <span> Enter Product Name</span>
-            <input type="text">
+            <input [(ngModel)]="productPost.name" name="name" type="text">
             <br><br>
             <div><span>Product Description</span>
             </div>
-                <textarea style="width: 100%;" rows="4"  name="description"></textarea>
+                <textarea style="width: 100%;" rows="4" [(ngModel)]="productPost.description"  name="description"></textarea>
             <br><br>
             <span>Price in Dollars($)</span>
-            <input type="number">
+            <input [(ngModel)]="productPost.price" type="number" name="price">
             <br><br>
             
             <span>Thumbnail Image</span>
-                <input type="file" name="image">
+                <input (change)="selectImage1($event)"
+                accept="image" type="file" name="photo">
             <br><br>
 
             <span>
                 Category
             </span>
-            <select name="category">
-                <option>Fashion</option>
+            <select 
+            [ngModel]="productPost.category" (ngModelChange)="selectCat($event)" 
+             name="category">
+                <option *ngFor="let c of categories" value="{{c._id}}" > {{c.name}} </option>
             </select>
             <br><br>
 

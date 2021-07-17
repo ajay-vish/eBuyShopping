@@ -12,7 +12,9 @@ exports.getProductById= (req,res,next,id)=>{
                 error:"Product not found"
             })
         }
-
+        var buffer = prod.photo.data;
+        var string = "data:" + prod["photo"]["contentType"] + ";base64," + buffer.toString('base64');
+        prod["photo"]["contentType"] = string;
         req.product =prod;
         next();
 
@@ -20,9 +22,11 @@ exports.getProductById= (req,res,next,id)=>{
 }
 
 exports.createProduct= (req,res)=>{
+    
     let form = new formidable.IncomingForm();
+    console.log(form)
     form.keepExtensions = true;
-
+    
     form.parse(req, (err,fields,file)=>{
         if(err){
             return res.status(400).json({
@@ -46,7 +50,7 @@ exports.createProduct= (req,res)=>{
 
 
         let product =new Product(fields)
-        // console.log(product)
+        console.log(file)
         //handle file here
         if(file.photo){
             if(file.photo.size > 3000000){
@@ -154,13 +158,17 @@ exports.getAllProducts= (req,res)=>{
     let sortBy = req.query.sortBy ? req.query.sortBy :"_id"
     Product.find()
     .populate("category")
-    .select("-photo")
     .sort([[sortBy,"asc"]])
      .exec((err,products)=>{
          if(err){
              return res.status(400).json({
                  error:"No products found"
              })
+         }
+         for(i = 0; i < products.length; i++){         
+            var buffer = products[i].photo.data;
+            var string = "data:" + products[i]["photo"]["contentType"] + ";base64," + buffer.toString('base64');
+            products[i]["photo"]["contentType"] = string;
          }
          res.json({
              success: true,

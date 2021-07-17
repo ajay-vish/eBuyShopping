@@ -1,5 +1,5 @@
 <div class="product">
-    <img src="data:image/jpg;base64,">                  
+    <img src="{{product.photo.contentType}}">                  
     <div class="product-name" [routerLink]="['/product/'+product._id]"> 
         <span >{{product.name}}</span>
     </div>

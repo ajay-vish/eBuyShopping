@@ -5,10 +5,10 @@
     <section class="categories">
         <div class="create-cat">
             <span class="title">Existing Product Categories</span>
-            <button style="float: right;" class="button-theme">Create New Category</button>
+            <button  [routerLink]="['/create-category']" style="float: right;" class="button-theme">Create New Category</button>
         </div>
         <div class="cat">
-            <div *ngFor="let c of categories" class="cat-name"><span>{{c.name}} </span></div> 
+            <div *ngFor="let c of categories" class="cat-name"><span [routerLink]="['/edit-category/',c._id]" routerLinkActive="router-link-active"  >{{c.name}} </span></div> 
             <!-- <div class="cat-name"><span>Beauty & Personal Care</span></div>
             <div class="cat-name"><span>Home</span></div>
             <div class="cat-name"><span>Collectibles</span></div>
@@ -28,15 +28,15 @@
     <section class="products">
         <div style="padding: 10px 0;">
             <span class="title">Manage Products</span>
-            <button style="float: right;" class="button-theme">  Create New Product  </button>
+            <button  [routerLink]="['/create-product']" style="float: right;" class="button-theme">  Create New Product  </button>
         </div>
         <br>
         <div class="row">
             <div *ngFor="let p of products" class="col-md-3">
                 <div style="margin-bottom: 20px;" class="product">
-                    <!-- <img src ="{{p.photo.contentType}}"> -->
+                    <img src ="{{p.photo.contentType}}">
                         <div class="product-name">
-                        <span></span>
+                        <span>{{p.name}}</span>
                     </div>
                     <div class="product-desc">
                         <span style="
@@ -55,7 +55,7 @@
                             ${{p.price}}
                         </button>
                     
-                        <button style="width: 100%;" class="button-theme">
+                        <button [routerLink]="['/edit-product/',p._id]" routerLinkActive="router-link-active"   style="width: 100%;" class="button-theme">
                             Edit Product
                         </button>
                     </div>

@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 const endpoint = `http://localhost:8000/api/`;
-
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +12,9 @@ export class ProductService {
   
   constructor(private http: HttpClient) { }
 
-  
+  httpOptions = {headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': '' })};
 
   getProducts(): Observable<any> {
     return this.http.get(endpoint + 'products')
@@ -36,11 +37,12 @@ export class ProductService {
   }
 
   getProductImage(id: any) : Observable<any> {
-  
-    return this.http.get('localhost:8000/api/product/photo/'+ id)
+    return this.http.get('localhost:8000/api/product/photo/'+ id,this.httpOptions)
     .pipe((res)=>{
         return res;
-    });
+      },
+      catchError(this.handleError)
+    );
   }
 
   buyProduct(id: any, order: any) : Observable<any> {
