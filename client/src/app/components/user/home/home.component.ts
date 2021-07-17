@@ -18,11 +18,11 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    let user = localStorage.getItem("userData") ?? "";
-    let userData = JSON.parse(user);
     this.auth.signIn({email:"admin@gmail.com", password: "admin"}).subscribe((resp) => {
       console.log(resp);
     })
+    let user = localStorage.getItem("jwt") ?? "";
+    let userData = JSON.parse(user);
     // this.productService.buyProduct(userData._id, JSON.stringify({ order: this.orderData })).subscribe((resp) => {
     //   console.log(resp)
     // })
