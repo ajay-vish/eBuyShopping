@@ -16,6 +16,7 @@ import { DisplayProductComponent } from './components/products/display-product/d
 import { AuthGuardService as AuthGaurd } from './services/auth-gaurd.service';
 import { AdminAuthGaurdService as AdminAuthGaurd } from './services/admin-auth-gaurd.service';
 import { CartTemplateComponent } from './components/products/cart-template/cart-template.component';
+import { OrdersComponent } from './components/admin/orders/orders.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'cart', component: CartComponent },
   { path: 'order', component: CartTemplateComponent, canActivate: [AuthGaurd] },
+  { path: 'orders', component: OrdersComponent, canActivate: [AdminAuthGaurd] },
 ];
 
 @NgModule({
