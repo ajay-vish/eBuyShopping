@@ -41,6 +41,11 @@ export class CreateProductComponent implements OnInit {
   }
 
   createProduct() {
-    this.adminservice.createProduct(this.productPost).subscribe((res) => {});
+    this.adminservice.createProduct(this.productPost).subscribe((res: any) => {
+      if(res.success){
+      console.log("Product created successfully!!!!");
+      alert("Product created successfully!!!!");
+      }
+    });
   }
 }

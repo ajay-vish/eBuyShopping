@@ -61,7 +61,7 @@ exports.createProduct = (req, res) => {
 				});
 			}
 
-			res.json(product);
+			res.json({success:true,product});
 		});
 	});
 };
