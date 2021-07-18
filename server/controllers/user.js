@@ -4,7 +4,7 @@ const Order = require("../models/order");
 exports.getUserById = (req, res, next, id) => {
 	User.findById(id).exec((err, user) => {
 		if (err || !user) {
-			return res.status(401).json({
+			return res.json({
 				error: "No user was found",
 			});
 		}
@@ -28,7 +28,7 @@ exports.updateUser = (req, res) => {
 		{ new: true, useFindAndModify: false },
 		(err, user) => {
 			if (err) {
-				return res.status(400).json({
+				return res.json({
 					error: "You are not authorized or data not updated",
 				});
 			}
@@ -45,7 +45,7 @@ exports.userPurchaseList = (req, res) => {
 		.populate("user", "_id name")
 		.exec((err, order) => {
 			if (err) {
-				return res.status(400).json({
+				return res.json({
 					error: "No order in this account",
 				});
 			}
@@ -79,7 +79,7 @@ exports.pushOrderInPurchaseList = (req, res, next) => {
 		{ new: true },
 		(err, purchases) => {
 			if (err) {
-				return res.status(400).json({
+				return res.json({
 					error: "Unable to save purchase list",
 				});
 			}

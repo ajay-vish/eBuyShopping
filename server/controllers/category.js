@@ -1,9 +1,10 @@
 const Category = require("../models/category");
+const Product = require("../models/product");
 
 exports.getCategoryById = (req, res, next, id) => {
 	Category.findById(id).exec((err, cate) => {
 		if (err) {
-			return res.status(400).json({
+			return res.json({
 				error: "Category is not found",
 			});
 		}
@@ -17,7 +18,7 @@ exports.createCategory = (req, res) => {
 	const category = new Category(req.body);
 	category.save((err, category) => {
 		if (err) {
-			return res.status(400).json({
+			return res.json({
 				error: "Category not saved",
 			});
 		}
@@ -33,7 +34,7 @@ exports.getCategory = (req, res) => {
 exports.getAllCategory = (req, res) => {
 	Category.find().exec((err, items) => {
 		if (err) {
-			return res.status(400).json({
+			return res.json({
 				error: "No categories found",
 			});
 		}
@@ -47,7 +48,7 @@ exports.updateCategory = (req, res) => {
 	category.name = req.body.name;
 	category.save((err, updatedCategory) => {
 		if (err) {
-			return res.status(400).json({
+			return res.json({
 				error: "Failed to update category",
 			});
 		}
@@ -56,16 +57,31 @@ exports.updateCategory = (req, res) => {
 };
 
 exports.removeCategory = (req, res) => {
+	
 	const category = req.category;
+	console.log(category._id);
 	category.remove((err, category) => {
 		if (err) {
-			return res.status(400).json({
+			return res.json({
 				error: "Failed to delete category",
 			});
 		}
-		res.json({
-			success: true,
-			message: "Successfully deleted",
+		
+		Product.update({category:category._id},{$set:{available:false}}).exec((err,product)=>{
+			if (err) {
+				return res.json({
+					error: "Failed to delete product",
+				});
+			}
+			return res.json({
+				message: "Successfully deleted products",
+			});
 		});
+
+
+		// res.json({
+		// 	success: true,
+		// 	message: "Successfully deleted",
+		// });
 	});
 };

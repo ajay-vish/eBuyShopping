@@ -25,6 +25,10 @@ mongoose
 	.then(() => {
 		console.log("Db CONNECTED");
 	});
+
+// mongoose.Model('products').updateMany({},{$set:{'available':true}})
+
+
 //this is middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 

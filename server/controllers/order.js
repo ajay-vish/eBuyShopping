@@ -5,7 +5,7 @@ exports.getOrderById = (req, res, next, id) => {
 		.populate("products.product", "name price")
 		.exec((err, order) => {
 			if (err) {
-				return res.status(400).json({
+				return res.json({
 					error: "No order found in db",
 				});
 			}
@@ -20,7 +20,7 @@ exports.createOrder = (req, res, next) => {
 	const order = new Order(req.body.order);
 	order.save((err, order) => {
 		if (err) {
-			return res.status(400).json({
+			return res.json({
 				error: "Failed to save your order in db",
 			});
 		}
@@ -42,7 +42,7 @@ exports.getAllOrders = (req, res) => {
 		.populate("user", "_id name ")
 		.exec((err, order) => {
 			if (err) {
-				return res.status(400).json({
+				return res.json({
 					error: "No orders found in DB",
 				});
 			}
@@ -61,7 +61,7 @@ exports.getMyOrders = (req, res) => {
 		.sort({ createdAt: -1 })
 		.exec((err, order) => {
 			if (err) {
-				return res.status(400).json({
+				return res.json({
 					error: "No orders found in DB",
 				});
 			}
@@ -80,7 +80,7 @@ exports.updateStatus = (req, res) => {
 		{ $set: { status: req.body.status } },
 		(err, order) => {
 			if (err) {
-				return res.status(400).json({
+				return res.json({
 					error: "Cannot update order status ",
 				});
 			}

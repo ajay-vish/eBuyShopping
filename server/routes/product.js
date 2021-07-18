@@ -11,6 +11,7 @@ const {
 	updateProduct,
 	getDisplayProducts
 } = require("../controllers/product");
+
 const { isSignedIn, isAdmin, isAuthenticated } = require("../controllers/auth");
 const { getUserById } = require("../controllers/user");
 //params

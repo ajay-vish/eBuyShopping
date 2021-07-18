@@ -16,14 +16,14 @@ exports.signup = (req, res) => {
 	User.findOne({ email: req.body.email }, function (err, user) {
 		if (err) {
 			//handle error here
-			return res.status(400).json({
+			return res.json({
 				error: err,
 			});
 		}
 
 		//if a user was found, that means the user's email matches the entered email
 		if (user) {
-			return res.status(400).json({
+			return res.json({
 				error: "Email already exists",
 			});
 		} else {
@@ -32,7 +32,7 @@ exports.signup = (req, res) => {
 			const user = new User(req.body);
 			user.save((err, user) => {
 				if (err) {
-					return res.status(400).json({
+					return res.json({
 						error: "NOT able to save user in db",
 					});
 				}
@@ -55,13 +55,13 @@ exports.signin = (req, res) => {
 
 	User.findOne({ email }, (err, user) => {
 		if (err || !user) {
-			return res.status(400).json({
+			return res.json({
 				error: "User email does not exist",
 			});
 		}
 
 		if (!user.authenticate(password)) {
-			return res.status(401).json({
+			return res.json({
 				error: "Email and password do not match",
 			});
 		}
