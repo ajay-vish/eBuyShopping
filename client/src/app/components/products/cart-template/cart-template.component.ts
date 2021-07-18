@@ -19,10 +19,8 @@ export class CartTemplateComponent implements OnInit {
   orderStatus = "In Progress"
   ngOnInit(): void {
     const {user, token} = this.auth.getSignedInUser();
-    console.log(token);
     this.productService.getMyOrders(user._id, token).subscribe((resp:any)=>{
       this.orders = resp;
-      console.log(resp);
     })
   }
 

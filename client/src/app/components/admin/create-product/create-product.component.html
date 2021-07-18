@@ -1,45 +1,57 @@
-<div style="margin: 50px 400px; ">
-    <div>
-        <span class="title">
-        Add new Product
-        </span>
-    </div>
-    <br>
-    <br>
-    <div class="prodcut-form">
-        <form class="form-product"
-        (ngSubmit)="createProduct()"
-        action="">
-            <span> Enter Product Name</span>
-            <input [(ngModel)]="productPost.name" name="name" type="text">
-            <br><br>
-            <div><span>Product Description</span>
-            </div>
-                <textarea style="width: 100%;" rows="4" [(ngModel)]="productPost.description"  name="description"></textarea>
-            <br><br>
-            <span>Price in Dollars($)</span>
-            <input [(ngModel)]="productPost.price" type="number" name="price">
-            <br><br>
-            
-            <span>Thumbnail Image</span>
-                <input (change)="selectImage1($event)"
-                accept="image" type="file" name="photo">
-            <br><br>
+<div style="margin: 50px 400px">
+  <div>
+    <span class="title"> Add new Product </span>
+  </div>
+  <br />
+  <br />
+  <div class="prodcut-form">
+    <form class="form-product" (ngSubmit)="createProduct()" action="">
+      <span> Enter Product Name</span>
+      <input [(ngModel)]="productPost.name" name="name" type="text" />
+      <br /><br />
+      <div><span>Product Description</span></div>
+      <textarea
+        style="width: 100%"
+        rows="4"
+        [(ngModel)]="productPost.description"
+        name="description"
+      ></textarea>
+      <br /><br />
+      <span>Price in Dollars($)</span>
+      <input [(ngModel)]="productPost.price" type="number" name="price" />
+      <br /><br />
+      <span>Stock</span>
+      <input [(ngModel)]="productPost.stock" type="number" name="price" />
+      <br /><br />
+      <span>Thumbnail Image</span>
+      <input
+        (change)="selectImage1($event)"
+        accept="image"
+        type="file"
+        name="photo"
+      />
+      <br /><br />
 
-            <span>
-                Category
-            </span>
-            <select 
-            [ngModel]="productPost.category" (ngModelChange)="selectCat($event)" 
-             name="category">
-                <option *ngFor="let c of categories" value="{{c._id}}" > {{c.name}} </option>
-            </select>
-            <br><br>
+      <span> Category </span>
+      <select
+        [ngModel]="productPost.category"
+        (ngModelChange)="selectCat($event)"
+        name="category"
+      >
+        <option *ngFor="let c of categories" value="{{ c._id }}">
+          {{ c.name }}
+        </option>
+      </select>
+      <br /><br />
 
-            <button style="width: 100%;" type="submit" name="submit" class="button-theme">
-                Upload Product
-            </button>
-            
-        </form>
-    </div>
+      <button
+        style="width: 100%"
+        type="submit"
+        name="submit"
+        class="button-theme"
+      >
+        Upload Product
+      </button>
+    </form>
+  </div>
 </div>

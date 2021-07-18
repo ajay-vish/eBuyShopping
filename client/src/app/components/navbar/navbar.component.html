@@ -1,53 +1,62 @@
 <!-- navbar for logged in USER -->
 
-<div *ngIf="status == 0" class="navbar-container" style="text-align: center; width: 100%; 
-background-color: #333333;
-color:rgb(163, 163, 163);
-">
-	<div class="m-navbar" style="
-	padding: 15px 0px;
-	font-size: 15px;
-	">
-		<a style="margin: 0px 20px;" [routerLink]="['/home']">Home</a>
-		<a style="margin: 0px 20px;">About</a>
-		<a style="margin: 0px 20px;">Contact Us</a>
-		<a style="margin: 0px 20px;" [routerLink]="['/order']">My Orders</a>
-		<a style="margin: 0px 20px;" [routerLink]="['/cart']">Cart</a>
-		<a style="margin: 0px 20px;" (click)="logout()">Log out</a>
-	</div>
+<div
+  *ngIf="status == 0"
+  class="navbar-container"
+  style="
+    text-align: center;
+    width: 100%;
+    background-color: #333333;
+    color: rgb(163, 163, 163);
+  "
+>
+  <div class="m-navbar" style="padding: 15px 0px; font-size: 15px">
+    <a style="margin: 0px 20px" [routerLink]="['/home']">Home</a>
+    <a style="margin: 0px 20px">About</a>
+    <a style="margin: 0px 20px">Contact Us</a>
+    <a style="margin: 0px 20px" [routerLink]="['/order']">My Orders</a>
+    <a style="margin: 0px 20px" [routerLink]="['/cart']">Cart</a>
+    <a style="margin: 0px 20px" (click)="logout()">Log out</a>
+  </div>
 </div>
 
 <!-- navbar for not logged in USER -->
 
-<div *ngIf="status == -1" class="navbar-container" style="text-align: center; width: 100%; 
-background-color: #333333;
-color:rgb(163, 163, 163);
-">
-	<div class="m-navbar" style="
-	padding: 15px 0px;
-	font-size: 15px;
-	">
-		<a style="margin: 0px 20px;" [routerLink]="['/home']">Home</a>
-		<a style="margin: 0px 20px;">About</a>
-		<a style="margin: 0px 20px;">Contact Us</a>
-		<a style="margin: 0px 20px;" [routerLink]="['/login']">Login</a>
-		<a style="margin: 0px 20px;" [routerLink]="['/register']">Register</a>
-	</div>
+<div
+  *ngIf="status == -1"
+  class="navbar-container"
+  style="
+    text-align: center;
+    width: 100%;
+    background-color: #333333;
+    color: rgb(163, 163, 163);
+  "
+>
+  <div class="m-navbar" style="padding: 15px 0px; font-size: 15px">
+    <a style="margin: 0px 20px" [routerLink]="['/home']">Home</a>
+    <a style="margin: 0px 20px">About</a>
+    <a style="margin: 0px 20px">Contact Us</a>
+    <a style="margin: 0px 20px" [routerLink]="['/login']">Login</a>
+    <a style="margin: 0px 20px" [routerLink]="['/register']">Register</a>
+  </div>
 </div>
 
 <!-- navbar for logged in ADMIN -->
 
-<div  *ngIf="status == 1"  class="navbar-container" style="text-align: center; width: 100%; 
-background-color: #333333;
-color:rgb(163, 163, 163);
-">
-	<div class="m-navbar" style="
-	padding: 15px 0px;
-	font-size: 15px;
-	">
-		<a style="margin: 0px 20px;" [routerLink]="['/home']">Home</a>
-		<a style="margin: 0px 20px;">About</a>
-		<a style="margin: 0px 20px;">Contact Us</a>
-		<a style="margin: 0px 20px;" (click)="logout()">Log out</a>
-	</div>
+<div
+  *ngIf="status == 1"
+  class="navbar-container"
+  style="
+    text-align: center;
+    width: 100%;
+    background-color: #333333;
+    color: rgb(163, 163, 163);
+  "
+>
+  <div class="m-navbar" style="padding: 15px 0px; font-size: 15px">
+    <a style="margin: 0px 20px" [routerLink]="['/home']">Home</a>
+    <a style="margin: 0px 20px">About</a>
+    <a style="margin: 0px 20px">Contact Us</a>
+    <a style="margin: 0px 20px" (click)="logout()">Log out</a>
+  </div>
 </div>
