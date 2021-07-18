@@ -8,7 +8,17 @@
         <div style="padding: 10px 0">
           <span class="title">Cart Products</span>
         </div>
-
+        <div
+          *ngIf="isEmpty"
+          style="
+            text-align: center;
+            margin-top: 5rem;
+            color: rgb(139, 139, 139);
+          "
+        >
+          <h2>-----------Your cart looks Empty-----------</h2>
+          <h4>Click on Add products to add products to your cart</h4>
+        </div>
         <div *ngFor="let p of products" class="row" style="margin-bottom: 10px">
           <div
             style="

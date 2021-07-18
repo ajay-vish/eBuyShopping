@@ -10,13 +10,7 @@ export class OrderProgressComponent implements OnInit {
   @Input()
   orderStatus: string = '';
 
-  counts = [
-    'Received',
-    'In Progress',
-    'Ready for Billing',
-    'Billed',
-    'Order Closed',
-  ];
+  counts = ['Received', 'Processing', 'Shipped', 'Delivered'];
 
   ngOnInit(): void {}
 }

@@ -21,7 +21,10 @@ export class CartComponent implements OnInit {
     if (localStorage.getItem('cart')) {
       this.products = JSON.parse(localStorage.getItem('cart') || '');
       this.getFinalAmount();
-      this.isEmpty = false;
+      if (this.products.length > 0) this.isEmpty = false;
+    } else {
+      this.products = [];
+      this.isEmpty = true;
     }
   }
 
@@ -77,7 +80,7 @@ export class CartComponent implements OnInit {
       height: '350px',
       width: '600px',
     });
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe(() => {
       this.loadCart();
     });
   }

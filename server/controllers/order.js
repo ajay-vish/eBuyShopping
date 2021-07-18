@@ -38,6 +38,7 @@ exports.createOrder = (req, res, next) => {
 
 exports.getAllOrders = (req, res) => {
 	Order.find()
+		.sort({ createdAt: -1 })
 		.populate("user", "_id name ")
 		.exec((err, order) => {
 			if (err) {
@@ -57,6 +58,7 @@ exports.getMyOrders = (req, res) => {
 		},
 	})
 		.populate("user", "_id name ")
+		.sort({ createdAt: -1 })
 		.exec((err, order) => {
 			if (err) {
 				return res.status(400).json({
