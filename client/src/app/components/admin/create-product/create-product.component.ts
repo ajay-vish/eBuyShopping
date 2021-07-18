@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import {
   MatSnackBar,
 } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create-product',
@@ -33,12 +35,14 @@ export class CreateProductComponent implements OnInit {
       this.categories = res.items;
     });
   }
+
   selectImage1(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.productPost.photo = file;
     }
   }
+
   selectCat(event: any) {
     const cat = event;
     this.productPost.category = cat;
@@ -65,4 +69,9 @@ export class CreateProductComponent implements OnInit {
       }
     });
   }
+
+
+  
+
+
 }

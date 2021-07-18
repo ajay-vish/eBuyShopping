@@ -22,7 +22,16 @@ export class ProductService {
   };
 
   getProducts(): Observable<any> {
-    return this.http.get(endpoint + 'products').pipe(
+    return this.http.get(endpoint + 'displayproducts').pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  getHomeProducts(): Observable<any> {
+    return this.http.get(endpoint + 'displayproducts').pipe(
       map((res) => {
         return res;
       }),

@@ -15,6 +15,7 @@ const endpoint = `http://localhost:8000/api/`;
 @Injectable({
   providedIn: 'root',
 })
+
 export class AdminService {
   httpFormOptions = {
     headers: new HttpHeaders({
@@ -43,18 +44,33 @@ export class AdminService {
     return this.http.get(endpoint + '/product/' + id);
   }
 
-  updateProduct(id: any, body: any) {
+  updateProduct(id: any, body: any, photo:any) {
     let { user, token } = this.auth.getSignedInUser();
-    this.httpOptions.headers = this.httpOptions.headers.set(
+    this.httpFormOptions.headers = this.httpFormOptions.headers.set(
       'Authorization',
       'Bearer ' + token
+
     );
+    console.log(body);
+    console.log("BODY");
+    
+    
+    let form = new FormData();
+    for (var key in body) {
+      form.append(key, body[key]);
+    }
+
+    console.log("PHOTO");
+    console.log(photo);
+    form.append('photo', photo);
+    
     return this.http.put(
       endpoint + '/product/' + id + '/' + user._id,
-      body,
-      this.httpOptions
+      form,
+      this.httpFormOptions
     );
   }
+
   createProduct(body: any) {
     let { user, token } = this.auth.getSignedInUser();
     this.httpFormOptions.headers = this.httpFormOptions.headers.set(
@@ -65,10 +81,23 @@ export class AdminService {
     for (var key in body) {
       form.append(key, body[key]);
     }
+
     return this.http.post(
       endpoint + 'product/create/' + user._id,
       form,
       this.httpFormOptions
+    );
+  }
+
+  deleteProduct(id: any){
+    let { user, token } = this.auth.getSignedInUser();
+    this.httpOptions.headers = this.httpOptions.headers.set(
+      'Authorization',
+      'Bearer ' + token
+    );
+    return this.http.delete(
+      endpoint + '/product/' + id + '/' + user._id,
+      this.httpOptions
     );
   }
 
@@ -87,6 +116,18 @@ export class AdminService {
     return this.http.put(
       endpoint + '/category/' + id + '/' + user._id,
       body,
+      this.httpOptions
+    );
+  }
+
+  deleteCategory(id: any){
+    let { user, token } = this.auth.getSignedInUser();
+    this.httpOptions.headers = this.httpOptions.headers.set(
+      'Authorization',
+      'Bearer ' + token
+    );
+    return this.http.delete(
+      endpoint + '/category/' + id + '/' + user._id,
       this.httpOptions
     );
   }

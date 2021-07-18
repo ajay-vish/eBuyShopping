@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 import {
   MatSnackBar,
@@ -20,12 +20,12 @@ export class EditProductComponent implements OnInit {
     category: '',
     description: '',
     stock: '',
-    photo: null,
   };
-
+  photo:any;
   categories: any = [];
 
   constructor(
+    private router:Router,
     private route: ActivatedRoute,
     private adminservice: AdminService,
     private snackBar: MatSnackBar
@@ -36,7 +36,9 @@ export class EditProductComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id') || '';
     this.productPost._id = id;
     this.adminservice.getProduct(id).subscribe((res: any) => {
+      delete res['photo'];
       this.productPost = res;
+      console.log(res);
     });
   }
 
@@ -45,10 +47,14 @@ export class EditProductComponent implements OnInit {
       this.categories = res.items;
     });
   }
+
   selectImage1(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.productPost.photo = file;
+      // this.productPost['photo'] = file;
+      this.photo = file;
+      console.log("COMPONENT FILE");
+      console.log(this.photo);
     }
   }
 
@@ -58,27 +64,51 @@ export class EditProductComponent implements OnInit {
   }
 
   updateProduct() {
+    // this.adminservice.createProduct(this.productPost).subscribe((res: any) => {
+    //   if(res.success){
+    //   console.log("Product created successfully!!!!");
+    //     alert("Product created successfully!!!!");
+    //   }
+    // });
+
+    console.log(this.productPost);
+    console.log( "COMPONENT ");
+    
     this.adminservice
-      .updateProduct(this.productPost._id, this.productPost)
+      .updateProduct(this.productPost._id, this.productPost, this.photo)
       .subscribe((res:any) => {
         if(res.success){
-          
-          this.snackBar.open('Product details updated!!👍', 'close', {
-            duration: 2000,
-            panelClass: ['success-snackbar'],
-            horizontalPosition: 'center',
-            verticalPosition: 'top',
-          });
-        }
-        else{
-          
-          this.snackBar.open(res.error, 'close', {
-            duration: 2000,
-            panelClass: ['error-snackbar'],
-            horizontalPosition: 'center',
-            verticalPosition: 'top',
-          });
+          this.router.navigate(['/admin']);
         }
       });
   }
+
+  deleteProduct(){
+    this.adminservice
+    .deleteProduct(this.productPost._id)
+    .subscribe((res: any) => {
+      console.log(res);
+      if(res.success){
+          
+        this.snackBar.open('Product details updated!!👍', 'close', {
+          duration: 2000,
+          panelClass: ['success-snackbar'],
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      }
+      else{
+        
+        this.snackBar.open(res.error, 'close', {
+          duration: 2000,
+          panelClass: ['error-snackbar'],
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      }
+      this.router.navigate(['/admin']);
+      
+    });
+  }
+
 }

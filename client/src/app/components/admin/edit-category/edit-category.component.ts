@@ -16,6 +16,7 @@ export class EditCategoryComponent implements OnInit {
     _id: '',
     name: '',
   };
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -54,4 +55,17 @@ export class EditCategoryComponent implements OnInit {
         }
       });
   }
+
+  deleteCategory() {
+    this.adminservice
+      .deleteCategory(this.categoryPost._id)
+      .subscribe((res: any) => {
+        console.log(res);
+        
+
+        this.router.navigate(['/admin']);
+      });
+  }
+  
+
 }

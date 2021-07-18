@@ -1,4 +1,5 @@
 const Product = require("../models/product");
+const Category = require("../models/category");
 const formidable = require("formidable");
 const _ = require("lodash");
 const fs = require("fs");
@@ -78,36 +79,49 @@ exports.photo = (req, res, next) => {
 	}
 	next();
 };
+
+// Product.update( {}, {'$set': {"available":true}}, false, true ).exec((err,product)=>{
+// 	if (err) {
+// 		return res.json({
+// 			error: "Failed to delete product",
+// 		});
+// 	}
+// 	return res.json()
+// });
 //delete Producct
 exports.deleteProduct = (req, res) => {
-	const product = req.product;
-	Product.updateOne({_id:product._id},{$set:{stock:0}}).exec((err,product)=>{
-		if (err) {
-					return res.json({
-						error: "Failed to delete product",
-					});
-				}
-				return res.json({
-					message: "Successfully deleted",
-				});
-	})
-	// product.remove((err, product) => {
-	// 	if (err) {
-	// 		return res.json({
-	// 			error: "Failed to delete product",
-	// 		});
-	// 	}
-	// 	res.json({
-	// 		message: "Successfully deleted",
-	// 	});
-	// });
+    const product = req.product;    
+	Product.updateOne({_id:product._id},{$set:{available:false}}).exec((err,product)=>{
+        if (err) {
+			return res.json({
+				error: "Failed to delete product",
+			});
+		}
+		return res.json({
+			success:true,	
+			message: "Successfully deleted",
+		});
+    })
+    // product.remove((err, product) => {
+    //  if (err) {
+    //      return res.json({
+    //          error: "Failed to delete product",
+    //      });
+    //  }
+    //  res.json({
+    //      message: "Successfully deleted",
+    //  });
+    // });
 };
+
+
 //update Product
 exports.updateProduct = (req, res) => {
 	let form = new formidable.IncomingForm();
 	form.keepExtensions = true;
-
+	
 	form.parse(req, (err, fields, file) => {
+		console.log(file);
 		if (err) {
 			return res.json({
 				error: "problem with image",
@@ -137,13 +151,29 @@ exports.updateProduct = (req, res) => {
 					error: "Updation in DB failed",
 				});
 			}
-
-			res.json(product);
+			res.json({success:true,product});
 		});
 	});
 };
 
 //product listing
+exports.getDisplayProducts = async (req, res) => {
+	Product.find()
+		.populate("category")
+		.select("-photo")
+		.exec((err, products) => {
+			if (err) {
+				return res.status(400).json({
+					error: "No products found",
+				});
+			}
+			res.json({
+				success: true,
+				data: products,
+			});
+		});
+}
+
 exports.getAllProducts = (req, res) => {
 	let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
 	Product.find()

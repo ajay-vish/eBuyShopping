@@ -1,4 +1,5 @@
 const Category = require("../models/category");
+const Product = require("../models/product");
 
 exports.getCategoryById = (req, res, next, id) => {
 	Category.findById(id).exec((err, cate) => {
@@ -56,16 +57,31 @@ exports.updateCategory = (req, res) => {
 };
 
 exports.removeCategory = (req, res) => {
+	
 	const category = req.category;
+	console.log(category._id);
 	category.remove((err, category) => {
 		if (err) {
 			return res.json({
 				error: "Failed to delete category",
 			});
 		}
-		res.json({
-			success: true,
-			message: "Successfully deleted",
+		
+		Product.update({category:category._id},{$set:{available:false}}).exec((err,product)=>{
+			if (err) {
+				return res.json({
+					error: "Failed to delete product",
+				});
+			}
+			return res.json({
+				message: "Successfully deleted products",
+			});
 		});
+
+
+		// res.json({
+		// 	success: true,
+		// 	message: "Successfully deleted",
+		// });
 	});
 };
