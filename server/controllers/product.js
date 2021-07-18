@@ -1,4 +1,5 @@
 const Product = require("../models/product");
+const Category = require("../models/category");
 const formidable = require("formidable");
 const _ = require("lodash");
 const fs = require("fs");
@@ -156,6 +157,23 @@ exports.updateProduct = (req, res) => {
 };
 
 //product listing
+exports.getDisplayProducts = async (req, res) => {
+	Product.find()
+		.populate("category")
+		.select("-photo")
+		.exec((err, products) => {
+			if (err) {
+				return res.status(400).json({
+					error: "No products found",
+				});
+			}
+			res.json({
+				success: true,
+				data: products,
+			});
+		});
+}
+
 exports.getAllProducts = (req, res) => {
 	let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
 	Product.find()
