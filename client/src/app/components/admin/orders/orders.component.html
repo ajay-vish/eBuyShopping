@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h1 style="margin-top: 3rem">Orders</h1>
+  <br />
+  <div *ngFor="let order of orders">
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="title-container">
+              <h3 style="margin-top: 0.8em; font-weight: 100">Order ID: {{order._id}}</h3>
+              <h4 style="margin-top: 1em; font-weight: 100">Status: {{order.status}}</h4>
+              <h4 style="margin-top: 1em; font-weight: 100">Ordered On: {{order.createdAt | date:'shortDate'}}</h4>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="container">
+          <h3>Order Details</h3>
+          <div class="row">
+            <div class="col-md-6">
+              <h4 style="font-weight: 100;">Payment ID : <strong>{{order.payment_id}}</strong></h4>
+              <h4 style="font-weight: 100;">Order Total : <strong>${{order.amount}}</strong></h4>
+              <h4 style="font-weight: 100;">Delivery address : <strong>{{order.address}}</strong></h4>
+              <h4 style="font-weight: 100;">Ordered By : <strong>{{order.user.name}}</strong></h4>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Mark order status as</mat-label>
+                <mat-select [(value)]="order.status">
+                  <mat-option (click)="selectOrder(s, order._id)" *ngFor="let s of status" value={{s}}>{{ s }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <h4 style="margin-top: 1em; font-weight: 100">Show Ordered Products</h4>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div *ngFor="let product of order.products" class="col-md-6">
+                <app-cart-product-template [productData]="product"></app-cart-product-template>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <br>
+  </div>
+</div>

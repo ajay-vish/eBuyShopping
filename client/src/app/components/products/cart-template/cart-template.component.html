@@ -1,34 +1,57 @@
 <app-navbar></app-navbar>
 <div class="container">
-   <section class="products">
-      <div style="padding: 10px 0;">
-         <span class="title">My Orders</span>
+  <section class="products">
+    <div style="padding: 3rem 0 0 0">
+      <span class="title">My Orders</span>
+    </div>
+    <div
+      *ngFor="let order of orders"
+      class="cart-container"
+      style="margin-bottom: 10px"
+    >
+      <hr style="background-color: darkgrey" />
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12">
+            <h3>Order ID: {{ order._id }}</h3>
+          </div>
+          <div class="col-md-3">
+            <h4>Deliver to: {{ order.address }}</h4>
+          </div>
+          <div class="col-md-3">
+            <h4>Order Total: ${{ order.amount }}</h4>
+          </div>
+          <div class="col-md-6 d-flex flex-row-reverse">
+            <div *ngIf="order.status == 'Cancelled'" class="cancelled">
+              <h3>Cancelled</h3>
+            </div>
+          </div>
+          <app-order-progress
+            style="margin-left: 3rem"
+            *ngIf="order.status != 'Cancelled'"
+            [orderStatus]="order.status"
+          ></app-order-progress>
+        </div>
       </div>
-      <div *ngFor="let order of orders" class="cart-container" style="margin-bottom: 10px;">
-        <hr style="background-color: darkgrey;">
-         <div class="col-md-12">
-            <div class="row">
-               <div class="col-md-12">
-                  <h3>Order ID: {{order._id}}</h3>
-               </div>
-               <div class="col-md-3">
-                  <h4>Deliver to: {{order.address}}</h4>
-               </div>
-               <div class="col-md-3">
-                  <h4>Order Total: ${{order.amount}}</h4>
-               </div>
-               <app-order-progress [orderStatus] = "order.status"></app-order-progress>
-            </div>
-         </div>
-         <div class="container row" >
-            <div class="col-md-12">
-               <h2>Product(s)</h2>
-            </div>
+      <div class="container row" style="padding-top: 1rem">
+        <mat-accordion class="example-headers-align" multi>
+          <mat-expansion-panel
+            (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false"
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title
+                ><h2 style="margin-top: 0.8em; font-weight: 100;">Product(s)</h2></mat-panel-title
+              >
+            </mat-expansion-panel-header>
             <div *ngFor="let product of order.products" class="col-md-6">
-               <app-cart-product-template [productData]=product ></app-cart-product-template>
+              <app-cart-product-template
+                [productData]="product"
+              ></app-cart-product-template>
             </div>
-         </div>
-         
+          </mat-expansion-panel>
+        </mat-accordion>
       </div>
-   </section>
+    </div>
+  </section>
 </div>

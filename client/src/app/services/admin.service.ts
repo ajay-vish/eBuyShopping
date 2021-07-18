@@ -1,80 +1,175 @@
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/internal/operators';
-import { HttpClient,  HttpResponse,  HttpRequest, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpResponse,
+  HttpRequest,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 const endpoint = `http://localhost:8000/api/`;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 
 export class AdminService {
-  httpOptions = {headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Accept': 'image/*',
-    'Authorization': '' })};
-  constructor(private auth:AuthService, private http:HttpClient) { }
+  httpFormOptions = {
+    headers: new HttpHeaders({
+      Accept: 'multipart/form-data',
+      Authorization: '',
+    }),
+  };
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: '',
+    }),
+  };
+  constructor(private auth: AuthService, private http: HttpClient) {}
 
   getAllProducts() {
-    return this.http.get(endpoint + "products");
+    return this.http.get(endpoint + 'products');
   }
   getAllCategories() {
-    return this.http.get(endpoint + "categories");
+    return this.http.get(endpoint + 'categories');
   }
 
-  getProduct(id:any) {
-    let {user, token} = this.auth.getSignedInUser();
+  getProduct(id: any) {
+    let { user, token } = this.auth.getSignedInUser();
     // this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
-    return this.http.get(endpoint+"product/"+id);
+    return this.http.get(endpoint + '/product/' + id);
   }
 
-  updateProduct(id:any, body:any) {
-    let {user, token} = this.auth.getSignedInUser();
-    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
-    return this.http.put(endpoint+"product/"+id+"/"+user._id, body, this.httpOptions);
-  }
+  updateProduct(id: any, body: any, photo:any) {
+    let { user, token } = this.auth.getSignedInUser();
+    this.httpFormOptions.headers = this.httpFormOptions.headers.set(
+      'Authorization',
+      'Bearer ' + token
 
-  createProduct(body:any) { 
-    console.log("SERVICE MDSHI ALAV");
-    
-    let {user, token} = this.auth.getSignedInUser();
-    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
-    console.log("BODY AT SERVICE LEVEL");
+    );
     console.log(body);
-    return this.http.post(endpoint+"product/create/" + user._id, body, this.httpOptions);
-    // return this.http.post(endpoint+"/create-btech-product", body, this.httpOptions);
+    console.log("BODY");
+    
+    
+    let form = new FormData();
+    for (var key in body) {
+      form.append(key, body[key]);
+    }
+
+    console.log("PHOTO");
+    console.log(photo);
+    form.append('photo', photo);
+    
+    return this.http.put(
+      endpoint + '/product/' + id + '/' + user._id,
+      form,
+      this.httpFormOptions
+    );
   }
 
-  getCategory(id:any) {
-    let {user, token} = this.auth.getSignedInUser();
+  createProduct(body: any) {
+    let { user, token } = this.auth.getSignedInUser();
+    this.httpFormOptions.headers = this.httpFormOptions.headers.set(
+      'Authorization',
+      'Bearer ' + token
+    );
+    let form = new FormData();
+    for (var key in body) {
+      form.append(key, body[key]);
+    }
+
+    return this.http.post(
+      endpoint + 'product/create/' + user._id,
+      form,
+      this.httpFormOptions
+    );
+  }
+
+  deleteProduct(id: any){
+    let { user, token } = this.auth.getSignedInUser();
+    this.httpOptions.headers = this.httpOptions.headers.set(
+      'Authorization',
+      'Bearer ' + token
+    );
+    return this.http.delete(
+      endpoint + '/product/' + id + '/' + user._id,
+      this.httpOptions
+    );
+  }
+
+  getCategory(id: any) {
+    let { user, token } = this.auth.getSignedInUser();
     // this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
-    return this.http.get(endpoint+"/category/"+id);
+    return this.http.get(endpoint + '/category/' + id);
   }
 
-  updateCategory(id:any, body:any) {
-    let {user, token} = this.auth.getSignedInUser();
-    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
-    return this.http.put(endpoint+"/category/"+id+"/"+user._id, body, this.httpOptions);
+  updateCategory(id: any, body: any) {
+    let { user, token } = this.auth.getSignedInUser();
+    this.httpOptions.headers = this.httpOptions.headers.set(
+      'Authorization',
+      'Bearer ' + token
+    );
+    return this.http.put(
+      endpoint + '/category/' + id + '/' + user._id,
+      body,
+      this.httpOptions
+    );
   }
 
-  createCategory(body:any) { 
-    let {user, token} = this.auth.getSignedInUser();
-    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
-    return this.http.post(endpoint+"/category/create/" + user._id, body, this.httpOptions);
+  deleteCategory(id: any){
+    let { user, token } = this.auth.getSignedInUser();
+    this.httpOptions.headers = this.httpOptions.headers.set(
+      'Authorization',
+      'Bearer ' + token
+    );
+    return this.http.delete(
+      endpoint + '/category/' + id + '/' + user._id,
+      this.httpOptions
+    );
   }
 
-  deleteCategory(id:any) {
-    let {user, token} = this.auth.getSignedInUser();
-    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
-    return this.http.delete(endpoint+"/category/"+id+"/"+user._id, this.httpOptions);
+  createCategory(body: any) {
+    let { user, token } = this.auth.getSignedInUser();
+    this.httpOptions.headers = this.httpOptions.headers.set(
+      'Authorization',
+      'Bearer ' + token
+    );
+    return this.http.post(
+      endpoint + '/category/create/' + user._id,
+      body,
+      this.httpOptions
+    );
   }
 
-  deleteProduct(id:any) {
-    let {user, token} = this.auth.getSignedInUser();
-    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
-    return this.http.delete(endpoint+"/product/"+id+"/"+user._id, this.httpOptions);
+  getOrders() {
+    let { user, token } = this.auth.getSignedInUser();
+    this.httpOptions.headers = this.httpOptions.headers.set(
+      'Authorization',
+      'Bearer ' + token
+    );
+    return this.http.get(
+      endpoint + 'order/all/' + user._id,
+      this.httpOptions
+    );
   }
 
+  changeStatus(orderId: any, status: any) {
+    let { user, token } = this.auth.getSignedInUser();
+    this.httpOptions.headers = this.httpOptions.headers.set(
+      'Authorization',
+      'Bearer ' + token
+    );
+    return this.http.put(
+      endpoint + `order/${orderId}/status/${user._id}`,
+      {
+        orderId: orderId,
+        status: status
+      },
+      this.httpOptions
+    );
+  }
 }

@@ -1,6 +1,7 @@
- .m-navbar a{
-   color: rgb(163, 163, 163);
-   text-decoration: none;
- } .m-navbar a:hover{
+.m-navbar a {
+  color: rgb(163, 163, 163);
+  text-decoration: none;
+}
+.m-navbar a:hover {
   color: rgb(255, 255, 255);
 }

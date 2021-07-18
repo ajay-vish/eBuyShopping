@@ -1,15 +1,14 @@
 <div class="page">
-    <section class="products" *ngFor="let categories of products">
-        <div style="padding: 10px 0;">
-            <span class="title">{{categories[0].category.name}}</span>
-        </div>
-        <br>
-        <div class="scroll">
-            <div *ngFor="let product of categories">
-                <app-product-template [product]="product"></app-product-template>
-            </div>
-        </div>
-    <hr style="background-color: darkgrey;">
-
-    </section>
+  <section class="products" *ngFor="let categories of products">
+    <div style="padding: 10px 0">
+      <span class="title">{{ categories[0].category.name }}</span>
+    </div>
+    <br />
+    <div class="scroll">
+      <div *ngFor="let product of categories">
+        <app-product-template [product]="product"></app-product-template>
+      </div>
+    </div>
+    <hr style="background-color: darkgrey" />
+  </section>
 </div>
