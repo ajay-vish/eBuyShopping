@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
+import {
+  MatSnackBar,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-product',
@@ -7,6 +10,7 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./create-product.component.css'],
 })
 export class CreateProductComponent implements OnInit {
+  
   productPost: any = {
     name: '',
     price: 0,
@@ -18,7 +22,7 @@ export class CreateProductComponent implements OnInit {
 
   categories: any = [];
 
-  constructor(private adminservice: AdminService) {}
+  constructor(private adminservice: AdminService,private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.loadCategories();
@@ -44,7 +48,20 @@ export class CreateProductComponent implements OnInit {
     this.adminservice.createProduct(this.productPost).subscribe((res: any) => {
       if(res.success){
       console.log("Product created successfully!!!!");
-      alert("Product created successfully!!!!");
+      this.snackBar.open('Product created successfully!!👍', 'close', {
+        duration: 2000,
+        panelClass: ['success-snackbar'],
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+      }
+      else{
+        this.snackBar.open(res.error, 'close', {
+          duration: 2000,
+          panelClass: ['error-snackbar'],
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
       }
     });
   }

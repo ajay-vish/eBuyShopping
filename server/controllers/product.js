@@ -8,7 +8,7 @@ exports.getProductById = (req, res, next, id) => {
 		.populate("category")
 		.exec((err, prod) => {
 			if (err) {
-				return res.status(400).json({
+				return res.json({
 					error: "Product not found",
 				});
 			}
@@ -29,13 +29,13 @@ exports.createProduct = (req, res) => {
 	form.keepExtensions = true;
 	form.parse(req, (err, fields, file) => {
 		if (err) {
-			return res.status(400).json({
+			return res.json({
 				error: "problem with image",
 			});
 		}
 		const { name, description, price, category, stock } = fields;
 		if (!name || !description || !price || !category || !stock) {
-			return res.status(400).json({
+			return res.json({
 				error: "Please include all fields",
 			});
 		}
@@ -44,7 +44,7 @@ exports.createProduct = (req, res) => {
 		//handle file here
 		if (file.photo) {
 			if (file.photo.size > 3000000) {
-				return res.status(400).json({
+				return res.json({
 					error: "File size too big!",
 				});
 			}
@@ -56,7 +56,7 @@ exports.createProduct = (req, res) => {
 		//save to DB
 		product.save((err, product) => {
 			if (err) {
-				return res.status(400).json({
+				return res.json({
 					error: "Saving tshirt in DB failed",
 				});
 			}
@@ -81,16 +81,26 @@ exports.photo = (req, res, next) => {
 //delete Producct
 exports.deleteProduct = (req, res) => {
 	const product = req.product;
-	product.remove((err, product) => {
+	Product.updateOne({_id:product._id},{$set:{stock:0}}).exec((err,product)=>{
 		if (err) {
-			return res.status(400).json({
-				error: "Failed to delete product",
-			});
-		}
-		res.json({
-			message: "Successfully deleted",
-		});
-	});
+					return res.json({
+						error: "Failed to delete product",
+					});
+				}
+				return res.json({
+					message: "Successfully deleted",
+				});
+	})
+	// product.remove((err, product) => {
+	// 	if (err) {
+	// 		return res.json({
+	// 			error: "Failed to delete product",
+	// 		});
+	// 	}
+	// 	res.json({
+	// 		message: "Successfully deleted",
+	// 	});
+	// });
 };
 //update Product
 exports.updateProduct = (req, res) => {
@@ -99,7 +109,7 @@ exports.updateProduct = (req, res) => {
 
 	form.parse(req, (err, fields, file) => {
 		if (err) {
-			return res.status(400).json({
+			return res.json({
 				error: "problem with image",
 			});
 		}
@@ -111,7 +121,7 @@ exports.updateProduct = (req, res) => {
 		//handle file here
 		if (file.photo) {
 			if (file.photo.size > 3000000) {
-				return res.status(400).json({
+				return res.json({
 					error: "File size too big!",
 				});
 			}
@@ -123,7 +133,7 @@ exports.updateProduct = (req, res) => {
 		//save to DB
 		product.save((err, product) => {
 			if (err) {
-				return res.status(400).json({
+				return res.json({
 					error: "Updation in DB failed",
 				});
 			}
@@ -141,7 +151,7 @@ exports.getAllProducts = (req, res) => {
 		.sort([[sortBy, "asc"]])
 		.exec((err, products) => {
 			if (err) {
-				return res.status(400).json({
+				return res.json({
 					error: "No products found",
 				});
 			}
@@ -164,7 +174,7 @@ exports.getAllProducts = (req, res) => {
 exports.getAllUniqueCategories = (req, res) => {
 	Product.distinct("category", {}, (err, category) => {
 		if (err) {
-			res.status(400).json({
+			res.json({
 				error: "No category found",
 			});
 		}
@@ -184,8 +194,8 @@ exports.updateStock = (req, res, next) => {
 
 	Product.bulkWrite(myOperations, {}, (err, product) => {
 		if (err) {
-			res.status(400).json({
-				error: "Bulk operation failed",
+			res.json({
+				error: "Operation failed",
 			});
 		}
 

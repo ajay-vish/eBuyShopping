@@ -25,6 +25,7 @@ mongoose
 	.then(() => {
 		console.log("Db CONNECTED");
 	});
+
 //this is middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 

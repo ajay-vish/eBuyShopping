@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import {
+  MatSnackBar,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-product',
@@ -24,7 +27,8 @@ export class EditProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private adminservice: AdminService
+    private adminservice: AdminService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +60,25 @@ export class EditProductComponent implements OnInit {
   updateProduct() {
     this.adminservice
       .updateProduct(this.productPost._id, this.productPost)
-      .subscribe((res) => {});
+      .subscribe((res:any) => {
+        if(res.success){
+          
+          this.snackBar.open('Product details updated!!👍', 'close', {
+            duration: 2000,
+            panelClass: ['success-snackbar'],
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        }
+        else{
+          
+          this.snackBar.open(res.error, 'close', {
+            duration: 2000,
+            panelClass: ['error-snackbar'],
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        }
+      });
   }
 }

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import {
+  MatSnackBar,
+} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-edit-category',
@@ -15,7 +19,8 @@ export class EditCategoryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private adminservice: AdminService
+    private adminservice: AdminService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +35,23 @@ export class EditCategoryComponent implements OnInit {
     this.adminservice
       .updateCategory(this.categoryPost._id, this.categoryPost)
       .subscribe((res: any) => {
-        this.router.navigate(['/admin']);
+        if(res.success){
+          this.snackBar.open('Category details updated!!', 'close', {
+            duration: 2000,
+            panelClass: ['success-snackbar'],
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+          this.router.navigate(['/admin']);
+        }
+        else{
+          this.snackBar.open(res.error, 'close', {
+            duration: 2000,
+            panelClass: ['error-snackbar'],
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        }
       });
   }
 }

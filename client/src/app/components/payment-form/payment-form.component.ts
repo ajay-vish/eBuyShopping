@@ -6,6 +6,9 @@ import { switchMap } from 'rxjs/operators';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { StripeService, StripeCardComponent } from 'ngx-stripe';
 import {
+  MatSnackBar,
+} from '@angular/material/snack-bar';
+import {
   StripeCardElementOptions,
   StripeElementsOptions,
   PaymentIntent,
@@ -56,6 +59,7 @@ export class PaymentFormComponent implements OnInit {
     private stripeService: StripeService,
     public authService: AuthService,
     public paymentService: PaymentService,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<PaymentFormComponent>
   ) {}
@@ -131,6 +135,20 @@ export class PaymentFormComponent implements OnInit {
                   if (resp.success) {
                     localStorage.removeItem('cart');
                     this.dialogRef.close();
+                    this.snackBar.open('Your order is placed successfully!!👍', 'close', {
+                      duration: 2000,
+                      panelClass: ['success-snackbar'],
+                      horizontalPosition: 'center',
+                      verticalPosition: 'top',
+                    });
+                  }
+                  else{
+                    this.snackBar.open(resp.error, 'close', {
+                      duration: 2000,
+                      panelClass: ['error-snackbar'],
+                      horizontalPosition: 'center',
+                      verticalPosition: 'top',
+                    });
                   }
                 });
             }
