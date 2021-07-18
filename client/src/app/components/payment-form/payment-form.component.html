@@ -1,33 +1,40 @@
 <div class="container">
-    <div class="row">
-      <span class="title">Payment with Stripe</span>
-      <br>
-      <br>
-      <br>
-      <div class="col-md-12" [formGroup]="stripeTest">
-        <div class="form-group">
-          <label>Billing address</label>
-          <input class="form-control" type="text" formControlName="address" required>
-        </div>
-        <div class="form-group">
-          <label>Amount</label>
-          <br>
-          <span class="description">$ {{data.amount}}</span>
-          <!-- <input class="form-control" type="number" formControlName="amount"> -->
-        </div> 
-        <div class="form-group">
-          <ngx-stripe-card
-            [options]="cardOptions"
-            (change)="onChange($event)"
-            [elementsOptions]="elementsOptions"
-          ></ngx-stripe-card>
-          <div class="text-danger" id="card-errors"></div>
-        </div>
-        <button 
-          class="btn btn-lg btn-success"
-          (click)="pay()" 
-          [disabled]="!validForm"
-        >PAY</button>
+  <div class="row">
+    <span class="title">Payment with Stripe</span>
+    <br />
+    <br />
+    <br />
+    <div class="col-md-12" [formGroup]="stripeTest">
+      <div class="form-group">
+        <label>Billing address</label>
+        <input
+          class="form-control"
+          type="text"
+          formControlName="address"
+          required
+        />
       </div>
+      <div class="form-group">
+        <label>Amount</label>
+        <br />
+        <span class="description">$ {{ data.amount }}</span>
+        <!-- <input class="form-control" type="number" formControlName="amount"> -->
+      </div>
+      <div class="form-group">
+        <ngx-stripe-card
+          [options]="cardOptions"
+          (change)="onChange($event)"
+          [elementsOptions]="elementsOptions"
+        ></ngx-stripe-card>
+        <div class="text-danger" id="card-errors"></div>
+      </div>
+      <button
+        class="btn btn-lg btn-success"
+        (click)="pay()"
+        [disabled]="!validForm"
+      >
+        PAY
+      </button>
     </div>
   </div>
+</div>

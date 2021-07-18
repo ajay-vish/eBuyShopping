@@ -10,6 +10,9 @@ const endpoint = `http://localhost:8000/api/`;
   providedIn: 'root'
 })
 export class AdminService {
+  httpFormOptions = {headers: new HttpHeaders({
+    'Accept':  'multipart/form-data',
+    'Authorization': '' })};
   httpOptions = {headers: new HttpHeaders({
     'Content-Type':  'application/json',
     'Authorization': '' })};
@@ -35,8 +38,12 @@ export class AdminService {
   }
   createProduct(body:any) { 
     let {user, token} = this.auth.getSignedInUser();
-    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
-    return this.http.post(endpoint+"/product/create/" + user._id, body, this.httpOptions);
+    this.httpFormOptions.headers = this.httpFormOptions.headers.set('Authorization', 'Bearer '+token);
+    let form = new FormData()
+    for(var key in body){
+      form.append(key, body[key]);
+    }
+    return this.http.post(endpoint+"product/create/" + user._id, form, this.httpFormOptions);
   }
 
   getCategory(id:any) {

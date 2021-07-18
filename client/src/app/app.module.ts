@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxStripeModule } from 'ngx-stripe';
 import { MatDialogModule } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +27,6 @@ import { PaymentFormComponent } from './components/payment-form/payment-form.com
 import { CartProductTemplateComponent } from './components/products/cart-product-template/cart-product-template.component';
 import { OrderProgressComponent } from './components/products/order-progress/order-progress.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +47,7 @@ import { OrderProgressComponent } from './components/products/order-progress/ord
     RegisterComponent,
     PaymentFormComponent,
     CartProductTemplateComponent,
-    OrderProgressComponent
+    OrderProgressComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,9 +57,9 @@ import { OrderProgressComponent } from './components/products/order-progress/ord
     ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    NgxStripeModule.forRoot('pk_test_QRFXZbbH9njd7BTCT4rPWlVA00HxnTuLnq')
+    NgxStripeModule.forRoot('pk_test_QRFXZbbH9njd7BTCT4rPWlVA00HxnTuLnq'),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
