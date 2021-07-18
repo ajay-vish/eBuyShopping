@@ -23,7 +23,7 @@
           </div>
           <div class="col-md-6 d-flex flex-row-reverse">
             <div *ngIf="order.status == 'Cancelled'" class="cancelled">
-              <h2>Cancelled</h2>
+              <h3>Cancelled</h3>
             </div>
           </div>
           <app-order-progress
@@ -41,7 +41,7 @@
           >
             <mat-expansion-panel-header>
               <mat-panel-title
-                ><h2 style="margin-top: 0.8em">Product(s)</h2></mat-panel-title
+                ><h2 style="margin-top: 0.8em; font-weight: 100;">Product(s)</h2></mat-panel-title
               >
             </mat-expansion-panel-header>
             <div *ngFor="let product of order.products" class="col-md-6">
