@@ -22,9 +22,11 @@ exports.getProductById= (req,res,next,id)=>{
 }
 
 exports.createProduct= (req,res)=>{
+    
     let form = new formidable.IncomingForm();
+    console.log(form)
     form.keepExtensions = true;
-
+    
     form.parse(req, (err,fields,file)=>{
         if(err){
             return res.status(400).json({
@@ -48,7 +50,7 @@ exports.createProduct= (req,res)=>{
 
 
         let product =new Product(fields)
-        // console.log(product)
+        console.log(file)
         //handle file here
         if(file.photo){
             if(file.photo.size > 3000000){
@@ -83,7 +85,9 @@ exports.getProduct= (req,res)=>{
 
 //middleware
 exports.photo = (req,res,next)=>{
+    
     if(req.product.photo.data){
+        
         res.set("Content-type",req.product.photo.contentType)
         return res.send(req.product.photo.data)
     }
