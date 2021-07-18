@@ -5,21 +5,16 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
   location: any;
 
-
-  constructor(
-    private auth: AuthService,
-    public router: Router
-    ){
-      router.events.subscribe((val) => {
-        this.loadNavbar();
-     });
-    
-   }
+  constructor(private auth: AuthService, public router: Router) {
+    router.events.subscribe((val) => {
+      this.loadNavbar();
+    });
+  }
 
   ngOnInit(): void {
     this.loadNavbar();
@@ -27,22 +22,16 @@ export class NavbarComponent implements OnInit {
 
   status = -1;
 
-  loadNavbar(){
-    if(this.auth.isSignedIn()){
-      console.log(this.auth.getSignedInUser());
+  loadNavbar() {
+    if (this.auth.isSignedIn()) {
       this.status = this.auth.getSignedInUser().user.role;
-      
-    }
-    else{
+    } else {
       this.status = -1;
     }
-    console.log(status);
   }
 
-  logout(){
-    localStorage.removeItem("jwt");
+  logout() {
+    localStorage.removeItem('jwt');
     this.router.navigate(['/login']);
-    console.log("logout");
   }
-
 }

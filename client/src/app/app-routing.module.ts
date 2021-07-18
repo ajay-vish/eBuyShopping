@@ -13,10 +13,10 @@ import { CartComponent } from './components/user/cart/cart.component';
 import { ProductPageComponent } from './components/products/product-page/product-page.component';
 import { DisplayProductComponent } from './components/products/display-product/display-product.component';
 
-
 import { AuthGuardService as AuthGaurd } from './services/auth-gaurd.service';
 import { AdminAuthGaurdService as AdminAuthGaurd } from './services/admin-auth-gaurd.service';
 import { CartTemplateComponent } from './components/products/cart-template/cart-template.component';
+import { OrdersComponent } from './components/admin/orders/orders.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,18 +24,35 @@ const routes: Routes = [
   { path: 'product', component: ProductPageComponent },
   { path: 'product/:id', component: DisplayProductComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AdminAuthGaurd] },
-  { path: 'create-product', component: CreateProductComponent, canActivate: [AdminAuthGaurd] },
-  { path: 'create-category', component: CreateCategoryComponent, canActivate: [AdminAuthGaurd] },
-  { path: 'edit-product/:id', component: EditProductComponent, canActivate: [AdminAuthGaurd] },
-  { path: 'edit-category/:id', component: EditCategoryComponent, canActivate: [AdminAuthGaurd]},
+  {
+    path: 'create-product',
+    component: CreateProductComponent,
+    canActivate: [AdminAuthGaurd],
+  },
+  {
+    path: 'create-category',
+    component: CreateCategoryComponent,
+    canActivate: [AdminAuthGaurd],
+  },
+  {
+    path: 'edit-product/:id',
+    component: EditProductComponent,
+    canActivate: [AdminAuthGaurd],
+  },
+  {
+    path: 'edit-category/:id',
+    component: EditCategoryComponent,
+    canActivate: [AdminAuthGaurd],
+  },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'order', component: CartTemplateComponent, canActivate: [AuthGaurd]},
+  { path: 'order', component: CartTemplateComponent, canActivate: [AuthGaurd] },
+  { path: 'orders', component: OrdersComponent, canActivate: [AdminAuthGaurd] },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

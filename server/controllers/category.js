@@ -1,76 +1,71 @@
-const Category = require("../models/category")
+const Category = require("../models/category");
 
 exports.getCategoryById = (req, res, next, id) => {
+	Category.findById(id).exec((err, cate) => {
+		if (err) {
+			return res.status(400).json({
+				error: "Category is not found",
+			});
+		}
 
-    Category.findById(id).exec((err, cate) => {
-        if (err) {
-            return res.status(400).json({
-                error: "Category is not found"
-            })
-        }
-
-        req.category = cate;
-        next();
-    })
-
-
-}
+		req.category = cate;
+		next();
+	});
+};
 
 exports.createCategory = (req, res) => {
+	const category = new Category(req.body);
+	category.save((err, category) => {
+		if (err) {
+			return res.status(400).json({
+				error: "Category not saved",
+			});
+		}
 
-    const category = new Category(req.body);
-    category.save((err, category) => {
-        if (err) {
-            return res.status(400).json({
-                error: "Category not saved"
-            })
-        }
-
-        res.json({ success:true, category });
-    })
-}
+		res.json({ success: true, category });
+	});
+};
 
 exports.getCategory = (req, res) => {
-    return res.json(req.category);
+	return res.json(req.category);
 };
 
 exports.getAllCategory = (req, res) => {
-    Category.find().exec((err, items) => {
-        if (err) {
-            return res.status(400).json({
-                error: "No categories found"
-            })
-        }
+	Category.find().exec((err, items) => {
+		if (err) {
+			return res.status(400).json({
+				error: "No categories found",
+			});
+		}
 
-        res.json({success:true,items});
-    })
+		res.json({ success: true, items });
+	});
 };
 
 exports.updateCategory = (req, res) => {
-    const category = req.category;
-    category.name = req.body.name
-    category.save((err, updatedCategory) => {
-        if (err) {
-            return res.status(400).json({
-                error: "Failed to update category"
-            })
-        }
-        res.json({success:true});
-    })
-}
+	const category = req.category;
+	category.name = req.body.name;
+	category.save((err, updatedCategory) => {
+		if (err) {
+			return res.status(400).json({
+				error: "Failed to update category",
+			});
+		}
+		res.json({ success: true });
+	});
+};
 
 exports.removeCategory = (req, res) => {
-    const category = req.category;
-    category.remove((err, category) => {
-        if (err) {
-            return res.status(400).json({
-                error: "Failed to delete category"
-            })
-        }
-        res.json({
-            success:true,
-            message: "Successfully deleted"
-        });
-    })
-
-}
+	const category = req.category;
+	category.remove((err, category) => {
+		if (err) {
+			return res.status(400).json({
+				error: "Failed to delete category",
+			});
+		}
+		res.json({
+			success: true,
+			message: "Successfully deleted",
+		});
+	});
+};

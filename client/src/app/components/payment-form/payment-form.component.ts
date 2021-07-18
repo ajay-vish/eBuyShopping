@@ -9,7 +9,7 @@ import {
   StripeCardElementOptions,
   StripeElementsOptions,
   PaymentIntent,
-  StripeCardElementChangeEvent 
+  StripeCardElementChangeEvent,
 } from '@stripe/stripe-js';
 import { AuthService } from 'src/app/services/auth.service';
 import { PaymentService } from 'src/app/services/payment.service';
@@ -24,7 +24,7 @@ import { PaymentService } from 'src/app/services/payment.service';
 export class PaymentFormComponent implements OnInit {
   stripeTest!: FormGroup;
   stripeCardValid: boolean = false;
-  @ViewChild(StripeCardComponent) card!: StripeCardComponent ;
+  @ViewChild(StripeCardComponent) card!: StripeCardComponent;
 
   cardOptions: StripeCardElementOptions = {
     iconStyle: 'solid',
@@ -36,11 +36,10 @@ export class PaymentFormComponent implements OnInit {
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSize: '18px',
         '::placeholder': {
-          color: '#CFD7E0'
+          color: '#CFD7E0',
         },
-       
       },
-    }
+    },
   };
 
   get validForm() {
@@ -49,27 +48,30 @@ export class PaymentFormComponent implements OnInit {
 
   elementsOptions: StripeElementsOptions = {
     locale: 'en',
-  };  
+  };
 
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
     private stripeService: StripeService,
-    public authService:AuthService,
-    public paymentService:PaymentService,
+    public authService: AuthService,
+    public paymentService: PaymentService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<PaymentFormComponent>,
+    public dialogRef: MatDialogRef<PaymentFormComponent>
   ) {}
 
   ngOnInit(): void {
     this.stripeTest = this.fb.group({
       address: ['', [Validators.required]],
-      amount: [this.data.amount, [Validators.required, Validators.pattern(/\d+/)]],
+      amount: [
+        this.data.amount,
+        [Validators.required, Validators.pattern(/\d+/)],
+      ],
     });
   }
   onChange(event: StripeCardElementChangeEvent) {
     const displayError = document.getElementById('card-errors')!;
-    
+
     if (event.error) {
       displayError.textContent = event.error.message;
       this.stripeCardValid = false;
@@ -96,59 +98,45 @@ export class PaymentFormComponent implements OnInit {
         .subscribe((result) => {
           if (result.error) {
             // Show error to your customer (e.g., insufficient funds)
-            console.log(result.error.message);
           } else {
             // The payment has been processed!
             if (result.paymentIntent!.status === 'succeeded') {
               // Show a success message to your customer
 
-              console.log("Succeded !!!!!!!!!!!!!");
-              console.log(result);
-
               //create the order
-              console.log("Executing order now");
-              
 
               //fetching products from cart from localstorage
               // TODO: find alternative way to get cart
-              let products = JSON.parse(localStorage.getItem("cart")!)
+              let products = JSON.parse(localStorage.getItem('cart')!);
 
               // removing the photo element from product object as it is not needed to save
-              products.forEach((product:any) => {
-                delete product.photo
+              products.forEach((product: any) => {
+                delete product.photo;
               });
-              console.log(products);
-              
+
               let orderData = {
                 payment_id: result.paymentIntent!.id,
-                amount: (result.paymentIntent!.amount)/100,
-                products:products,
+                amount: result.paymentIntent!.amount / 100,
+                products: products,
                 address: this.stripeTest.get('address')!.value,
-
-              }
+              };
 
               //fetching user, token from authservice
-              let {user,token} = this.authService.getSignedInUser()
+              let { user, token } = this.authService.getSignedInUser();
 
               //creating order
-              this.paymentService.createOrder(user._id,orderData,token).subscribe((resp:any)=>{
-                console.log(resp);
-                if(resp.success){
-                  alert("Order placed successfully!!!");
-                  localStorage.removeItem("cart");
-                  console.log("Order placed successfully!!!");
-                  this.dialogRef.close();
-                }
-                
-              })
-
-              
-              
+              this.paymentService
+                .createOrder(user._id, orderData, token)
+                .subscribe((resp: any) => {
+                  if (resp.success) {
+                    localStorage.removeItem('cart');
+                    this.dialogRef.close();
+                  }
+                });
             }
           }
         });
     } else {
-      console.log(this.stripeTest);
     }
   }
 

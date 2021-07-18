@@ -6,29 +6,22 @@ import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-product-template',
   templateUrl: './product-template.component.html',
-  styleUrls: ['./product-template.component.css']
+  styleUrls: ['./product-template.component.css'],
 })
 export class ProductTemplateComponent implements OnInit {
-
   @Input()
   product: any = {};
   jwt: any;
   cart: any;
-  constructor(
-    private payment: PaymentService,
-    private auth: AuthService
-    ) { }
+  constructor(private payment: PaymentService, private auth: AuthService) {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
-  buyNow(){
+  buyNow() {
     this.jwt = this.auth.getSignedInUser();
-    this.cart = JSON.parse(localStorage.getItem("cart") || "")
-    this.payment.createOrder(this.jwt.user._id,{products: this.cart},this.jwt.token).subscribe((resp:any)=>{
-      console.log(resp);
-    })
+    this.cart = JSON.parse(localStorage.getItem('cart') || '');
+    this.payment
+      .createOrder(this.jwt.user._id, { products: this.cart }, this.jwt.token)
+      .subscribe((resp: any) => {});
   }
 }
-

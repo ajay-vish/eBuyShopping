@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxStripeModule } from 'ngx-stripe';
 import { MatDialogModule } from '@angular/material/dialog';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,8 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 import { CartProductTemplateComponent } from './components/products/cart-product-template/cart-product-template.component';
 import { OrderProgressComponent } from './components/products/order-progress/order-progress.component';
-
-
+import { OrdersComponent } from './components/admin/orders/orders.component';
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,19 +49,21 @@ import { OrderProgressComponent } from './components/products/order-progress/ord
     RegisterComponent,
     PaymentFormComponent,
     CartProductTemplateComponent,
-    OrderProgressComponent
+    OrderProgressComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    NgxStripeModule.forRoot('pk_test_QRFXZbbH9njd7BTCT4rPWlVA00HxnTuLnq')
+    NgxStripeModule.forRoot('pk_test_QRFXZbbH9njd7BTCT4rPWlVA00HxnTuLnq'),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [DatePipe],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
