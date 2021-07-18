@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 
+//toasts
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/user/home/home.component';
@@ -63,6 +66,7 @@ import { DatePipe } from '@angular/common';
     MatDialogModule,
     BrowserAnimationsModule,
     MatSelectModule,
+    MatSnackBarModule,
     NgxStripeModule.forRoot('pk_test_QRFXZbbH9njd7BTCT4rPWlVA00HxnTuLnq'),
   ],
   providers: [DatePipe],

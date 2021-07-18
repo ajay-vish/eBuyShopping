@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import {
+  MatSnackBar,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-product',
@@ -24,7 +27,8 @@ export class EditProductComponent implements OnInit {
   constructor(
     private router:Router,
     private route: ActivatedRoute,
-    private adminservice: AdminService
+    private adminservice: AdminService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -84,6 +88,24 @@ export class EditProductComponent implements OnInit {
     .deleteProduct(this.productPost._id)
     .subscribe((res: any) => {
       console.log(res);
+      if(res.success){
+          
+        this.snackBar.open('Product details updated!!👍', 'close', {
+          duration: 2000,
+          panelClass: ['success-snackbar'],
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      }
+      else{
+        
+        this.snackBar.open(res.error, 'close', {
+          duration: 2000,
+          panelClass: ['error-snackbar'],
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      }
       this.router.navigate(['/admin']);
       
     });

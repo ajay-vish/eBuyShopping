@@ -57,3 +57,41 @@ body{
   }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+/* toast css  */
+
+.success-snackbar {
+  
+  background: #22CB5C;
+  color: white;
+}
+.success-snackbar button {
+  
+  color: white;
+  border: none;
+}
+.error-snackbar {
+  background: #F44336;
+  color: white;
+}
+.error-snackbar button {
+ 
+  color: white !important;
+  border: none;
+}
+.warning-snackbar {
+  background: #E07C24;
+  color: white;
+}
+.warning-snackbar button {
+ 
+  color: white !important;
+  border: none;
+}
+
+
+
+

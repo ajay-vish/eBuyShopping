@@ -225,7 +225,7 @@ exports.updateStock = (req, res, next) => {
 	Product.bulkWrite(myOperations, {}, (err, product) => {
 		if (err) {
 			res.json({
-				error: "Bulk operation failed",
+				error: "Operation failed",
 			});
 		}
 

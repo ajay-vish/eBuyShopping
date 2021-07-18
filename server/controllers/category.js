@@ -19,7 +19,7 @@ exports.createCategory = (req, res) => {
 	category.save((err, category) => {
 		if (err) {
 			return res.json({
-				error: "Category not saved",
+				error: "Some error occurred, Category not saved",
 			});
 		}
 

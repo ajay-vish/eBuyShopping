@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
+import {
+  MatSnackBar,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-display-product',
@@ -12,7 +15,8 @@ export class DisplayProductComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public productService: ProductService,
-    public userService: UserService
+    public userService: UserService,
+    private snackBar: MatSnackBar
   ) {}
 
   isLoading: boolean = true;
@@ -42,14 +46,25 @@ export class DisplayProductComponent implements OnInit {
       if (localStorage.getItem('cart')) {
         cart = JSON.parse(localStorage.getItem('cart') || '');
       }
-      if (this.checkAlreadyInCart(cart, item)) {
-        let index = cart.findIndex((obj: { _id: any }) => obj._id === item._id);
-
-        cart[index].count = cart[index].count + 1;
-      } else {
+      if (!this.checkAlreadyInCart(cart, item)) {
+       
         cart.push({
           ...item,
           count: 1,
+        });
+        this.snackBar.open('Item added to cart!', 'close', {
+          duration: 2000,
+          panelClass: ['success-snackbar'],
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      }
+      else{
+        this.snackBar.open('Item already in cart!', 'close', {
+          duration: 2000,
+          panelClass: ['warning-snackbar'],
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
         });
       }
       localStorage.setItem('cart', JSON.stringify(cart));
