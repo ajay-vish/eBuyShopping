@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { AdminService } from 'src/app/services/admin.service';
 
@@ -10,8 +11,10 @@ import { AdminService } from 'src/app/services/admin.service';
 export class OrdersComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion | null = null;
   panelOpenState = false;
-  status = ['Received', 'Processing', 'Shipped', 'Delivered'];
+  status = ['Received', 'Processing', 'Shipped', 'Delivered', 'Cancelled'];
   order: any;
+  disableSelect = new FormControl(false);
+  
   constructor(
     private admin: AdminService
   ) {}
@@ -27,7 +30,6 @@ export class OrdersComponent implements OnInit {
   }
   selectOrder(event: any, orderId: any){
     this.admin.changeStatus(orderId,event).subscribe((resp: any) => {
-      this.loadOrders()
     })
   }
 }

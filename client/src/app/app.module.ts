@@ -5,6 +5,7 @@ import { NgxStripeModule } from 'ngx-stripe';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -61,6 +62,7 @@ import { DatePipe } from '@angular/common';
     ReactiveFormsModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    MatSelectModule,
     NgxStripeModule.forRoot('pk_test_QRFXZbbH9njd7BTCT4rPWlVA00HxnTuLnq'),
   ],
   providers: [DatePipe],
