@@ -100,6 +100,7 @@ exports.isSignedIn = expressJwt({
 
 //custom middlewares
 exports.isAuthenticated =(req,res,next)=>{
+    console.log("IS AUTHENTICATED MDE ALAV")
     let checker = req.profile && req.auth && req.profile._id == req.auth._id
     if(!checker){
         return res.status(403).json({
@@ -110,6 +111,7 @@ exports.isAuthenticated =(req,res,next)=>{
 }
 
 exports.isAdmin =(req,res,next)=>{
+    console.log("IS ADMIN MDE ALAV")
     if(req.profile.role === 0){
         return res.status(403).json({
             error: "You are not an Admin,acces denied "

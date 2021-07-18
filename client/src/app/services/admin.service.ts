@@ -9,9 +9,11 @@ const endpoint = `http://localhost:8000/api/`;
 @Injectable({
   providedIn: 'root'
 })
+
 export class AdminService {
   httpOptions = {headers: new HttpHeaders({
     'Content-Type':  'application/json',
+    'Accept': 'image/*',
     'Authorization': '' })};
   constructor(private auth:AuthService, private http:HttpClient) { }
 
@@ -25,18 +27,24 @@ export class AdminService {
   getProduct(id:any) {
     let {user, token} = this.auth.getSignedInUser();
     // this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
-    return this.http.get(endpoint+"/product/"+id);
+    return this.http.get(endpoint+"product/"+id);
   }
 
   updateProduct(id:any, body:any) {
     let {user, token} = this.auth.getSignedInUser();
     this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
-    return this.http.put(endpoint+"/product/"+id+"/"+user._id, body, this.httpOptions);
+    return this.http.put(endpoint+"product/"+id+"/"+user._id, body, this.httpOptions);
   }
+
   createProduct(body:any) { 
+    console.log("SERVICE MDSHI ALAV");
+    
     let {user, token} = this.auth.getSignedInUser();
     this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
-    return this.http.post(endpoint+"/product/create/" + user._id, body, this.httpOptions);
+    console.log("BODY AT SERVICE LEVEL");
+    console.log(body);
+    return this.http.post(endpoint+"product/create/" + user._id, body, this.httpOptions);
+    // return this.http.post(endpoint+"/create-btech-product", body, this.httpOptions);
   }
 
   getCategory(id:any) {
@@ -57,6 +65,16 @@ export class AdminService {
     return this.http.post(endpoint+"/category/create/" + user._id, body, this.httpOptions);
   }
 
+  deleteCategory(id:any) {
+    let {user, token} = this.auth.getSignedInUser();
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
+    return this.http.delete(endpoint+"/category/"+id+"/"+user._id, this.httpOptions);
+  }
 
+  deleteProduct(id:any) {
+    let {user, token} = this.auth.getSignedInUser();
+    this.httpOptions.headers = this.httpOptions.headers.set('Authorization', 'Bearer '+token);
+    return this.http.delete(endpoint+"/product/"+id+"/"+user._id, this.httpOptions);
+  }
 
 }

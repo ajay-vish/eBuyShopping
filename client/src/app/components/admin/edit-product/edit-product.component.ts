@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class EditProductComponent implements OnInit {
 
   categories:any = [];
 
-  constructor(private route:ActivatedRoute, private adminservice:AdminService) { }
+  constructor(private router:Router, private route:ActivatedRoute, private adminservice:AdminService) { }
 
   ngOnInit(): void {
     this.loadCategories();
@@ -40,13 +40,13 @@ export class EditProductComponent implements OnInit {
       console.log(res);
     });
   }
+
   selectImage1(event:any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.productPost.photo = file;
     }
   }
-
 
   selectCat(event:any) {
       const cat = event;
@@ -57,6 +57,12 @@ export class EditProductComponent implements OnInit {
     console.log(this.productPost);
     this.adminservice.updateProduct(this.productPost._id, this.productPost).subscribe(res=>{
       console.log(res);
+    });
+  }
+
+  deleteProduct(){
+    this.adminservice.deleteProduct(this.productPost._id).subscribe((res:any)=>{
+      this.router.navigate(['/admin']);
     });
   }
 

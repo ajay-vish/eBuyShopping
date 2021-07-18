@@ -23,5 +23,4 @@ router.put("/category/:categoryId/:userId", isSignedIn, isAuthenticated, isAdmin
 router.delete("/category/:categoryId/:userId", isSignedIn, isAuthenticated, isAdmin, removeCategory)
 
 
-
 module.exports = router;

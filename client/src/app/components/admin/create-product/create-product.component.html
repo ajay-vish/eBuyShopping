@@ -11,18 +11,18 @@
         (ngSubmit)="createProduct()"
         action="">
             <span> Enter Product Name</span>
-            <input [(ngModel)]="productPost.name" name="name" type="text">
+            <input (change)="handleChange('name', $event)" name="name" type="text">
             <br><br>
             <div><span>Product Description</span>
             </div>
-                <textarea style="width: 100%;" rows="4" [(ngModel)]="productPost.description"  name="description"></textarea>
+                <textarea style="width: 100%;" rows="4" (change)="handleChange('description', $event)"  name="description"></textarea>
             <br><br>
             <span>Price in Dollars($)</span>
-            <input [(ngModel)]="productPost.price" type="number" name="price">
+            <input minvalue=0.1  (change)="handleChange('price', $event)"  type="number" name="price">
             <br><br>
-            
+     
             <span>Thumbnail Image</span>
-                <input (change)="selectImage1($event)"
+                <input (change)="handleChange('photo',$event)"
                 accept="image" type="file" name="photo">
             <br><br>
 
@@ -30,7 +30,7 @@
                 Category
             </span>
             <select 
-            [ngModel]="productPost.category" (ngModelChange)="selectCat($event)" 
+             (change)="handleChange('category',$event)" 
              name="category">
                 <option *ngFor="let c of categories" value="{{c._id}}" > {{c.name}} </option>
             </select>

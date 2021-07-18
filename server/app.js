@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 require("dotenv").config();
 const app = express();
-const bodyparser = require("body-parser");
+let bodyparser = require("body-parser");
 const cookieparser = require("cookie-parser")
 const cors = require("cors");
 
@@ -14,6 +14,12 @@ const orderRoutes = require("./routes/order")
 
 const stripeRoutes = require("./routes/stripepayment")
 const config = require("./config/database");
+
+// ajay's code
+// bodyParser = {
+//     json: {limit: '50mb', extended: true},
+//     urlencoded: {limit: '50mb', extended: true}
+// };
 
 
 
@@ -29,6 +35,10 @@ mongoose.connect(config.database,
 //this is middleware
 app.use(bodyparser.json());
 app.use(cookieparser());
+
+// app.use(bodyparser.json({limit: '100mb', extended: true}));
+// app.use(bodyparser.urlencoded({limit: '100mb', extended: true}));
+
 app.use(cors({"Access-Control-Allow-Origin": "*"}));
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');

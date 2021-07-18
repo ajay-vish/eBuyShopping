@@ -17,18 +17,23 @@ exports.getProductById= (req,res,next,id)=>{
         prod["photo"]["contentType"] = string;
         req.product =prod;
         next();
-
     })
 }
 
-exports.createProduct= (req,res)=>{
-    
+
+exports.createProduct = (req,res)=>{
+    console.log("BACKEND LA CONTROLLER MDSHI POCHLO");
+    console.log("req.body");
+    console.log(req.body);
+
     let form = new formidable.IncomingForm();
-    console.log(form)
+    console.log(form);
     form.keepExtensions = true;
     
     form.parse(req, (err,fields,file)=>{
         if(err){
+            console.log("IF ERRR");
+            console.log(err);
             return res.status(400).json({
                 error:"problem with image"
             });
@@ -45,12 +50,10 @@ exports.createProduct= (req,res)=>{
             return res.status(400).json({
                 error: "Please include all fields"
             })
-
         }
 
-
         let product =new Product(fields)
-        console.log(file)
+        console.log(fields)
         //handle file here
         if(file.photo){
             if(file.photo.size > 3000000){
@@ -67,7 +70,7 @@ exports.createProduct= (req,res)=>{
         product.save((err,product)=>{
             if(err){
                 return res.status(400).json({
-                    error:"Saving tshirt in DB failed"
+                    error:"Saving product in DB failed"
                 });
             }
 
@@ -167,13 +170,14 @@ exports.getAllProducts= (req,res)=>{
          }
          for(i = 0; i < products.length; i++){         
             var buffer = products[i].photo.data;
-            var string = "data:" + products[i]["photo"]["contentType"] + ";base64," + buffer.toString('base64');
+            var string = "data:" + products[i]["photo"]["contentType"] + ";base64," + buffer.toString('base64') || "";
             products[i]["photo"]["contentType"] = string;
          }
+         
          res.json({
              success: true,
              data : products
-            })
+        })
      })
 }
 
@@ -204,7 +208,6 @@ exports.updateStock = (req,res,next)=>{
                 error:"Bulk operation failed"
             })
         }
-
         next();
     })
     

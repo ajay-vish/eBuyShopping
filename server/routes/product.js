@@ -12,7 +12,14 @@ router.param("productId",getProductById)
 //routes
 //create
 router.post("/product/create/:userId",isSignedIn,isAuthenticated,isAdmin,createProduct)
-//read routes
+
+// router.post('/create-btech-product', (req, res) => {
+//     console.log(req);
+// });
+
+// router.post("/product/create/:userId",createProduct)
+
+//read routes 
 router.get("/product/:productId",getProduct);
 router.get("/product/photo/:productId",photo);
 

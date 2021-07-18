@@ -32,4 +32,14 @@ export class EditCategoryComponent implements OnInit {
     });
   }
 
+  deleteCategory(){
+    if(confirm("All the products of this category will be permanently deleted. Are your sure you want to continue?")){
+      this.adminservice.deleteCategory(this.categoryPost._id).subscribe((res:any)=>{
+        this.router.navigate(['/admin']);
+      });
+    }
+   
+   
+  }
+
 }
