@@ -1,4 +1,8 @@
 <div class="page">
+  <div class="d-flex flex-row-reverse">
+    <input class="search" (keydown)="onKeydown()" type="text" [(ngModel)] = "search" name="search">
+    <i class="fa fa-search fa-lg" style="margin-right: -1.3em; margin-top: 0.6em;"aria-hidden="true"></i>
+  </div>
   <section class="products" *ngFor="let categories of products">
     <div style="padding: 10px 0">
       <span class="title">{{ categories[0].category.name }}</span>
