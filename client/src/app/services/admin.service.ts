@@ -44,7 +44,7 @@ export class AdminService {
     return this.http.get(endpoint + '/product/' + id);
   }
 
-  updateProduct(id: any, body: any, photo:any) {
+  updateProduct(id: any, body: any, photo:any, is_photo_selected:boolean) {
     let { user, token } = this.auth.getSignedInUser();
     this.httpFormOptions.headers = this.httpFormOptions.headers.set(
       'Authorization',
@@ -55,6 +55,7 @@ export class AdminService {
     console.log("BODY");
     
     
+    
     let form = new FormData();
     for (var key in body) {
       form.append(key, body[key]);
@@ -62,7 +63,9 @@ export class AdminService {
 
     console.log("PHOTO");
     console.log(photo);
-    form.append('photo', photo);
+    if(is_photo_selected){
+      form.append('photo', photo);
+    }
     
     return this.http.put(
       endpoint + '/product/' + id + '/' + user._id,

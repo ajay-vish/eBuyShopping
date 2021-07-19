@@ -47,12 +47,13 @@ export class EditProductComponent implements OnInit {
       this.categories = res.items;
     });
   }
-
+is_photo_selected:boolean = false;
   selectImage1(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       // this.productPost['photo'] = file;
       this.photo = file;
+      this.is_photo_selected = true;
       console.log("COMPONENT FILE");
       console.log(this.photo);
     }
@@ -75,7 +76,7 @@ export class EditProductComponent implements OnInit {
     console.log( "COMPONENT ");
     
     this.adminservice
-      .updateProduct(this.productPost._id, this.productPost, this.photo)
+      .updateProduct(this.productPost._id, this.productPost, this.photo, this.is_photo_selected)
       .subscribe((res:any) => {
         if(res.success){
           this.router.navigate(['/admin']);
