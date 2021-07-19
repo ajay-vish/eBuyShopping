@@ -10,7 +10,7 @@
     </div>
     <br />
     <div class="scroll">
-      <div *ngFor="let product of categories">
+      <div *ngFor="let product of categories" class="col-md-3">
         <app-product-template [product]="product"></app-product-template>
       </div>
     </div>

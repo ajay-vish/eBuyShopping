@@ -1,9 +1,47 @@
-<div class="product" [routerLink]="['/product/' + product._id]">
+<!-- <div class="product" [routerLink]="['/product/' + product._id]">
   <img src="{{photo}}" />
   <div class="product-name">
     <span>{{ product.name }}</span>
   </div>
   <div style="text-align: center;">
     <span>₹{{ product.price }}</span>
+  </div>
+</div> -->
+
+<div style="margin-bottom: 20px" class="product" [routerLink]="['/product/' + product._id]">
+  <div class="product-img">
+
+    <img src="{{ photo }}" />
+  </div>
+  <div class="product-name">
+    <p 
+    style="font-size: 15px; font-weight: 600; color:lightslategray "
+  >
+  {{ product.category.name }}
+  </p>
+    <span>{{ product.name }}</span>
+  </div>
+  <!-- <div class="product-desc">
+    <span
+      style="
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4; /* number of lines to show */
+        -webkit-box-orient: vertical;
+      "
+    >
+      {{ product.description }}
+     
+    </span>
+  </div> -->
+  <div class="product-edit ">
+    <span 
+      style="  font-size: 17px; font-weight: 600; width: 100%; margin-bottom: 5px"
+    >
+    ₹{{ product.price }}
+  </span>
+ 
+  
   </div>
 </div>
