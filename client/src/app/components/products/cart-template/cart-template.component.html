@@ -22,6 +22,7 @@
             <h4>Order Total: ₹{{ order.amount }}</h4>
           </div>
           <div class="col-md-6 d-flex flex-row-reverse">
+            <button (click)='cancelOrder(order._id)' *ngIf="order.status == 'Received'" mat-raised-button color="warn" style="margin-right: 2em;">Cancel order</button>
             <div *ngIf="order.status == 'Cancelled'" class="cancelled">
               <h3>Cancelled</h3>
             </div>
