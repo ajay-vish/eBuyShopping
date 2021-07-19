@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
 })
+
 export class AdminComponent implements OnInit {
   products: any = [];
   categories: any = [];
