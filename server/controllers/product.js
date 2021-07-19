@@ -158,7 +158,9 @@ exports.updateProduct = (req, res) => {
 
 //product listing
 exports.getDisplayProducts = async (req, res) => {
-	Product.find()
+	Product.find(
+		{"available":true}
+	)
 		.populate("category")
 		.select("-photo")
 		.exec((err, products) => {

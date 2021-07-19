@@ -60,9 +60,7 @@ export class EditCategoryComponent implements OnInit {
     this.adminservice
       .deleteCategory(this.categoryPost._id)
       .subscribe((res: any) => {
-        console.log(res);
-        
-
+        console.log(res);        
         this.router.navigate(['/admin']);
       });
   }
