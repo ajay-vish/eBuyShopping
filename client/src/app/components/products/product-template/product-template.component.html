@@ -1,5 +1,7 @@
 <div class="product" [routerLink]="['/product/' + product._id]">
-  <img src="{{photo}}" />
+  <div class="image-container">
+    <img src="{{photo}}" />
+  </div>
   <div class="product-name">
     <span>{{ product.name }}</span>
   </div>
