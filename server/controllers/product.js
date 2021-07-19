@@ -177,7 +177,7 @@ exports.getDisplayProducts = (req, res) => {
 				let productArr = [];
 				for(let i = 0; i < category.length; i++){
 					await new Promise(resolve => setTimeout(resolve, category.length * 5));
-					Product.find({category: category[i]._id})
+					Product.find({category: category[i]._id, available: true})
 					.populate("category")
 					.select("-photo")
 					.limit(10)

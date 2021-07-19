@@ -57,18 +57,18 @@
               <!-- With M1, iPad Pro is the fastest device of its kind. It’s designed to take full advantage of next‑level performance and custom technologies  -->
             </span>
           </div>
+          <span>Status : <span *ngIf="p.available==true">Available</span><span  *ngIf="p.available==false">Unavailable</span></span>
           <div class="product-edit">
-            <button
-              style="width: 100%; margin-bottom: 5px"
-              class="button-price"
+            <span
+              style="margin: 10px 0; font-size: 20px; font-weight: 600; width: 100%; margin-bottom: 5px"
             >
-              ${{ p.price }}
-            </button>
+            ₹{{ p.price }}
+          </span>
 
             <button
               [routerLink]="['/edit-product/', p._id]"
               routerLinkActive="router-link-active"
-              style="width: 100%"
+              style="width: 100%; margin: 10px 0px;"
               class="button-theme"
             >
               Edit Product

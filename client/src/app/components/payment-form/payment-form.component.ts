@@ -16,6 +16,7 @@ import {
 } from '@stripe/stripe-js';
 import { AuthService } from 'src/app/services/auth.service';
 import { PaymentService } from 'src/app/services/payment.service';
+import { Router } from '@angular/router';
 
 // import { environment as env } from '../../environments/environment';
 
@@ -54,6 +55,7 @@ export class PaymentFormComponent implements OnInit {
   };
 
   constructor(
+    private router:Router,
     private http: HttpClient,
     private fb: FormBuilder,
     private stripeService: StripeService,
@@ -132,7 +134,9 @@ export class PaymentFormComponent implements OnInit {
               this.paymentService
                 .createOrder(user._id, orderData, token)
                 .subscribe((resp: any) => {
+
                   if (resp.success) {
+
                     localStorage.removeItem('cart');
                     this.dialogRef.close();
                     this.snackBar.open('Your order is placed successfully!!👍', 'close', {
@@ -141,7 +145,11 @@ export class PaymentFormComponent implements OnInit {
                       horizontalPosition: 'center',
                       verticalPosition: 'top',
                     });
+
+                    this.router.navigate(['/order']);
+
                   }
+
                   else{
                     this.snackBar.open(resp.error, 'close', {
                       duration: 2000,
