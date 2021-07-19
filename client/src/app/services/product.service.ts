@@ -5,6 +5,7 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
+import { AuthService } from './auth.service';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 const endpoint = `http://localhost:8000/api/`;
@@ -12,7 +13,7 @@ const endpoint = `http://localhost:8000/api/`;
   providedIn: 'root',
 })
 export class ProductService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth : AuthService) {}
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -66,6 +67,22 @@ export class ProductService {
       .pipe((res) => {
         return res;
       }, catchError(this.handleError));
+  }
+
+  cancelOrder(orderId: any, status: any) {
+    let { user, token } = this.auth.getSignedInUser();
+    this.httpOptions.headers = this.httpOptions.headers.set(
+      'Authorization',
+      'Bearer ' + token
+    );
+    return this.http.put(
+      endpoint + `cancel/${orderId}/status/${user._id}`,
+      {
+        orderId: orderId,
+        status: status
+      },
+      this.httpOptions
+    );
   }
 
   private handleError(error: HttpErrorResponse): any {

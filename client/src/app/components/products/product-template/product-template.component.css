@@ -9,8 +9,7 @@
   margin-bottom: 1rem;
 }
 
-.product img {
-  align-items: center;
+img {
   max-height: 120px;
   max-width: 100%;
 }

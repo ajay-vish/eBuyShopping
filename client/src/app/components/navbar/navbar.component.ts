@@ -7,7 +7,8 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit {
+
+export class NavbarComponent implements OnInit {  
   location: any;
 
   constructor(private auth: AuthService, public router: Router) {

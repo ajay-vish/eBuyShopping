@@ -6,6 +6,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 //toasts
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -33,6 +34,7 @@ import { CartProductTemplateComponent } from './components/products/cart-product
 import { OrderProgressComponent } from './components/products/order-progress/order-progress.component';
 import { OrdersComponent } from './components/admin/orders/orders.component';
 import { DatePipe } from '@angular/common';
+import { ConfirmComponent } from './components/products/cart-template/confirm/confirm.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +57,7 @@ import { DatePipe } from '@angular/common';
     CartProductTemplateComponent,
     OrderProgressComponent,
     OrdersComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +70,7 @@ import { DatePipe } from '@angular/common';
     BrowserAnimationsModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatButtonModule,
     NgxStripeModule.forRoot('pk_test_QRFXZbbH9njd7BTCT4rPWlVA00HxnTuLnq'),
   ],
   providers: [DatePipe],

@@ -55,4 +55,11 @@ router.put(
 	updateStatus
 );
 
+router.put(
+	"/cancel/:orderId/status/:userId",
+	isSignedIn,
+	isAuthenticated,
+	updateStatus
+);
+
 module.exports = router;

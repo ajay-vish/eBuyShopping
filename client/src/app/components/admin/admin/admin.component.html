@@ -14,7 +14,7 @@
     </div>
     <div class="cat">
       <div *ngFor="let c of categories" class="cat-name">
-        <span
+        <span 
           [routerLink]="['/edit-category/', c._id]"
           routerLinkActive="router-link-active"
           >{{ c.name }}
@@ -64,7 +64,6 @@
             >
             ₹{{ p.price }}
           </span>
-
             <button
               [routerLink]="['/edit-product/', p._id]"
               routerLinkActive="router-link-active"
