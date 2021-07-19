@@ -1,46 +1,96 @@
 <app-navbar></app-navbar>
-<main class="container" *ngIf="product; else elseBlock">
-  <!-- Left Column / Headphones Image -->
-  <div class="left-column">
-    <img
-      class="image"
-      data-image="red"
-      class="active"
-      src="{{ product.photo.contentType }}"
-      alt="Product Image"
-    />
-  </div>
 
-  <!-- Right Column -->
-  <div class="right-column">
-    <!-- Product Description -->
-    <div class="product-description">
-      <span>{{ product.category.name }}</span>
-      <br />
-      <br />
-      <h1>{{ product.name }}</h1>
-      <p style="color: black !important">{{ product.description }}</p>
-    </div>
-
-    <!-- Product Configuration -->
-    <div class="product-configuration">
-      <div class="cable-config">
-        <span>Lorem, ipsum.</span>
-        <div class="cable-choose">
-          <button>dolor</button>
-          <button>ipsum</button>
-          <button>amet</button>
-        </div>
-
-        <a>Lorem ipsum dolor sit amet.</a>
+<div class="page">
+  <div style="padding-top: 100px;" class="row">
+    <div class="col-md-6">
+      <div 
+      style="
+      padding:0 10px;
+      "
+      class="detail-image">
+        <img 
+        style="width: 100%; height: 500px;"
+        src="{{product.photo.contentType}}">
       </div>
+      
     </div>
+    <div  class="col-md-6">
+      <div style="padding-left: 50px;">
 
-    <!-- Product Pricing -->
-    <div class="product-price">
-      <span>₹{{ product.price }}</span>
-      <a (click)="addItemToCart(product)" class="cart-btn">Add to cart</a>
+        <div style="font-size: 18px; color:var(--blue); ">
+          <span>
+            {{product.category.name}}
+          </span>
+        </div>
+<br>
+
+      <div style="
+        text-decoration: underline;
+        margin-bottom: 30px; font-size: 30px; font-weight: 500;">
+        <span >{{product.name}}</span>
+      </div>
+
+      <div style="font-size: 18px; color:#696969; ">
+        <span>
+          {{product.description}}
+        </span>
+      </div>
+<br>
+      <hr>
+<br>
+      <div style="margin-bottom: 10px;">
+        <span style="font-size: 18px;">Product MRP:</span>
+        <span style="font-size:28px; font-weight: 500;"> 
+          ₹{{product.price}}
+        </span> 
+        <span style="color: rgb(134, 134, 134);" >(Inclusive of all taxes)</span>
+
+      </div>
+
+      <div style="">
+        <span style="font-size: 18px;">Available for Delievery in India : </span>
+        
+          <span  style="
+          color: var(--blue);
+          border:1px solid var(--blue);
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-size: 18px;
+          ">{{product.stock}}</span>
+          <span style="font-size: 18px;">  Left in Stock</span>
+          
+      </div>
+<br>
+
+<hr>
+      <div>
+       <button style="
+          border: 1px solid var(--blue);
+
+        width:100%; font-size: 18px;" class="button-theme">
+          Add to Cart : ₹{{product.price}}
+       </button>
+      </div>
+
+      <button
+      style="
+      margin-top: 10px;
+        border: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  font-size: 18px;
+  background: transparent;
+  width: 100%;
+      "
+    >
+  Go to Cart 
+  </button>
+  <br>
+  <span style="color: rgb(134, 134, 134);" >All prices mentioned are inclusive of GST & no further charges applicable*</span>
+
+    </div>
     </div>
   </div>
-</main>
-<ng-template #elseBlock>Loading</ng-template>
+</div>
