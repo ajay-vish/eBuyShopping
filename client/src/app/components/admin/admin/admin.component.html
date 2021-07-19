@@ -60,8 +60,7 @@
           <span>Status : <span *ngIf="p.available==true">Available</span><span  *ngIf="p.available==false">Unavailable</span></span>
           <div class="product-edit">
             <span
-              style="width: 100%; margin-bottom: 5px"
-              class="button-price"
+              style="margin: 10px 0; font-size: 20px; font-weight: 600; width: 100%; margin-bottom: 5px"
             >
             ₹{{ p.price }}
           </span>
@@ -69,7 +68,7 @@
             <button
               [routerLink]="['/edit-product/', p._id]"
               routerLinkActive="router-link-active"
-              style="width: 100%"
+              style="width: 100%; margin: 10px 0px;"
               class="button-theme"
             >
               Edit Product
