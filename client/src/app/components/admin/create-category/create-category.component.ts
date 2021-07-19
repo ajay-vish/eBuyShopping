@@ -5,7 +5,6 @@ import {
   MatSnackBar,
 } from '@angular/material/snack-bar';
 
-
 @Component({
   selector: 'app-create-category',
   templateUrl: './create-category.component.html',
