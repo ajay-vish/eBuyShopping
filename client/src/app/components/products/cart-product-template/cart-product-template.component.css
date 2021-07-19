@@ -31,8 +31,8 @@
 }
 .cart-product-img {
   border-radius: 10px;
-  height: 120px;
-  width: 120px;
+  max-height: 120px;
+  max-width: 120px;
 }
 
 .product-name {

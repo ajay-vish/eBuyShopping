@@ -45,8 +45,9 @@ export class ProductPageComponent implements OnInit {
     }else{
       for(let i = 0; i < this.productMain.length; i++){
         let product = this.productMain[i].name.toUpperCase();
+        let category = this.productMain[i].category.name.toUpperCase();
         let search = this.search.toUpperCase();
-        if(product.includes(search)){
+        if(product.match(search) || category.match(search)){
           this.temp.push(this.productMain[i]);
         }
       }
