@@ -123,7 +123,7 @@ exports.updateProduct = (req, res) => {
 	form.keepExtensions = true;
 	
 	form.parse(req, (err, fields, file) => {
-		console.log(file);
+		console.log(fields);
 		if (err) {
 			return res.json({
 				error: "problem with image",
@@ -132,6 +132,9 @@ exports.updateProduct = (req, res) => {
 
 		//updation code
 		let product = req.product;
+		console.log("CONTENTTYPE");
+		console.log(product['photo'].contentType.split(';')[0]);
+		product['photo'].contentType = product['photo'].contentType.split(';')[0].substring(5);
 
 		product = _.extend(product, fields);
 		//handle file here
@@ -145,7 +148,7 @@ exports.updateProduct = (req, res) => {
 			product.photo.data = fs.readFileSync(file.photo.path);
 			product.photo.contentType = file.photo.type;
 		}
-
+		
 		//save to DB
 		product.save((err, product) => {
 			if (err) {
@@ -161,8 +164,8 @@ exports.updateProduct = (req, res) => {
 exports.getProducts = (category, callback) => {
 	callback(null, category);
 }
-//product listing
 
+//product listing
 exports.getDisplayProducts = (req, res) => {
 	Category.find()
 		.exec((err, category) => {
