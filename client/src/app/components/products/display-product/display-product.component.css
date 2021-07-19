@@ -20,7 +20,8 @@
   justify-content: space-around;
 }
 .left-column img {
-  height: 90vh;
+  max-height: 85vh;
+  max-width: 45vw;
   transition: all 0.3s ease;
 }
 
