@@ -1,8 +1,10 @@
 const Product = require("../models/product");
 const Category = require("../models/category");
 const formidable = require("formidable");
+const util = require('util');
 const _ = require("lodash");
 const fs = require("fs");
+const product = require("../models/product");
 
 exports.getProductById = (req, res, next, id) => {
 	Product.findById(id)
@@ -156,21 +158,49 @@ exports.updateProduct = (req, res) => {
 	});
 };
 
+exports.getProducts = (category, callback) => {
+	callback(null, category);
+}
 //product listing
-exports.getDisplayProducts = async (req, res) => {
-	Product.find()
-		.populate("category")
-		.select("-photo")
-		.exec((err, products) => {
+
+exports.getDisplayProducts = (req, res) => {
+	Category.find()
+		.exec((err, category) => {
 			if (err) {
 				return res.status(400).json({
 					error: "No products found",
 				});
 			}
-			res.json({
-				success: true,
-				data: products,
-			});
+			const product = util.promisify(this.getProducts);
+			product(category)
+			.then(async (category) => {
+				let productArr = [];
+				for(let i = 0; i < category.length; i++){
+					await new Promise(resolve => setTimeout(resolve, category.length * 5));
+					Product.find({category: category[i]._id})
+					.populate("category")
+					.select("-photo")
+					.limit(10)
+					.exec((err, products) => {
+						if (err) {
+							return res.status(400).json({
+								error: "No products found",
+							});
+						}
+						if(products.length > 0)
+						for(let j = 0; j < products.length; j++){
+							if(products[j] != undefined)
+							productArr.push(products[j])
+						}
+					});
+				}
+				return productArr;
+			}).then((resp)=>{
+				res.json({
+					success: true,
+					data: resp,
+				});
+			})
 		});
 }
 
