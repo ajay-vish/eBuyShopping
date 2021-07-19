@@ -39,7 +39,7 @@ export class OrdersComponent implements OnInit {
       
       if(resp.success){
         this.snackBar.open(`Order status updated to ${event}`, 'close', {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['success-snackbar'],
           horizontalPosition: 'center',
           verticalPosition: 'top',
@@ -47,7 +47,7 @@ export class OrdersComponent implements OnInit {
       }
       else{
         this.snackBar.open(resp.error, 'close', {
-          duration: 2000,
+          duration: 4000,
           panelClass: ['success-snackbar'],
           horizontalPosition: 'center',
           verticalPosition: 'top',
