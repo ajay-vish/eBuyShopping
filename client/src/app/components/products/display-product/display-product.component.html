@@ -47,7 +47,7 @@
 
       </div>
 
-      <div style="">
+      <div >
         <span style="font-size: 18px;">Available for Delievery in India : </span>
         
           <span  style="
@@ -64,17 +64,15 @@
 
 <hr>
       <div>
-       <button (click)="addItemToCart(product)" style="
+       <button style="
           border: 1px solid var(--blue);
 
         width:100%; font-size: 18px;" class="button-theme">
-         
           Add to Cart : ₹{{product.price}}
        </button>
       </div>
 
       <button
-      [routerLink]="['/cart']" routerLinkActive="router-link-active" 
       style="
       margin-top: 10px;
         border: none;
