@@ -14,7 +14,8 @@
     </div>
     <div class="cat">
       <div *ngFor="let c of categories" class="cat-name">
-        <span 
+        <span style="cursor: pointer;"
+          
           [routerLink]="['/edit-category/', c._id]"
           routerLinkActive="router-link-active"
           >{{ c.name }}
