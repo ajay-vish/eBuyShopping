@@ -3,5 +3,6 @@
   text-decoration: none;
 }
 .m-navbar a:hover {
+  cursor: pointer;
   color: rgb(255, 255, 255);
 }
