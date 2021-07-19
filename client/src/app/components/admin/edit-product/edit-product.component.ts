@@ -97,6 +97,7 @@ is_photo_selected:boolean = false;
           horizontalPosition: 'center',
           verticalPosition: 'top',
         });
+        this.router.navigate(['/admin']);
       }
       else{
         
@@ -107,7 +108,6 @@ is_photo_selected:boolean = false;
           verticalPosition: 'top',
         });
       }
-      this.router.navigate(['/admin']);
       
     });
   }
