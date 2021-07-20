@@ -1,14 +1,15 @@
 <br>
 <div class="container">
   <div class="d-flex flex-row-reverse">
-    <input class="search" (keydown)="onKeydown($event)" type="text" [(ngModel)] = "search" name="search">
+    <input placeholder="Search" class="search" (keydown)="onKeydown($event)" type="text" [(ngModel)] = "search" name="search">
     <i class="fa fa-search fa-lg" style="margin-right: -1.3em; margin-top: 0.6em;"aria-hidden="true"></i>
   </div>
   <section class="products" *ngFor="let categories of products">
     <div style="padding: 10px 0">
       <span class="title">{{ categories[0].category.name }}</span>
+      
       <!-- redirect to view products by category page -->
-      <a class="view-more" (click)="gotoCategory(categories[0].category.name, categories[0].category._id)">View more</a>
+      <a class="view-more" style="cursor: pointer;" (click)="gotoCategory(categories[0].category.name, categories[0].category._id)">View more</a>
     </div>
     <br />
     <div class="scroll">

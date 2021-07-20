@@ -28,13 +28,23 @@
         ></ngx-stripe-card>
         <div class="text-danger" id="card-errors"></div>
       </div>
-      <button
+      <button *ngIf="!isLoading"
         class="btn btn-lg btn-success"
         (click)="pay()"
         [disabled]="!validForm"
       >
         PAY
       </button>
+      <button *ngIf="isLoading"
+        class="btn btn-lg btn-success"
+       
+      disabled
+      >
+        Processing...
+      </button>
+      
+      
+      
     </div>
   </div>
 </div>

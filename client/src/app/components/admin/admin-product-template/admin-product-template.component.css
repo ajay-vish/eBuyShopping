@@ -1,7 +1,7 @@
-.product img {
+img {
     border-radius: 10px;
     height: 250px;
-    width: 100%;
+    max-width: 100%;
   }
   
   .product{

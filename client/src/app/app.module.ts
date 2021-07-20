@@ -38,7 +38,7 @@ import { ConfirmComponent } from './components/products/cart-template/confirm/co
 import { DisplayProductsByCategoryComponent } from './components/display-products-by-category/display-products-by-category.component';
 import {MatMenuModule} from '@angular/material/menu'; 
 
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AdminProductTemplateComponent } from './components/admin/admin-product-template/admin-product-template.component';
 @NgModule({
@@ -81,6 +81,7 @@ import { AdminProductTemplateComponent } from './components/admin/admin-product-
     MatSnackBarModule,
     MatButtonModule,
     MatMenuModule,
+    MatProgressSpinnerModule,
     NgxStripeModule.forRoot('pk_test_QRFXZbbH9njd7BTCT4rPWlVA00HxnTuLnq'),
   ],
   providers: [DatePipe],

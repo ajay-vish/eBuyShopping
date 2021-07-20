@@ -45,7 +45,7 @@
             </div>
             <div class="col-md-3">
               <div class="product-edit">
-                <button
+                <!-- <button
                   (click)="decreaseQty(p._id)"
                   style="width: 100%; margin-bottom: 5px"
                   class="button-price"
@@ -64,8 +64,13 @@
                   class="button-price"
                 >
                   +
-                </button>
+                </button> -->
+                <div style="display: flex; justify-content: space-between; margin: 20px 0;">
 
+                  <button    (click)="increaseQty(p._id)" mat-mini-fab  color="primary">+</button>
+                  <button mat-stroked-button color="primary" >Qty: {{ p.count }}</button>
+                  <button  (click)="decreaseQty(p._id)" mat-mini-fab  color="primary">-</button>
+                </div>
                 <button
                   (click)="removeItem(p._id)"
                   style="
