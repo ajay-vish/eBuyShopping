@@ -36,10 +36,11 @@ import { OrdersComponent } from './components/admin/orders/orders.component';
 import { DatePipe } from '@angular/common';
 import { ConfirmComponent } from './components/products/cart-template/confirm/confirm.component';
 import { DisplayProductsByCategoryComponent } from './components/display-products-by-category/display-products-by-category.component';
-import { AdminProductTemplateComponent } from './components/admin/admin-product-template/admin-product-template.component';
 import {MatMenuModule} from '@angular/material/menu'; 
 
 
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AdminProductTemplateComponent } from './components/admin/admin-product-template/admin-product-template.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +65,7 @@ import {MatMenuModule} from '@angular/material/menu';
     OrdersComponent,
     ConfirmComponent,
     DisplayProductsByCategoryComponent,
+    PageNotFoundComponent,
     AdminProductTemplateComponent,
   ],
   imports: [
