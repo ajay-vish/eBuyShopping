@@ -1,6 +1,10 @@
 <app-navbar></app-navbar>
 
 <div class="page">
+  <div class="d-flex flex-row-reverse">
+    <input class="search" (keydown)="onKeydown($event)" type="text" [(ngModel)] = "search" name="search">
+    <i class="fa fa-search fa-lg" style="margin-right: -1.3em; margin-top: 0.6em;"aria-hidden="true"></i>
+  </div>
   <section class="categories">
     <div class="create-cat">
       <span class="title">Existing Product Categories</span>
@@ -15,7 +19,6 @@
     <div class="cat">
       <div *ngFor="let c of categories" class="cat-name">
         <span style="cursor: pointer;"
-          
           [routerLink]="['/edit-category/', c._id]"
           routerLinkActive="router-link-active"
           >{{ c.name }}
@@ -36,45 +39,18 @@
         Create New Product
       </button>
     </div>
+    <div class="cat">
+      <div *ngFor="let c of categories" [ngClass]="category == c.name ? 'selected' : 'my_class2'" class="cat-name">
+        <span style="cursor: pointer;"
+          (click)="onSearchByCat(c.name)"
+          >{{ c.name }}
+        </span>
+      </div>
+    </div>
     <br />
     <div class="row">
       <div *ngFor="let p of products" class="col-md-3">
-        <div style="margin-bottom: 20px" class="product">
-          <img src="{{ p.photo.contentType }}" loading="lazy" />
-          <div class="product-name">
-            <span>{{ p.name }}</span>
-          </div>
-          <div class="product-desc">
-            <span
-              style="
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 4; /* number of lines to show */
-                -webkit-box-orient: vertical;
-              "
-            >
-              {{ p.description }}
-              <!-- With M1, iPad Pro is the fastest device of its kind. It’s designed to take full advantage of next‑level performance and custom technologies  -->
-            </span>
-          </div>
-          <span>Status : <span *ngIf="p.available==true">Available</span><span  *ngIf="p.available==false">Unavailable</span></span>
-          <div class="product-edit">
-            <span
-              style="margin: 10px 0; font-size: 20px; font-weight: 600; width: 100%; margin-bottom: 5px"
-            >
-            ₹{{ p.price }}
-          </span>
-            <button
-              [routerLink]="['/edit-product/', p._id]"
-              routerLinkActive="router-link-active"
-              style="width: 100%; margin: 10px 0px;"
-              class="button-theme"
-            >
-              Edit Product
-            </button>
-          </div>
-        </div>
+        <app-admin-product-template [p]="p"></app-admin-product-template>
       </div>
     </div>
   </section>

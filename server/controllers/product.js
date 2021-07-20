@@ -76,8 +76,7 @@ exports.getProduct = (req, res) => {
 //middleware
 exports.photo = (req, res, next) => {
 	if (req.product.photo.data) {
-		res.set("Content-type", req.product.photo.contentType);
-		return res.send(req.product.photo.data);
+		return res.send({photo: req.product.photo.contentType});
 	}
 	next();
 };
@@ -235,21 +234,13 @@ exports.getAllProducts = (req, res) => {
 	let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
 	Product.find()
 		.populate("category")
+		.select("-photo")
 		.sort([[sortBy, "asc"]])
 		.exec((err, products) => {
 			if (err) {
 				return res.json({
 					error: "No products found",
 				});
-			}
-			for (i = 0; i < products.length; i++) {
-				var buffer = products[i].photo.data;
-				var string =
-					"data:" +
-					products[i]["photo"]["contentType"] +
-					";base64," +
-					buffer.toString("base64");
-				products[i]["photo"]["contentType"] = string;
 			}
 			res.json({
 				success: true,

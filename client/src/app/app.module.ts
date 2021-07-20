@@ -35,7 +35,11 @@ import { OrderProgressComponent } from './components/products/order-progress/ord
 import { OrdersComponent } from './components/admin/orders/orders.component';
 import { DatePipe } from '@angular/common';
 import { ConfirmComponent } from './components/products/cart-template/confirm/confirm.component';
+<<<<<<< HEAD
 import { DisplayProductsByCategoryComponent } from './components/display-products-by-category/display-products-by-category.component';
+=======
+import { AdminProductTemplateComponent } from './components/admin/admin-product-template/admin-product-template.component';
+>>>>>>> f20c41dd47f601f704ed7505ed7ede967db3dd64
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +63,11 @@ import { DisplayProductsByCategoryComponent } from './components/display-product
     OrderProgressComponent,
     OrdersComponent,
     ConfirmComponent,
+<<<<<<< HEAD
     DisplayProductsByCategoryComponent,
+=======
+    AdminProductTemplateComponent,
+>>>>>>> f20c41dd47f601f704ed7505ed7ede967db3dd64
   ],
   imports: [
     BrowserModule,

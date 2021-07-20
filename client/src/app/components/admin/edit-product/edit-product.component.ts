@@ -4,6 +4,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import {
   MatSnackBar,
 } from '@angular/material/snack-bar';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-product',
@@ -12,6 +13,10 @@ import {
 })
 export class EditProductComponent implements OnInit {
   // productPost:any = {};
+  
+
+
+
 
   productPost: any = {
     _id: '',
@@ -23,6 +28,7 @@ export class EditProductComponent implements OnInit {
   };
   photo:any;
   categories: any = [];
+
 
   constructor(
     private router:Router,
@@ -39,7 +45,11 @@ export class EditProductComponent implements OnInit {
       delete res['photo'];
       this.productPost = res;
       console.log(res);
+
+      
+
     });
+
   }
 
   loadCategories() {
@@ -60,7 +70,9 @@ is_photo_selected:boolean = false;
   }
 
   selectCat(event: any) {
-    const cat = event;
+    const cat = event.target.value;
+    console.log(cat);
+    
     this.productPost.category = cat;
   }
 
@@ -111,5 +123,8 @@ is_photo_selected:boolean = false;
       
     });
   }
+
+
+
 
 }
