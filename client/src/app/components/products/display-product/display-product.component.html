@@ -1,5 +1,7 @@
 <app-navbar></app-navbar>
-
+<div *ngIf="isLoading" style="height: 80vh;width: 100vw; display: flex; align-items: center; justify-content: center;">
+  <img src="assets/images/page-loading.gif" alt="">
+</div>
 <div class="page" *ngIf="!isLoading">
   <div style="padding-top: 100px;" class="row">
     <div class="col-md-6">
@@ -52,26 +54,30 @@
       <div >
         <span style="font-size: 18px;">Available for Delievery in India : </span>
         
-          <span  style="
+          <span *ngIf="product.stock<10"  style="
           color: var(--blue);
           border:1px solid var(--blue);
           padding: 5px 10px;
           border-radius: 5px;
           font-size: 18px;
           ">{{product.stock}}</span>
-          <span style="font-size: 18px;">  Left in Stock</span>
+          <span *ngIf="product.stock<10" style="font-size: 18px;">  Left in Stock</span>
           
       </div>
 <br>
 
 <hr>
       <div>
-       <button style="
+       <button *ngIf="product.stock==0"  style="
           border: 1px solid var(--blue);
 
         width:100%; font-size: 18px;" class="button-theme" (click)="addItemToCart(product)">
           Add to Cart : ₹{{product.price}}
        </button>
+       <button *ngIf="product.stock>0"  style="width:100%; font-size: 18px;" class="btn btn-danger" >
+          Out of Stock
+       </button>
+      
       </div>
 
       <button
@@ -86,6 +92,7 @@
   background: transparent;
   width: 100%;
       "
+      [routerLink] = "['/cart']"
     >
   Go to Cart 
   </button>

@@ -54,6 +54,7 @@ export class PaymentFormComponent implements OnInit {
     locale: 'en',
   };
 
+  isLoading=false;
   constructor(
     private router:Router,
     private http: HttpClient,
@@ -87,6 +88,7 @@ export class PaymentFormComponent implements OnInit {
   }
 
   pay(): void {
+    this.isLoading=true
     if (this.stripeTest.valid) {
       this.createPaymentIntent(this.stripeTest.get('amount')!.value)
         .pipe(

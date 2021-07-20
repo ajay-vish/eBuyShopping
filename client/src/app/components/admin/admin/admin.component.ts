@@ -42,6 +42,7 @@ export class AdminComponent implements OnInit {
     });
   }
   onKeydown(event: any) {
+    this.category=""
     let temp = [];
     console.log(event)
     if(this.search == ''){

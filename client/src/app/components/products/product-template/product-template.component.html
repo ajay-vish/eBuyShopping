@@ -25,25 +25,14 @@
   </p>
     <span>{{ product.name }}</span>
   </div>
-  <!-- <div class="product-desc">
-    <span
-      style="
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 4; /* number of lines to show */
-        -webkit-box-orient: vertical;
-      "
-    >
-      {{ product.description }}
-     
-    </span>
-  </div> -->
+
   <div class="product-edit ">
     <span 
       style="  font-size: 17px; font-weight: 600; width: 100%; margin-bottom: 5px"
     >
-    ₹{{ product.price }}
+    ₹{{ product.price }} 
+
+    <span *ngIf="product.stock==0" class="text-danger mx-2">Out of stock</span>
   </span>
  
   

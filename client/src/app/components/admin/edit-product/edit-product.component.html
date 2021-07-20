@@ -33,7 +33,9 @@
       <span>Price in Ruppes(₹)</span>
       <input [(ngModel)]="productPost.price" name="price" type="number" />
       <br /><br />
-
+      <span> Edit Product Stock</span>
+      <input [(ngModel)]="productPost.stock" name="stock" type="number" min="0"/>
+      <br/><br/>
       <span>Thumbnail Image</span>
       <input  (change)="selectImage1($event)" type="file" name="photo" accept="image"/>
       <br /><br/>
