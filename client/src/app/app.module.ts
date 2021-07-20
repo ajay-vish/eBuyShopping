@@ -36,6 +36,9 @@ import { OrdersComponent } from './components/admin/orders/orders.component';
 import { DatePipe } from '@angular/common';
 import { ConfirmComponent } from './components/products/cart-template/confirm/confirm.component';
 import { DisplayProductsByCategoryComponent } from './components/display-products-by-category/display-products-by-category.component';
+import {MatMenuModule} from '@angular/material/menu'; 
+
+
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AdminProductTemplateComponent } from './components/admin/admin-product-template/admin-product-template.component';
 @NgModule({
@@ -77,6 +80,7 @@ import { AdminProductTemplateComponent } from './components/admin/admin-product-
     MatSelectModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatMenuModule,
     NgxStripeModule.forRoot('pk_test_QRFXZbbH9njd7BTCT4rPWlVA00HxnTuLnq'),
   ],
   providers: [DatePipe],
