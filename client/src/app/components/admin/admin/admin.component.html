@@ -40,7 +40,7 @@
     <div class="row">
       <div *ngFor="let p of products" class="col-md-3">
         <div style="margin-bottom: 20px" class="product">
-          <img src="{{ p.photo.contentType }}" />
+          <img src="{{ p.photo.contentType }}" loading="lazy" />
           <div class="product-name">
             <span>{{ p.name }}</span>
           </div>

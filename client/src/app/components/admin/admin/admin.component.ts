@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -11,7 +11,13 @@ import { ProductService } from 'src/app/services/product.service';
 export class AdminComponent implements OnInit {
   products: any = [];
   categories: any = [];
-  constructor(private ps: ProductService, private service: AdminService) {}
+  constructor(private ps: ProductService, private service: AdminService, { nativeElement }: ElementRef<HTMLImageElement>) {
+    const supports = 'loading' in HTMLImageElement.prototype;
+
+    if (supports) {
+      nativeElement.setAttribute('loading', 'lazy');
+    }
+  }
 
   ngOnInit(): void {
     this.loadProducts();
