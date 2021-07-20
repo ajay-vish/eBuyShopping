@@ -68,13 +68,13 @@
 
 <hr>
       <div>
-       <button *ngIf="product.stock==0"  style="
+       <button *ngIf="product.stock>0"  style="
           border: 1px solid var(--blue);
 
         width:100%; font-size: 18px;" class="button-theme" (click)="addItemToCart(product)">
           Add to Cart : ₹{{product.price}}
        </button>
-       <button *ngIf="product.stock>0"  style="width:100%; font-size: 18px;" class="btn btn-danger" >
+       <button *ngIf="product.stock==0"  style="width:100%; font-size: 18px;" class="btn btn-danger" >
           Out of Stock
        </button>
       
