@@ -170,7 +170,7 @@ exports.getDisplayProducts = (req, res) => {
 	Category.find()
 		.exec((err, category) => {
 			if (err) {
-				return res.status(400).json({
+				return res.json({
 					error: "No products found",
 				});
 			}
@@ -186,7 +186,7 @@ exports.getDisplayProducts = (req, res) => {
 					.limit(10)
 					.exec((err, products) => {
 						if (err) {
-							return res.status(400).json({
+							return res.json({
 								error: "No products found",
 							});
 						}
@@ -205,6 +205,30 @@ exports.getDisplayProducts = (req, res) => {
 				});
 			})
 		});
+}
+
+exports.getProductsOfCategory = (req,res) =>{
+	let categoryId = req.params.categoryId
+	if(categoryId){
+	Product.find({category: categoryId, available: true}).select("-photo").populate('category')
+		.exec((err, products) => {
+			if (err) {
+				return res.json({
+					error: "No products found",
+				});
+			}
+		
+			return res.json({
+				success: true,
+				data: products,
+			});
+		});
+	}
+	else{
+		return res.json({
+			error: "Category Id is empty.",
+		});
+	}
 }
 
 exports.getAllProducts = (req, res) => {

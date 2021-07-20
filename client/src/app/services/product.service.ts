@@ -30,6 +30,14 @@ export class ProductService {
       catchError(this.handleError)
     );
   }
+  getProductsByCategory(categoryId: any): Observable<any> {
+    return this.http.get(endpoint + 'products/category/'+categoryId).pipe(
+      map((res) => {
+        return res;
+      }),
+      catchError(this.handleError)
+    );
+  }
 
   getHomeProducts(): Observable<any> {
     return this.http.get(endpoint + 'displayproducts').pipe(
