@@ -39,15 +39,17 @@ export class ProductPageComponent implements OnInit {
     });
   }
 
-  onKeydown() {
+  onKeydown(event: any) {
     this.temp = [];
+    console.log(event)
     if(this.search == ''){
       this.products = this.groupProducts(this.productMain);
     }else{
       for(let i = 0; i < this.productMain.length; i++){
         let product = this.productMain[i].name.toUpperCase();
         let category = this.productMain[i].category.name.toUpperCase();
-        let search = this.search.toUpperCase();
+        let search = this.search.toUpperCase() +
+        (event.key.length == 1 ? event.key.toUpperCase() : "");
         for(var key in search.split(" ")){
           console.log(search[key])
         }
