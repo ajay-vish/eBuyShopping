@@ -41,14 +41,17 @@
       <span> Previous Category: </span>
 
       <span style="font-weight: 800"> {{ productPost.category.name }}</span>
-      <select required 
-      [ngModel]="productPost.category"
-      (ngModelChange)="selectCat($event)"
+      <select required       
+      (change)="selectCat($event)"
       name="category"
     >
-      <option *ngFor="let c of categories" value="{{ c._id }}">
+
+      <option *ngFor="let c of categories" value="{{ c._id }}" 
+      [selected]="c._id == productPost.category._id"
+      >
         {{ c.name }}
       </option>
+      
     </select>
       <br /><br />
 
