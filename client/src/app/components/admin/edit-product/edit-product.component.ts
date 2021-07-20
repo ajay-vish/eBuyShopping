@@ -71,8 +71,7 @@ is_photo_selected:boolean = false;
 
   selectCat(event: any) {
     const cat = event.target.value;
-    console.log(cat);
-    
+    console.log(cat);  
     this.productPost.category = cat;
   }
 
