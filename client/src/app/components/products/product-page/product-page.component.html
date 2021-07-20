@@ -7,6 +7,8 @@
   <section class="products" *ngFor="let categories of products">
     <div style="padding: 10px 0">
       <span class="title">{{ categories[0].category.name }}</span>
+      <!-- redirect to view products by category page -->
+      <a class="view-more" [routerLink]="['/view/',categories[0].category.name.toLowerCase().replace(':','').split(' ').join('-')]" [queryParams]="{ id: categories[0].category._id}">View more</a>
     </div>
     <br />
     <div class="scroll">

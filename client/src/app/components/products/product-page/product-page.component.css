@@ -57,6 +57,12 @@
   height: 0.5em;
 }
 
+.view-more{
+  text-decoration: underline;
+  color: rgb(45, 55, 65);
+  margin: 0 5px;
+}
+
 .scroll::-webkit-scrollbar-thumb {
   background-color: rgb(207, 207, 207);
   border-radius: 10px;
