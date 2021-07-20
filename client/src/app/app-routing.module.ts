@@ -48,7 +48,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'view/:categoryName', component: DisplayProductsByCategoryComponent },
+  { path: 'view/:category-name', component: DisplayProductsByCategoryComponent },
   { path: 'order', component: CartTemplateComponent, canActivate: [AuthGaurd] },
   { path: 'orders', component: OrdersComponent, canActivate: [AdminAuthGaurd] },
 ];
