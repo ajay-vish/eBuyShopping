@@ -45,7 +45,7 @@ export class EditProductComponent implements OnInit {
       delete res['photo'];
       this.productPost = res;
       console.log(res);
-
+      
       
 
     });
