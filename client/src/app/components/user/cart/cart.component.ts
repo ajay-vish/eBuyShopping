@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentFormComponent } from '../../payment-form/payment-form.component';
+import { PaymentFormComponent } from '../payment-form/payment-form.component';
 import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-cart',
@@ -33,7 +33,11 @@ export class CartComponent implements OnInit {
     this.products.map((p: { price: number; count: number }) => {
       amount = amount + p.price * p.count;
     });
+    
     this.cart_total = amount;
+    if(this.cart_total == 0){
+      this.isEmpty = true;
+    }
   }
 
   removeItem(productId: any) {

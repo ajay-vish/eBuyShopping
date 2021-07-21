@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
-const endpoint = `http://localhost:8000/api/`;
+import  endpoint  from '../config';
 
 @Injectable({
   providedIn: 'root',

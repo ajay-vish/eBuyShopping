@@ -35,7 +35,7 @@ export class OrdersComponent implements OnInit {
   }
   selectOrder(event: any, orderId: any){
     this.admin.changeStatus(orderId,event).subscribe((resp: any) => {
-      console.log(resp.order);
+     
       
       if(resp.success){
         this.snackBar.open(`Order status updated to ${event}`, 'close', {

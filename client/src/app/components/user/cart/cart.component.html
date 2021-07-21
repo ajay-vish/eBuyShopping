@@ -16,7 +16,7 @@
             color: rgb(139, 139, 139);
           "
         >
-          <h2>-----------Your cart looks Empty-----------</h2>
+          <h2>Your cart looks Empty</h2>
           <h4>Click on Add products to add products to your cart</h4>
         </div>
         <div *ngFor="let p of products" class="row" style="margin-bottom: 10px">
@@ -45,31 +45,13 @@
             </div>
             <div class="col-md-3">
               <div class="product-edit">
-                <!-- <button
-                  (click)="decreaseQty(p._id)"
-                  style="width: 100%; margin-bottom: 5px"
-                  class="button-price"
-                >
-                  -
-                </button>
-                <button
-                  style="width: 100%; margin-bottom: 5px"
-                  class="button-price"
-                >
-                  Qty: {{ p.count }}
-                </button>
-                <button
-                  (click)="increaseQty(p._id)"
-                  style="width: 100%; margin-bottom: 5px"
-                  class="button-price"
-                >
-                  +
-                </button> -->
+                
                 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
 
-                  <button    (click)="increaseQty(p._id)" mat-mini-fab  color="primary">+</button>
-                  <button mat-stroked-button color="primary" >Qty: {{ p.count }}</button>
-                  <button  (click)="decreaseQty(p._id)" mat-mini-fab  color="primary">-</button>
+                  <button  (click)="decreaseQty(p._id)" mat-mini-fab style="color:#ffff; background: var(--blue);" >-</button>
+                  <button style="border: 1px solid var(--blue) !important; color: var(--blue);" mat-stroked-button >Qty: {{ p.count }}</button>
+                  <button    (click)="increaseQty(p._id)" mat-mini-fab style="color:#ffff; background: var(--blue);" >+</button>
+
                 </div>
                 <button
                   (click)="removeItem(p._id)"

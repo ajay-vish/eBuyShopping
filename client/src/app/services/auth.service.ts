@@ -8,7 +8,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators';
-const endpoint = `http://localhost:8000/api/`;
+import  endpoint  from '../config';
 @Injectable({
   providedIn: 'root',
 })
