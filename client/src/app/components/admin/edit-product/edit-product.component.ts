@@ -55,10 +55,17 @@ export class EditProductComponent implements OnInit {
   selectImage1(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      // this.productPost['photo'] = file;
-      this.photo = file;
-      this.is_photo_selected = true;
-     
+      if(file.type.split("/")[0] == 'image'){
+        this.photo = file;
+        this.is_photo_selected = true;
+      }else{
+        this.snackBar.open('Only image file supported', 'close', {
+          duration: 2000,
+          panelClass: ['error-snackbar'],
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      }
     }
   }
 
