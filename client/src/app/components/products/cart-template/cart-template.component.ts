@@ -21,6 +21,11 @@ export class CartTemplateComponent implements OnInit {
   ) {}
   orders: any;
   ngOnInit(): void {
+   
+    this.loadOrders()
+  }
+
+  loadOrders(){
     const { user, token } = this.auth.getSignedInUser();
     this.productService.getMyOrders(user._id, token).subscribe((resp: any) => {
       this.orders = resp;
@@ -41,6 +46,7 @@ export class CartTemplateComponent implements OnInit {
                 horizontalPosition: 'center',
                 verticalPosition: 'top',
               });
+              this.loadOrders()
             }else{
               this.snackBar.open(resp.error, 'close', {
                 duration: 2000,

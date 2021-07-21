@@ -17,6 +17,8 @@ import { AuthGuardService as AuthGaurd } from './services/auth-gaurd.service';
 import { AdminAuthGaurdService as AdminAuthGaurd } from './services/admin-auth-gaurd.service';
 import { CartTemplateComponent } from './components/products/cart-template/cart-template.component';
 import { OrdersComponent } from './components/admin/orders/orders.component';
+import { DisplayProductsByCategoryComponent } from './components/display-products-by-category/display-products-by-category.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -47,8 +49,11 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'view/:category-name', component: DisplayProductsByCategoryComponent },
   { path: 'order', component: CartTemplateComponent, canActivate: [AuthGaurd] },
   { path: 'orders', component: OrdersComponent, canActivate: [AdminAuthGaurd] },
+  { path: '404', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

@@ -1,17 +1,26 @@
 <app-navbar></app-navbar>
-<br>
+<div
+	*ngIf="isLoading"
+	style="
+		background-color: white;
+		overflow: hidden;
+		height: 92vh;
+		width: 100vw;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	"
+>
+	<img style ="max-width: 100%;" src="assets/images/main-loading.gif" alt="" />
+</div>
+<div class="container" *ngIf="!isLoading">
+	<br>
+	<div class="text-center" style="width: 100%; margin-bottom: 40px;">
+		<p class="h1 category-title">{{products[0]?.category.name}}</p>
+	</div>
+	<div class="d-flex flex-row-reverse"></div>
 
-<div class="container">
-    <div class="text-center" style="width: 100%;">
-
-        <p class="h1 category-title">{{products[0]?.category.name}}</p>
-    </div>
-  <div class="d-flex flex-row-reverse">
-   
-  </div>
-
-      <div *ngFor="let product of products" class="col-md-3">
-        <app-product-template [product]="product"></app-product-template>
-      </div>
-
+	<div *ngFor="let product of products" class="col-md-3">
+		<app-product-template [product]="product"></app-product-template>
+	</div>
 </div>

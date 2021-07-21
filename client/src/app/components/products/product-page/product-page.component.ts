@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 
 @Component({
@@ -7,8 +8,9 @@ import { ProductService } from '../../../services/product.service';
   styleUrls: ['./product-page.component.css'],
 })
 export class ProductPageComponent implements OnInit {
-  constructor(public ProductService: ProductService, ) {}
+  constructor(public ProductService: ProductService,private router: Router ) {}
 
+  isLoading = true;
   products: any[] = [];
   productMain: any[] = [];
   temp: any;
@@ -35,8 +37,13 @@ export class ProductPageComponent implements OnInit {
   getProducts(): void {
     this.ProductService.getProducts().subscribe((resp: any) => {
       this.products = this.groupProducts(resp.data);
+      this.isLoading = false;
       this.productMain = resp.data;
     });
+  }
+
+  gotoCategory(name:any,id:any): void{
+    this.router.navigate(['/view/'+name.toLowerCase().replace(':','').split(' ').join('-')], { queryParams: { id: id } })
   }
 
   onKeydown(event: any) {

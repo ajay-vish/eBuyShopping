@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 import {
@@ -14,6 +14,7 @@ import {
 export class DisplayProductComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     public productService: ProductService,
     public userService: UserService,
     private snackBar: MatSnackBar
@@ -35,6 +36,9 @@ export class DisplayProductComponent implements OnInit {
 
   getProduct(id: any) {
     this.productService.getProduct(id).subscribe((resp: any) => {
+      if(resp.error){
+        this.router.navigate(['/404'])
+      }
       this.product = resp;
       this.isLoading = false;
     });

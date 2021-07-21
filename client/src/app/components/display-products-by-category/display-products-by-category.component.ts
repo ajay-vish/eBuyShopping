@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';  
+import { ActivatedRoute, Router } from '@angular/router';  
 import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-display-products-by-category',
@@ -8,9 +8,13 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class DisplayProductsByCategoryComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private productService : ProductService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router,
+    private productService : ProductService) { }
 
-  categoryId: any
+  categoryId: any;
+  isLoading = true;
   products: any = [];
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params =>{
@@ -21,8 +25,12 @@ export class DisplayProductsByCategoryComponent implements OnInit {
 
   loadProducts() {
     this.productService.getProductsByCategory(this.categoryId).subscribe((res: any) => {
+      if(res.error){
+        this.router.navigate(['/404'])
+      }
       this.products = res.data;
-    
+      this.isLoading=false;
+      
     });
   }
 

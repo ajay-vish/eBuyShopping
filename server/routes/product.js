@@ -9,7 +9,8 @@ const {
 	photo,
 	deleteProduct,
 	updateProduct,
-	getDisplayProducts
+	getDisplayProducts,
+	getProductsOfCategory
 } = require("../controllers/product");
 
 const { isSignedIn, isAdmin, isAuthenticated } = require("../controllers/auth");
@@ -17,7 +18,6 @@ const { getUserById } = require("../controllers/user");
 //params
 router.param("userId", getUserById);
 router.param("productId", getProductById);
-
 // router.use(express.urlencoded({limit: '50mb'}))
 
 //routes
@@ -54,6 +54,7 @@ router.put(
 //listing route
 router.get("/products", getAllProducts);
 router.get("/displayproducts", getDisplayProducts);
+router.get("/products/category/:categoryId", getProductsOfCategory);
 
 router.get("/products/categories", getAllUniqueCategories);
 
