@@ -4,6 +4,20 @@
     <div style="padding: 3rem 0 0 0">
       <span class="title">My Orders</span>
     </div>
+
+    <div
+    *ngIf="isEmpty"
+    style="
+      text-align: center;
+      margin-top: 5rem;
+      color: rgb(139, 139, 139);
+    "
+  >
+    <h2>You have not ordered anything</h2>
+    <h4>Go to home to buy products!</h4>
+  </div>
+
+
     <div
       *ngFor="let order of orders"
       class="cart-container"

@@ -48,7 +48,9 @@ img {
   font-size: 15px;
 }
 
-
+.product-img-wrapper {
+  text-align: center;
+}
 .product img {
   /* align-items: center; */
   border-radius: 10px;

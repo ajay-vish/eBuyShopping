@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit {
   loadCategories(){
     this.adminService.getAllCategories().subscribe((resp:any) =>{
       this.categories = resp.items;
-      console.log(this.categories);
+    
       
     })
   }

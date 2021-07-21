@@ -48,7 +48,7 @@ export class ProductPageComponent implements OnInit {
 
   onKeydown(event: any) {
     this.temp = [];
-    console.log(event)
+  
     if(this.search == ''){
       this.products = this.groupProducts(this.productMain);
     }else{
@@ -58,7 +58,7 @@ export class ProductPageComponent implements OnInit {
         let search = this.search.toUpperCase() +
         (event.key.length == 1 ? event.key.toUpperCase() : "");
         for(var key in search.split(" ")){
-          console.log(search[key])
+         
         }
         if(product.match(search) || category.match(search)){
           this.temp.push(this.productMain[i]);

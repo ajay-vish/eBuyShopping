@@ -17,6 +17,7 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { Router } from '@angular/router';
+import  endpoint  from '../../../../app/config';
 
 // import { environment as env } from '../../environments/environment';
 
@@ -170,7 +171,7 @@ export class PaymentFormComponent implements OnInit {
 
   createPaymentIntent(amount: number): Observable<PaymentIntent> {
     return this.http.post<PaymentIntent>(
-      `http://localhost:8000/api/create-payment-intent`,
+      endpoint+`create-payment-intent`,
       { amount }
     );
   }

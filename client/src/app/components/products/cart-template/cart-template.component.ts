@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CartTemplateComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion | null = null;
+  isEmpty:boolean = true;
   panelOpenState = false;
   constructor(
     private productService: ProductService,
@@ -19,6 +20,7 @@ export class CartTemplateComponent implements OnInit {
     public dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {}
+  
   orders: any;
   ngOnInit(): void {
    
@@ -29,6 +31,9 @@ export class CartTemplateComponent implements OnInit {
     const { user, token } = this.auth.getSignedInUser();
     this.productService.getMyOrders(user._id, token).subscribe((resp: any) => {
       this.orders = resp;
+      if(!this.orders.length) {
+        this.isEmpty= true; 
+      }
     });
   }
   cancelOrder(orderId: any){
@@ -37,7 +42,7 @@ export class CartTemplateComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      
       if(result){
         this.productService.cancelOrder(orderId, 'Cancelled').subscribe((resp: any) => {
             if(resp.success){

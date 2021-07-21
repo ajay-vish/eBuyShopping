@@ -122,7 +122,6 @@ exports.updateProduct = (req, res) => {
 	form.keepExtensions = true;
 	
 	form.parse(req, (err, fields, file) => {
-		console.log(fields);
 		if (err) {
 			return res.json({
 				error: "problem with image",
@@ -131,9 +130,8 @@ exports.updateProduct = (req, res) => {
 
 		//updation code
 		let product = req.product;
-		console.log("CONTENTTYPE");
-		console.log(product['photo'].contentType.split(';')[0]);
 		product['photo'].contentType = product['photo'].contentType.split(';')[0].substring(5);
+
 
 		product = _.extend(product, fields);
 		//handle file here
@@ -152,7 +150,8 @@ exports.updateProduct = (req, res) => {
 		product.save((err, product) => {
 			if (err) {
 				return res.json({
-					error: "Updation in DB failed",
+					error:err.message
+					// error: "Updation in DB failed",
 				});
 			}
 			res.json({success:true,product});

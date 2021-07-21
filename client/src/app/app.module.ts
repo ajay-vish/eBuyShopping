@@ -14,7 +14,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/user/home/home.component';
-import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 import { CartComponent } from './components/user/cart/cart.component';
 import { ProductTemplateComponent } from './components/products/product-template/product-template.component';
 import { CartTemplateComponent } from './components/products/cart-template/cart-template.component';
@@ -29,23 +28,27 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DisplayProductComponent } from './components/products/display-product/display-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PaymentFormComponent } from './components/payment-form/payment-form.component';
+import { PaymentFormComponent } from './components/user/payment-form/payment-form.component';
 import { CartProductTemplateComponent } from './components/products/cart-product-template/cart-product-template.component';
 import { OrderProgressComponent } from './components/products/order-progress/order-progress.component';
 import { OrdersComponent } from './components/admin/orders/orders.component';
 import { DatePipe } from '@angular/common';
 import { ConfirmComponent } from './components/products/cart-template/confirm/confirm.component';
-import { DisplayProductsByCategoryComponent } from './components/display-products-by-category/display-products-by-category.component';
+import { DisplayProductsByCategoryComponent } from './components/products/display-products-by-category/display-products-by-category.component';
 import {MatMenuModule} from '@angular/material/menu'; 
 
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AdminProductTemplateComponent } from './components/admin/admin-product-template/admin-product-template.component';
+import {MatIconModule} from '@angular/material/icon'
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DashboardComponent,
     CartComponent,
     ProductTemplateComponent,
     CartTemplateComponent,
@@ -83,6 +86,7 @@ import { AdminProductTemplateComponent } from './components/admin/admin-product-
     MatMenuModule,
     MatProgressSpinnerModule,
     NgxStripeModule.forRoot('pk_test_QRFXZbbH9njd7BTCT4rPWlVA00HxnTuLnq'),
+    MatIconModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

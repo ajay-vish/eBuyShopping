@@ -8,11 +8,13 @@
 		width: 100%;
 		background-color: #333333;
 		color: rgb(163, 163, 163);
-	"
->
+	">
 	<div class="m-navbar" style="padding: 15px 0px; font-size: 15px;">
 		<a style="margin: 0px 20px;" [routerLink]="['/home']">Home</a>
-		<button mat-button [matMenuTriggerFor]="menu">Categories</button>
+		<button mat-button [matMenuTriggerFor]="menu">Categories
+			<mat-icon>keyboard_arrow_down</mat-icon>
+
+		</button>
 		<mat-menu #menu="matMenu">
 			<button
 				*ngFor="let c of categories"
@@ -23,8 +25,7 @@
 			</button>
 		</mat-menu>
 
-		<a style="margin: 0px 20px;">About</a>
-		<a style="margin: 0px 20px;">Contact Us</a>
+
 		<a style="margin: 0px 20px;" [routerLink]="['/order']">My Orders</a>
 		<a style="margin: 0px 20px;" [routerLink]="['/cart']">Cart</a>
 		<a style="margin: 0px 20px;" (click)="logout()">Log out</a>
@@ -55,8 +56,7 @@
 				{{c.name}}
 			</button>
 		</mat-menu>
-		<a style="margin: 0px 20px;">About</a>
-		<a style="margin: 0px 20px;">Contact Us</a>
+	
 		<a style="margin: 0px 20px;" [routerLink]="['/login']">Login</a>
 		<a style="margin: 0px 20px;" [routerLink]="['/register']">Register</a>
 	</div>
@@ -78,8 +78,6 @@
 		<a style="margin: 0px 20px;" [routerLink]="['/home']">Home</a>
 		<a style="margin: 0px 20px;" [routerLink]="['/admin']">Dashboard</a>
 		<a style="margin: 0px 20px;" [routerLink]="['/orders']">Orders</a>
-		<a style="margin: 0px 20px;">About</a>
-		<a style="margin: 0px 20px;">Contact Us</a>
 		<a style="margin: 0px 20px;" (click)="logout()">Log out</a>
 	</div>
 </div>

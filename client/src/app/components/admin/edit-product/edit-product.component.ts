@@ -14,10 +14,6 @@ import { FormGroup } from '@angular/forms';
 export class EditProductComponent implements OnInit {
   // productPost:any = {};
   
-
-
-
-
   productPost: any = {
     _id: '',
     name: '',
@@ -25,10 +21,10 @@ export class EditProductComponent implements OnInit {
     category: '',
     description: '',
     stock: '',
+    available:Boolean ,
   };
   photo:any;
   categories: any = [];
-
 
   constructor(
     private router:Router,
@@ -44,12 +40,9 @@ export class EditProductComponent implements OnInit {
     this.adminservice.getProduct(id).subscribe((res: any) => {
       delete res['photo'];
       this.productPost = res;
-      console.log(res);
-
-      
-
+     
+      this.productPost.category = this.productPost.category._id;
     });
-
   }
 
   loadCategories() {
@@ -57,42 +50,50 @@ export class EditProductComponent implements OnInit {
       this.categories = res.items;
     });
   }
-is_photo_selected:boolean = false;
+
+  is_photo_selected:boolean = false;
   selectImage1(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       // this.productPost['photo'] = file;
       this.photo = file;
       this.is_photo_selected = true;
-      console.log("COMPONENT FILE");
-      console.log(this.photo);
+     
     }
   }
 
   selectCat(event: any) {
     const cat = event.target.value;
-    console.log(cat);
-    
+   
     this.productPost.category = cat;
   }
 
   updateProduct() {
-    // this.adminservice.createProduct(this.productPost).subscribe((res: any) => {
-    //   if(res.success){
-    //   console.log("Product created successfully!!!!");
-    //     alert("Product created successfully!!!!");
-    //   }
-    // });
 
-    console.log(this.productPost);
-    console.log( "COMPONENT ");
+    
+  
     
     this.adminservice
       .updateProduct(this.productPost._id, this.productPost, this.photo, this.is_photo_selected)
       .subscribe((res:any) => {
+       
         if(res.success){
+          this.snackBar.open('Product details updated!!👍', 'close', {
+            duration: 2000,
+            panelClass: ['success-snackbar'],
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
           this.router.navigate(['/admin']);
         }
+        else{        
+          this.snackBar.open(res.error, 'close', {
+            duration: 2000,
+            panelClass: ['error-snackbar'],
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        } 
       });
   }
 
@@ -100,31 +101,26 @@ is_photo_selected:boolean = false;
     this.adminservice
     .deleteProduct(this.productPost._id)
     .subscribe((res: any) => {
-      console.log(res);
+      
+      
+     
       if(res.success){
-          
         this.snackBar.open('Product details updated!!👍', 'close', {
           duration: 2000,
           panelClass: ['success-snackbar'],
           horizontalPosition: 'center',
           verticalPosition: 'top',
         });
-        this.router.navigate(['/admin']);
+        // this.router.navigate(['/admin']);
       }
-      else{
-        
+      else{        
         this.snackBar.open(res.error, 'close', {
           duration: 2000,
           panelClass: ['error-snackbar'],
           horizontalPosition: 'center',
           verticalPosition: 'top',
         });
-      }
-      
+      }      
     });
   }
-
-
-
-
 }

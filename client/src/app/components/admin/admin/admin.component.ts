@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
     this.service.getAllProducts().subscribe((res: any) => {
       this.products = res.data;
       this.productMain = res.data;
-      console.log(res.data);
+  
       this.loadCategories();
     });
   }
@@ -45,7 +45,7 @@ export class AdminComponent implements OnInit {
   onKeydown(event: any) {
     this.category=""
     let temp = [];
-    console.log(event)
+   
     if(this.search == ''){
       this.products = this.productMain;
     }else{
