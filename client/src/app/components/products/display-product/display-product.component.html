@@ -1,105 +1,134 @@
 <app-navbar></app-navbar>
-<div *ngIf="isLoading" style="height: 80vh;width: 100vw; display: flex; align-items: center; justify-content: center;">
-  <img src="assets/images/page-loading.gif" alt="">
+<div
+	*ngIf="isLoading"
+	style="
+		height: 80vh;
+		width: 100vw;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	"
+>
+	<img src="assets/images/page-loading.gif" alt="" />
 </div>
 <div class="page" *ngIf="!isLoading">
-  <div style="padding-top: 100px;" class="row">
-    <div class="col-md-6">
-      <div 
-      style="
-      padding:0 10px;
-      "
-      class="detail-image">
-      <div style="text-align:center">
-        <img 
-        style=" max-width: 100%; height: 500px;"
-        src="{{product.photo.contentType}}">
-      </div>
-      </div>
-      
-    </div>
-    <div  class="col-md-6">
-      <div style="padding-left: 50px;">
+	<div style="padding-top: 100px;" class="row">
+		<div class="col-md-6">
+			<div style="padding: 0 10px;" class="detail-image">
+				<div style="text-align: center;">
+					<img
+						style="max-width: 100%; height: 500px;"
+						src="{{product.photo.contentType}}"
+					/>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div style="padding-left: 50px;">
+				<div style="font-size: 18px; color: var(--blue);">
+					<span>
+						{{product.category.name}}
+					</span>
+				</div>
+				<br />
 
-        <div style="font-size: 18px; color:var(--blue); ">
-          <span>
-            {{product.category.name}}
-          </span>
-        </div>
-<br>
+				<div
+					style="
+						text-decoration: underline;
+						margin-bottom: 30px;
+						font-size: 30px;
+						font-weight: 500;
+					"
+				>
+					<span>{{product.name}}</span>
+				</div>
 
-      <div style="
-        text-decoration: underline;
-        margin-bottom: 30px; font-size: 30px; font-weight: 500;">
-        <span >{{product.name}}</span>
-      </div>
+				<div style="font-size: 18px; color: #696969;">
+					<span>
+						{{product.description}}
+					</span>
+				</div>
+				<br />
+				<hr />
+				<br />
+				<div style="margin-bottom: 10px;">
+					<span style="font-size: 18px;">Product MRP:</span>
+					<span style="font-size: 28px; font-weight: 500;">
+						₹{{product.price}}
+					</span>
+					<span style="color: rgb(134, 134, 134);"
+						>(Inclusive of all taxes)</span
+					>
+				</div>
 
-      <div style="font-size: 18px; color:#696969; ">
-        <span>
-          {{product.description}}
-        </span>
-      </div>
-<br>
-      <hr>
-<br>
-      <div style="margin-bottom: 10px;">
-        <span style="font-size: 18px;">Product MRP:</span>
-        <span style="font-size:28px; font-weight: 500;"> 
-          ₹{{product.price}}
-        </span> 
-        <span style="color: rgb(134, 134, 134);" >(Inclusive of all taxes)</span>
+				<div>
+					<span style="font-size: 18px;"
+						>Available for Delievery in India :
+					</span>
 
-      </div>
+					<span
+						*ngIf="product.stock<10"
+						style="
+							color: var(--blue);
+							border: 1px solid var(--blue);
+							padding: 5px 10px;
+							border-radius: 5px;
+							font-size: 18px;
+						"
+						>{{product.stock}}</span
+					>
+					<span *ngIf="product.stock<10" style="font-size: 18px;">
+						Left in Stock</span
+					>
+				</div>
+				<br />
 
-      <div >
-        <span style="font-size: 18px;">Available for Delievery in India : </span>
-        
-          <span *ngIf="product.stock<10"  style="
-          color: var(--blue);
-          border:1px solid var(--blue);
-          padding: 5px 10px;
-          border-radius: 5px;
-          font-size: 18px;
-          ">{{product.stock}}</span>
-          <span *ngIf="product.stock<10" style="font-size: 18px;">  Left in Stock</span>
-          
-      </div>
-<br>
+				<hr />
+				<div>
+					<button
+						*ngIf="product.stock>0"
+						style="
+							border: 1px solid var(--blue);
 
-<hr>
-      <div>
-       <button *ngIf="product.stock>0"  style="
-          border: 1px solid var(--blue);
+							width: 100%;
+							font-size: 18px;
+						"
+						class="button-theme"
+						(click)="addItemToCart(product)"
+					>
+						Add to Cart : ₹{{product.price}}
+					</button>
+					<button
+						*ngIf="product.stock==0"
+						style="width: 100%; font-size: 18px;"
+						class="btn btn-danger"
+					>
+						Out of Stock
+					</button>
+				</div>
 
-        width:100%; font-size: 18px;" class="button-theme" (click)="addItemToCart(product)">
-          Add to Cart : ₹{{product.price}}
-       </button>
-       <button *ngIf="product.stock==0"  style="width:100%; font-size: 18px;" class="btn btn-danger" >
-          Out of Stock
-       </button>
-      
-      </div>
-
-      <button
-      style="
-      margin-top: 10px;
-        border: none;
-  padding: 10px 30px;
-  border-radius: 10px;
-  border: 1px solid var(--blue);
-  color: var(--blue);
-  font-size: 18px;
-  background: transparent;
-  width: 100%;
-      "
-      [routerLink] = "['/cart']"
-    >
-  Go to Cart 
-  </button>
-  <br>
-  <span style="color: rgb(134, 134, 134);" >All prices mentioned are inclusive of GST & no further charges applicable*</span>
-
-    </div>
-    </div>
-  </div>
+				<button
+					style="
+						margin-top: 10px;
+						border: none;
+						padding: 10px 30px;
+						border-radius: 10px;
+						border: 1px solid var(--blue);
+						color: var(--blue);
+						font-size: 18px;
+						background: transparent;
+						width: 100%;
+					"
+					[routerLink]="['/cart']"
+				>
+					Go to Cart
+				</button>
+				<br />
+				<span style="color: rgb(134, 134, 134);"
+					>All prices mentioned are inclusive of GST & no further charges
+					applicable*</span
+				>
+			</div>
+		</div>
+	</div>
 </div>

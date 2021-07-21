@@ -10,6 +10,7 @@ import { ProductService } from '../../../services/product.service';
 export class ProductPageComponent implements OnInit {
   constructor(public ProductService: ProductService,private router: Router ) {}
 
+  isLoading = true;
   products: any[] = [];
   productMain: any[] = [];
   temp: any;
@@ -36,6 +37,7 @@ export class ProductPageComponent implements OnInit {
   getProducts(): void {
     this.ProductService.getProducts().subscribe((resp: any) => {
       this.products = this.groupProducts(resp.data);
+      this.isLoading = false;
       this.productMain = resp.data;
     });
   }

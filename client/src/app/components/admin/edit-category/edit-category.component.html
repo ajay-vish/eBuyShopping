@@ -1,28 +1,29 @@
 <app-navbar></app-navbar>
-<div style="margin: 50px 400px">
-  <div style="padding: 20px 0">
-    <span class="title"> Edit Category </span>
+<div style="margin: 50px 400px;">
+	<div style="padding: 20px 0;">
+		<span class="title"> Edit Category </span>
+		<button
+			(click)="deleteCategory()"
+			style="float: right; background-color: rgb(236, 19, 19);"
+			class="button-theme"
+		>
+			Delete Category Permenantly
+		</button>
+	</div>
 
-    <button
-    (click)="deleteCategory()"
-      style="float: right; background-color: rgb(236, 19, 19)"
-      class="button-theme">
-      Delete Category Permenantly
-    </button>
-  </div>
-
-  <div class="prodcut-form">
-    <form class="form-product" (ngSubmit)="editCategory()" action="">
-      <span> Edit Category Name</span>
-      <input [(ngModel)]="categoryPost.name" name="name" type="text" />
-      <br /><br />
-      <button
-        style="width: 100%"
-        type="submit"
-        name="submit"
-        class="button-theme">
-        Update Category
-      </button>
-    </form>
-  </div>
+	<div class="prodcut-form">
+		<form class="form-product" (ngSubmit)="editCategory()" action="">
+			<span> Edit Category Name</span>
+			<input [(ngModel)]="categoryPost.name" name="name" type="text" />
+			<br /><br />
+			<button
+				style="width: 100%;"
+				type="submit"
+				name="submit"
+				class="button-theme"
+			>
+				Update Category
+			</button>
+		</form>
+	</div>
 </div>
