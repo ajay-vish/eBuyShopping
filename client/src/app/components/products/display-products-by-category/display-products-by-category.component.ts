@@ -11,10 +11,16 @@ export class DisplayProductsByCategoryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private router: Router,
-    private productService : ProductService) { }
+    private productService : ProductService) { 
+      this.route.queryParams.subscribe(queryParams => {
+        this.categoryId  = queryParams.id;
+        this.loadProducts()
+      });
+    }
 
   categoryId: any;
   isLoading = true;
+  isEmpty = true;
   products: any = [];
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params =>{
@@ -24,13 +30,16 @@ export class DisplayProductsByCategoryComponent implements OnInit {
   }
 
   loadProducts() {
+    this.isEmpty = true;
     this.productService.getProductsByCategory(this.categoryId).subscribe((res: any) => {
       if(res.error){
         this.router.navigate(['/404'])
       }
       this.products = res.data;
       this.isLoading=false;
-      
+      if(res.data.length){
+        this.isEmpty = false
+      }
     });
   }
 

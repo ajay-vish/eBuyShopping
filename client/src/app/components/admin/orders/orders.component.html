@@ -1,5 +1,8 @@
 <app-navbar></app-navbar>
-<div class="container">
+<div *ngIf="!orders.length" style="text-align: center; padding: 10rem">
+	<h2>No orders</h2>
+</div>
+<div *ngIf="orders.length" class="container">
 	<h1 style="margin-top: 3rem;">Orders</h1>
 	<br />
 	<div *ngFor="let order of orders">
