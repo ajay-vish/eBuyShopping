@@ -51,7 +51,7 @@ export class CreateProductComponent implements OnInit {
   createProduct() {
     this.adminservice.createProduct(this.productPost).subscribe((res: any) => {
       if(res.success){
-      console.log("Product created successfully!!!!");
+    
       this.snackBar.open('Product created successfully!!👍', 'close', {
         duration: 2000,
         panelClass: ['success-snackbar'],

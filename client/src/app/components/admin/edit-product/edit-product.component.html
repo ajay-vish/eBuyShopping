@@ -3,15 +3,11 @@
 	<div>
 		<span class="title"> Edit Product </span>
 
-		<button
-			(click)="deleteProduct()"
-			style="
+		<button (click)="deleteProduct()" style="
 				float: right;
 
 				background-color: rgb(236, 19, 19);
-			"
-			class="button-theme"
-		>
+			" class="button-theme">
 			Delete Product Permenantly
 		</button>
 	</div>
@@ -23,52 +19,32 @@
 			<input [(ngModel)]="productPost.name" name="name" type="text" />
 			<br /><br />
 			<div><span>Product Description</span></div>
-			<textarea
-				[(ngModel)]="productPost.description"
-				style="width: 100%;"
-				rows="4"
-				name="description"
-			></textarea>
+			<textarea [(ngModel)]="productPost.description" style="width: 100%;" rows="4" name="description"></textarea>
 			<br /><br />
 			<span>Price in Ruppes(₹)</span>
 			<input [(ngModel)]="productPost.price" name="price" type="number" />
-			<br /><br />
+			<br/><br/>
 			<span> Edit Product Stock</span>
-			<input
-				[(ngModel)]="productPost.stock"
-                name="stock"
-				type="number"
-				min="0"
-			/>
-			<br /><br />
+			<input [(ngModel)]="productPost.stock" name="stock" type="number" min="0"/>
+			<br/><br/>
+			<span> Edit Availablity status</span>
+			<select [(ngModel)]="productPost.available" name="available">
+				<option [selected] = "productPost.available" value="true">Available</option>
+				<option [selected] = "productPost.available" value="false">Not Available</option>
+			</select>
+		<br/> <br/>
 			<span>Thumbnail Image</span>
-			<input
-				(change)="selectImage1($event)"
-				type="file"
-				name="photo"
-				accept="image"
-			/>
-			<br /><br />
+			<input (change)="selectImage1($event)" type="file" name="photo" accept="image" />
+			<br/><br/>
 			<span> Previous Category: </span>
-
 			<span style="font-weight: 800;"> {{ productPost.category.name }}</span>
 			<select required (change)="selectCat($event)" name="category">
-				<option
-					*ngFor="let c of categories"
-					value="{{ c._id }}"
-					[selected]="c._id == productPost.category._id"
-				>
+				<option *ngFor="let c of categories" value="{{ c._id }}" [selected]="c._id == productPost.category._id">
 					{{ c.name }}
 				</option>
 			</select>
 			<br /><br />
-
-			<button
-				style="width: 100%;"
-				type="submit"
-				name="submit"
-				class="button-theme"
-			>
+			<button style="width: 100%;" type="submit" name="submit" class="button-theme">
 				Update Product
 			</button>
 		</form>

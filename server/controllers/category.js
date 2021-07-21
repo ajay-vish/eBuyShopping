@@ -59,7 +59,6 @@ exports.updateCategory = (req, res) => {
 exports.removeCategory = (req, res) => {
 	
 	const category = req.category;
-	console.log(category._id);
 	category.remove((err, category) => {
 		if (err) {
 			return res.json({

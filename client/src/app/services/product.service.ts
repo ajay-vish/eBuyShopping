@@ -8,7 +8,7 @@ import {
 import { AuthService } from './auth.service';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
-const endpoint = `http://localhost:8000/api/`;
+import  endpoint  from '../config';
 @Injectable({
   providedIn: 'root',
 })
@@ -55,14 +55,6 @@ export class ProductService {
       }),
       catchError(this.handleError)
     );
-  }
-
-  getProductImage(id: any): Observable<any> {
-    return this.http
-      .get('localhost:8000/api/product/photo/' + id, this.httpOptions)
-      .pipe((res) => {
-        return res;
-      }, catchError(this.handleError));
   }
 
   getMyOrders(id: any, token: any): Observable<any> {

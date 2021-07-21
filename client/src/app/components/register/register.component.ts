@@ -21,6 +21,24 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   register() {
+
+    var inputValue = this.registerPost.name;
+    var reg = new RegExp('[a-zA-Z][a-zA-Z/s]+');
+    var test = reg.test(inputValue);
+
+
+    if(!test) {
+      this.snackBar.open("Name cannot have only numbers!", 'close', {
+        duration: 2000,
+        panelClass: ['error-snackbar'],
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+    }
+    else {
+
+
+
     this.auth.signUp(this.registerPost).subscribe((res: any) => {
       if(res.error){
         this.snackBar.open(res.error, 'close', {
@@ -53,6 +71,9 @@ export class RegisterComponent implements OnInit {
       });
     }
     });
-    
   }
+  }
+
+
+
 }

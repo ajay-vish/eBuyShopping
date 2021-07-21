@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './components/admin/admin/admin.component';
-import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 import { HomeComponent } from './components/user/home/home.component';
 import { CreateCategoryComponent } from './components/admin/create-category/create-category.component';
 import { CreateProductComponent } from './components/admin/create-product/create-product.component';
@@ -17,7 +16,7 @@ import { AuthGuardService as AuthGaurd } from './services/auth-gaurd.service';
 import { AdminAuthGaurdService as AdminAuthGaurd } from './services/admin-auth-gaurd.service';
 import { CartTemplateComponent } from './components/products/cart-template/cart-template.component';
 import { OrdersComponent } from './components/admin/orders/orders.component';
-import { DisplayProductsByCategoryComponent } from './components/display-products-by-category/display-products-by-category.component';
+import { DisplayProductsByCategoryComponent } from './components/products/display-products-by-category/display-products-by-category.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [

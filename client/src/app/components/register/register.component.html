@@ -9,7 +9,7 @@
   <div class="prodcut-form">
     <form (ngSubmit)="register()" class="form-product" action="">
       <span>Enter name</span>
-      <input [(ngModel)]="registerPost.name" name="name" type="text" />
+      <input required pattern="[a-zA-Z]*" [(ngModel)]="registerPost.name" name="name" type="text" />
       <br /><br />
 
       <span>Enter email</span>

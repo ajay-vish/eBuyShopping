@@ -10,7 +10,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from './auth.service';
-const endpoint = `http://localhost:8000/api/`;
+import  endpoint  from '../config';
 
 @Injectable({
   providedIn: 'root',
@@ -49,11 +49,8 @@ export class AdminService {
     this.httpFormOptions.headers = this.httpFormOptions.headers.set(
       'Authorization',
       'Bearer ' + token
-
     );
-    console.log(body);
-    console.log("BODY");
-    
+
     
     
     let form = new FormData();
@@ -61,8 +58,7 @@ export class AdminService {
       form.append(key, body[key]);
     }
 
-    console.log("PHOTO");
-    console.log(photo);
+
     if(is_photo_selected){
       form.append('photo', photo);
     }
