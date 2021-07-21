@@ -2,6 +2,7 @@
 <div
 	*ngIf="isLoading"
 	style="
+		cursor:wait;
 		height: 80vh;
 		width: 100vw;
 		display: flex;
@@ -12,7 +13,7 @@
 	<img src="assets/images/page-loading.gif" alt="" />
 </div>
 <div class="page" *ngIf="!isLoading">
-	<div style="padding-top: 100px;" class="row">
+	<div style="padding-top: 50px;" class="row">
 		<div class="col-md-6">
 			<div style="padding: 0 10px;" class="detail-image">
 				<div style="text-align: center;">

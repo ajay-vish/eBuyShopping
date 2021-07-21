@@ -1,15 +1,17 @@
-
 <div
 	*ngIf="isLoading"
 	style="
-		height: 80vh;
+		cursor:wait;
+		background-color: white;
+		overflow: hidden;
+		height: 92vh;
 		width: 100vw;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	"
 >
-	<img src="assets/images/page-loading.gif" alt="" />
+	<img style ="max-width: 100%;" src="assets/images/main-loading.gif" alt="" />
 </div>
 <div class="container" *ngIf="!isLoading">
   <div class="d-flex flex-row-reverse">
@@ -18,7 +20,7 @@
   </div>
   <section class="products" *ngFor="let categories of products">
     <div style="padding: 10px 0">
-      <span class="title">{{ categories[0].category.name }}</span>
+      <span class="title" style="cursor: pointer;">{{ categories[0].category.name }}</span>
       
       <!-- redirect to view products by category page -->
       <a class="view-more" style="cursor: pointer;" (click)="gotoCategory(categories[0].category.name, categories[0].category._id)">View more</a>
