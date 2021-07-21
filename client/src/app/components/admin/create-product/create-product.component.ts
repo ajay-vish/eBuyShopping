@@ -22,6 +22,7 @@ export class CreateProductComponent implements OnInit {
     photo: null,
   };
 
+  isPhotoValid: boolean = false;
   categories: any = [];
 
   constructor(private adminservice: AdminService,private snackBar: MatSnackBar) {}
@@ -39,7 +40,17 @@ export class CreateProductComponent implements OnInit {
   selectImage1(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.productPost.photo = file;
+      if(file.type.split("/")[0] == 'image'){
+        this.productPost.photo = file;
+        this.isPhotoValid = true
+      }else{
+        this.snackBar.open('Only image file supported', 'close', {
+          duration: 2000,
+          panelClass: ['error-snackbar'],
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      }
     }
   }
 
@@ -49,25 +60,34 @@ export class CreateProductComponent implements OnInit {
   }
 
   createProduct() {
-    this.adminservice.createProduct(this.productPost).subscribe((res: any) => {
-      if(res.success){
-    
-      this.snackBar.open('Product created successfully!!👍', 'close', {
-        duration: 2000,
-        panelClass: ['success-snackbar'],
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-      });
-      }
-      else{
-        this.snackBar.open(res.error, 'close', {
+    if(this.isPhotoValid){
+      this.adminservice.createProduct(this.productPost).subscribe((res: any) => {
+        if(res.success){
+      
+        this.snackBar.open('Product created successfully!!👍', 'close', {
           duration: 2000,
-          panelClass: ['error-snackbar'],
+          panelClass: ['success-snackbar'],
           horizontalPosition: 'center',
           verticalPosition: 'top',
         });
-      }
-    });
+        }
+        else{
+          this.snackBar.open(res.error, 'close', {
+            duration: 2000,
+            panelClass: ['error-snackbar'],
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        }
+      });
+    }else{
+      this.snackBar.open("Please select an Image to upload", 'close', {
+        duration: 2000,
+        panelClass: ['error-snackbar'],
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+    }
   }
 
 
