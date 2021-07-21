@@ -9,6 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 
 export class AdminComponent implements OnInit {
+  isLoading = true;
   category: any = "";
   search =""
   products: any = [];
@@ -24,7 +25,6 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProducts();
-    this.loadCategories();
   }
 
   loadProducts() {
@@ -32,13 +32,14 @@ export class AdminComponent implements OnInit {
       this.products = res.data;
       this.productMain = res.data;
       console.log(res.data);
-      
+      this.loadCategories();
     });
   }
 
   loadCategories() {
     this.service.getAllCategories().subscribe((res: any) => {
       this.categories = res.items;
+      this.isLoading = false;
     });
   }
   onKeydown(event: any) {

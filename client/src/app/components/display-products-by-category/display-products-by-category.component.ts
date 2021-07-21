@@ -13,7 +13,8 @@ export class DisplayProductsByCategoryComponent implements OnInit {
     private router: Router,
     private productService : ProductService) { }
 
-  categoryId: any
+  categoryId: any;
+  isLoading = true;
   products: any = [];
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params =>{
@@ -28,6 +29,7 @@ export class DisplayProductsByCategoryComponent implements OnInit {
         this.router.navigate(['/404'])
       }
       this.products = res.data;
+      this.isLoading=false;
       
     });
   }

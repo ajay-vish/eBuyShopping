@@ -1,6 +1,19 @@
 <app-navbar></app-navbar>
-
-<div class="page">
+<div
+	*ngIf="isLoading"
+	style="
+		background-color: white;
+		overflow: hidden;
+		height: 92vh;
+		width: 100vw;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	"
+>
+	<img style ="max-width: 100%;" src="assets/images/main-loading.gif" alt="" />
+</div>
+<div class="page" *ngIf="!isLoading">
 	<div class="d-flex flex-row-reverse">
 		<input
 			placeholder="Search"
